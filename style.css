@@ -1,0 +1,339 @@
+        :root {
+            --primary-blue: #1e3a8a;
+            --accent-gold: #b45309;
+            --bg-canvas: #f1f5f9;
+            --text-dark: #0f172a;
+            --white: #ffffff;
+            --border-gray: #cbd5e1;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        body { background-color: var(--bg-canvas); color: var(--text-dark); display: flex; flex-direction: column; min-height: 100vh; }
+
+        /* Video-Accurate Top Header Frame */
+        header { background: var(--white); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-gray); }
+        .logo-area { display: flex; align-items: center; gap: 1.5rem; }
+        .logo-text h1 { color: var(--primary-blue); font-size: 2.2rem; font-family: 'Times New Roman', Times, serif; font-weight: bold; font-style: italic; }
+        .logo-text p { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: #475569; margin-top: -2px; font-weight: bold; }
+        .ca-india-badge { border: 2px solid var(--primary-blue); padding: 0.25rem 0.75rem; font-weight: bold; color: var(--primary-blue); border-radius: 4px; font-size: 1.1rem; text-align: center; }
+        .ca-india-badge span { display: block; font-size: 0.6rem; color: #ef4444; letter-spacing: 1px; }
+
+        /* Classic Corporate Blue Navigation Bar */
+        nav { background: var(--primary-blue); border-bottom: 4px solid var(--accent-gold); position: relative; z-index: 999; }
+        .nav-container { max-width: 1300px; margin: 0 auto; display: flex; list-style: none; }
+        .nav-container > li { position: relative; }
+        .nav-container > li > a { display: block; color: var(--white); text-decoration: none; padding: 0.8rem 1.2rem; font-size: 0.9rem; font-weight: bold; text-transform: uppercase; transition: background 0.2s; }
+        .nav-container > li:hover > a { background: var(--accent-gold); }
+
+        /* Level 1 Dropdown Menu Array */
+        .dropdown { display: none; position: absolute; top: 100%; left: 0; background: var(--white); min-width: 180px; box-shadow: 0 4px 6px rgba(0,0,0,0.15); list-style: none; border: 1px solid var(--border-gray); }
+        .nav-container > li:hover .dropdown { display: block; }
+        .dropdown li { position: relative; border-bottom: 1px solid #f1f5f9; }
+        .dropdown a { display: block; color: var(--text-dark); text-decoration: none; padding: 0.6rem 1rem; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; }
+        .dropdown li:hover > a { background: #f1f5f9; color: var(--accent-gold); }
+
+        /* Level 2 Fly-out Nesting Submenus (Triggers to the Right) */
+        .submenu { display: none; position: absolute; top: 0; left: 100%; background: var(--white); min-width: 240px; box-shadow: 0 4px 6px rgba(0,0,0,0.15); list-style: none; border: 1px solid var(--border-gray); }
+        .dropdown li:hover .submenu { display: block; }
+        .submenu a { text-transform: none; font-weight: normal; font-size: 0.85rem; }
+
+        /* Marquee Ticker Framework */
+        .ticker-bar { background: #fffbeb; border-bottom: 1px solid #fef3c7; padding: 0.4rem 5%; display: flex; align-items: center; font-size: 0.8rem; color: #b45309; font-weight: bold; gap: 1rem; }
+        .ticker-title { color: #991b1b; white-space: nowrap; border-right: 2px solid #fca5a5; padding-right: 1rem; }
+
+        /* 3-Column Split Content Blueprint */
+        .main-wrapper { max-width: 1400px; margin: 1.5rem auto; padding: 0 1.5rem; display: grid; grid-template-columns: 240px 1fr 280px; gap: 1.5rem; flex: 1; }
+
+        /* Common Content Box Styling */
+        .content-card { background: var(--white); border: 1px solid var(--border-gray); border-radius: 4px; padding: 1.25rem; margin-bottom: 1.5rem; }
+        .card-title { font-size: 0.95rem; color: var(--primary-blue); border-bottom: 2px solid var(--primary-blue); padding-bottom: 0.3rem; margin-bottom: 0.75rem; text-transform: uppercase; font-weight: bold; }
+        
+        /* Left Column Specific Layout rules */
+        .left-rail { display: flex; flex-direction: column; }
+        .quick-links-list { list-style: none; }
+        .quick-links-list a { display: block; padding: 0.4rem 0.5rem; font-size: 0.85rem; color: #334155; text-decoration: none; border-bottom: 1px dashed #e2e8f0; }
+        .quick-links-list a:hover { color: var(--accent-gold); background: #fafafa; }
+
+        /* Central Workspace Panel Layout rules */
+        .center-workspace { display: flex; flex-direction: column; }
+        .about-section h2 { font-size: 1.4rem; color: var(--primary-blue); margin-bottom: 0.75rem; border-bottom: 1px solid var(--border-gray); padding-bottom: 0.5rem; text-transform: uppercase; }
+        .about-section p { font-size: 0.9rem; line-height: 1.6; color: #334155; margin-bottom: 1.5rem; text-align: justify; }
+        
+        .commitments-box { background: #fffbeb; border-left: 4px solid var(--accent-gold); padding: 1rem; border-radius: 0 4px 4px 0; }
+        .commitments-box h3 { font-size: 1rem; color: var(--accent-gold); margin-bottom: 0.5rem; text-transform: uppercase; }
+        .commitments-box ul { list-style-type: square; padding-left: 1.25rem; font-size: 0.85rem; color: #78350f; }
+        .commitments-box ul li { margin-bottom: 0.4rem; }
+
+        /* Right Column (What's New News Desk + Login Matrix) */
+        .right-rail { display: flex; flex-direction: column; gap: 1.5rem; }
+        .whats-new-box { border-top: 3px solid var(--accent-gold); }
+        .news-ticker-container { height: 260px; overflow: hidden; position: relative; border: 1px solid #f1f5f9; padding: 0.5rem; background: #fafafa; }
+        .news-item { font-size: 0.8rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px dashed #cbd5e1; }
+        .news-date { font-weight: bold; color: var(--accent-gold); display: block; margin-bottom: 0.15rem; }
+        .news-text { color: #334155; text-decoration: none; display: block; }
+        .news-text:hover { color: var(--primary-blue); }
+
+        /* Secure Client Login Panel layout rules */
+        .login-box { border-top: 3px solid var(--primary-blue); background: #f8fafc; }
+        .form-group { margin-bottom: 0.75rem; }
+        .form-group label { display: block; font-size: 0.75rem; font-weight: bold; color: #475569; margin-bottom: 0.25rem; }
+        .form-control { width: 100%; padding: 0.4rem 0.5rem; border: 1px solid var(--border-gray); border-radius: 3px; font-size: 0.85rem; }
+        .login-btn { background: var(--primary-blue); color: var(--white); border: none; width: 100%; padding: 0.5rem; font-size: 0.85rem; font-weight: bold; border-radius: 3px; cursor: pointer; text-transform: uppercase; }
+        .login-btn:hover { background: #1d4ed8; }
+
+        /* Refactored High-Density Interactive Multi-Column Corporate Footer */
+        footer { background: #0f172a; color: #cbd5e1; border-top: 6px solid var(--primary-blue); padding: 3rem 5% 1.5rem; font-size: 0.85rem; margin-top: auto; }
+        .footer-grid { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 2.5rem; border-bottom: 1px solid #334155; padding-bottom: 2rem; }
+        .footer-col h4 { color: var(--white); font-size: 1rem; text-transform: uppercase; margin-bottom: 1rem; border-bottom: 2px solid var(--accent-gold); padding-bottom: 0.25rem; display: inline-block; }
+        .footer-col p { margin-bottom: 0.5rem; line-height: 1.5; color: #94a3b8; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.5rem; }
+        .footer-links a { color: #94a3b8; text-decoration: none; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--white); text-decoration: underline; }
+        
+        .footer-bottom { max-width: 1300px; margin: 1.5rem auto 0; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #64748b; }
+        .footer-bottom-links a { color: #64748b; text-decoration: none; margin-left: 1rem; }
+        .footer-bottom-links a:hover { color: #cbd5e1; }
+
+        @media (max-width: 1024px) {
+            .main-wrapper { grid-template-columns: 1fr; }
+            .left-rail, .right-rail { display: none; } /* Focus core workspace viewport on small layouts */
+        }
+		
+		    /* Portal Card Base Styling */
+    .login-portal-card {
+        max-width: 420px;
+        margin: 2rem auto;
+        background: #ffffff;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+    .portal-toggle-header {
+        display: flex;
+        background: #f1f5f9;
+        border-bottom: 1px solid #cbd5e1;
+    }
+    .portal-toggle-btn {
+        flex: 1;
+        padding: 1rem;
+        background: none;
+        border: none;
+        font-size: 0.9rem;
+        font-weight: bold;
+        color: #64748b;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-transform: uppercase;
+    }
+    .portal-toggle-btn.active {
+        background: #ffffff;
+        color: #1e3a8a; /* Corporate Blue */
+        border-bottom: 3px solid #b45309; /* Accent Gold */
+    }
+    .portal-body {
+        padding: 2rem;
+    }
+    .portal-body h3 {
+        color: #1e3a8a;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1.3rem;
+        margin-bottom: 0.25rem;
+    }
+    .portal-meta-text {
+        font-size: 0.8rem;
+        color: #64748b;
+        margin-bottom: 1.5rem;
+        line-height: 1.4;
+    }
+    .portal-input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+        margin-bottom: 1.25rem;
+    }
+    .portal-input-group label {
+        font-size: 0.75rem;
+        font-weight: bold;
+        color: #334155;
+    }
+    .portal-control {
+        padding: 0.65rem;
+        border: 1px solid #cbd5e1;
+        border-radius: 4px;
+        font-size: 0.9rem;
+    }
+    .portal-submit-btn {
+        width: 100%;
+        background: #1e3a8a;
+        color: #ffffff;
+        border: none;
+        padding: 0.75rem;
+        font-size: 0.9rem;
+        font-weight: bold;
+        border-radius: 4px;
+        cursor: pointer;
+        text-transform: uppercase;
+        transition: background 0.2s;
+    }
+    .portal-submit-btn:hover {
+        background: #1d4ed8;
+    }
+    .portal-submit-btn:disabled {
+        background: #64748b;
+        cursor: not-allowed;
+    }
+    .login-alert {
+        padding: 0.6rem;
+        font-size: 0.8rem;
+        font-weight: bold;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+        display: none;
+    }
+	
+	.onboarding-notice-box {
+        margin-top: 1.5rem;
+        border-top: 1px dashed #cbd5e1;
+        padding-top: 1rem;
+    }
+    .onboarding-trigger {
+        font-size: 0.8rem;
+        font-weight: bold;
+        color: #1e3a8a;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+    }
+    .onboarding-trigger:hover {
+        color: #b45309;
+    }
+    .onboarding-content {
+        margin-top: 0.5rem;
+        background: #f8fafc;
+        border: 1px solid #cbd5e1;
+        border-radius: 4px;
+        padding: 0.75rem;
+        font-size: 0.78rem;
+        line-height: 1.4;
+        color: #475569;
+        display: none; /* Controlled via JS switch */
+    }
+	
+	/* Container to maintain structure alignment */
+.brand-image-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Updated styling to give the CA India logo a larger, premium look */
+.brand-logo-img {
+    height: 65px;       /* Increased from 40px to make the graphic visually pop */
+    width: auto;        /* Continues to preserve the natural aspect ratio */
+    max-width: 240px;   /* Increased from 180px to prevent the bounding box from clipping it */
+    display: block;
+    object-fit: contain;
+    padding: 2px 0;     /* Optional: adds a tiny bit of vertical spacing if it touches the edges */
+}
+
+.nav-upload-node {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: #1e3a8a; /* Clean Corporate Blue */
+        color: #ffffff !important;
+        padding: 0.5rem 1.1rem;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        transition: all 0.2s ease;
+    }
+    .nav-upload-node:hover {
+        background: #b45309; /* Accents to Corporate Gold on Hover */
+    }
+	
+	/* Styling for the clickable phone number */
+.footer-phone-link {
+    color: inherit;            /* Takes the same color as your footer text */
+    text-decoration: none;     /* Removes the default underline */
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.footer-phone-link:hover {
+    color: var(--accent-gold); /* Turns gold when hovered over on desktop */
+    text-decoration: underline;
+}
+
+/* Styling for the interactive email link */
+.footer-email-link {
+    color: inherit;            /* Matches the color layout of your footer text */
+    text-decoration: none;     /* Removes standard blue hyperlink underlines */
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.footer-email-link:hover {
+    color: var(--accent-gold); /* Smooth color shift to corporate gold on hover */
+    text-decoration: underline;
+}
+
+/* Navigation Interactive Link Style */
+.nav-verify-trigger {
+    display: inline-flex;
+    align-items: center;
+    background: #1e3a8a;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 0.5rem 1.1rem;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.nav-verify-trigger:hover {
+    background: var(--accent-gold, #b45309);
+    border-color: transparent;
+}
+
+/* Floating Executive Verification Desk Layer */
+.global-verify-modal {
+    display: none; /* Controlled dynamically by JavaScript toggle */
+    position: fixed;
+    top: 80px; /* Positioned precisely below your top header area */
+    right: 20px;
+    width: 380px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    border: 1px solid #cbd5e1;
+    border-top: 5px solid #1e3a8a;
+    padding: 1.5rem;
+    z-index: 9999; /* Ensures it floats strictly above everything else */
+}
+.global-verify-modal h3 {
+    color: #1e3a8a;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    font-family: 'Times New Roman', Times, serif;
+    text-transform: uppercase;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 0.4rem;
+}
+.modal-close-x {
+    float: right;
+    cursor: pointer;
+    color: #64748b;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border: none;
+    background: transparent;
+}
+.modal-close-x:hover { color: #991b1b; }

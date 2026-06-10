@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statutory Tax & Compliance Calendar | Gupta Ruchi & Co.</title>
+    <style>
+        :root {
+            --primary-blue: #1e3a8a;
+            --accent-gold: #b45309;
+            --bg-canvas: #f1f5f9;
+            --text-dark: #0f172a;
+            --white: #ffffff;
+            --border-gray: #cbd5e1;
+            --alert-red: #991b1b;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        body { background-color: var(--bg-canvas); color: var(--text-dark); line-height: 1.6; padding: 2rem 1rem; }
+        .container { max-width: 1100px; margin: 0 auto; background: var(--white); padding: 3rem; border-radius: 6px; border: 1px solid var(--border-gray); border-top: 6px solid var(--primary-blue); }
+        
+        h1 { color: var(--primary-blue); font-family: 'Times New Roman', Times, serif; font-size: 2.5rem; margin-bottom: 0.5rem; border-bottom: 2px solid var(--accent-gold); padding-bottom: 0.5rem; text-transform: uppercase; }
+        .subtitle { font-size: 1rem; color: #475569; margin-bottom: 2rem; font-style: italic; }
+        
+        /* Filter Controls */
+        .filter-container { display: flex; gap: 0.75rem; margin-bottom: 2rem; flex-wrap: wrap; }
+        .filter-btn { background: #e2e8f0; border: none; padding: 0.6rem 1.2rem; border-radius: 4px; font-weight: bold; font-size: 0.85rem; color: #334155; cursor: pointer; transition: all 0.2s; text-transform: uppercase; }
+        .filter-btn.active, .filter-btn:hover { background: var(--primary-blue); color: var(--white); }
+
+        /* Timeline Card Structure */
+        .timeline-matrix { display: flex; flex-direction: column; gap: 1.25rem; }
+        .compliance-card { display: grid; grid-template-columns: 100px 1fr 180px; gap: 1.5rem; background: #f8fafc; border: 1px solid var(--border-gray); border-left: 5px solid var(--primary-blue); padding: 1.5rem; border-radius: 4px; align-items: center; transition: transform 0.2s; }
+        .compliance-card:hover { transform: translateX(4px); }
+        
+        /* Specific segment highlights */
+        .compliance-card.gst { border-left-color: #0284c7; }
+        .compliance-card.it { border-left-color: var(--accent-gold); }
+        .compliance-card.roc { border-left-color: #16a34a; }
+
+        .date-badge { text-align: center; background: #ffffff; border: 1px solid var(--border-gray); padding: 0.5rem; border-radius: 4px; }
+        .date-day { font-size: 1.6rem; font-weight: bold; color: var(--primary-blue); line-height: 1; }
+        .date-month { font-size: 0.75rem; text-transform: uppercase; font-weight: bold; color: #64748b; }
+
+        .details-block h3 { font-size: 1.1rem; color: var(--text-dark); margin-bottom: 0.25rem; }
+        .meta-tags { display: flex; gap: 0.75rem; font-size: 0.8rem; margin-bottom: 0.4rem; }
+        .tag-law { color: var(--accent-gold); font-weight: bold; }
+        .tag-form { background: #e2e8f0; padding: 0.1rem 0.4rem; border-radius: 3px; font-weight: bold; color: #475569; }
+        .desc-text { font-size: 0.88rem; color: #475569; text-align: justify; }
+
+        .penalty-block { font-size: 0.8rem; background: #fffbeb; border: 1px solid #fef3c7; padding: 0.5rem 0.75rem; border-radius: 4px; color: #78350f; }
+        .penalty-title { font-weight: bold; color: var(--alert-red); text-transform: uppercase; font-size: 0.75rem; margin-bottom: 0.15rem; }
+
+        .notice-banner { background: #f0fdf4; border: 1px solid #bbf7d0; border-left: 4px solid #16a34a; padding: 1rem; font-size: 0.85rem; color: #14532d; margin-top: 2.5rem; }
+        /* --- Floating Sticky Navigation Header Deck --- */
+.sticky-text-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;              /* Sets a solid, clean boundary layer height */
+    background: #ffffff;        /* Solid white background forces scrolling text to disappear behind it */
+    border-bottom: 1px solid #f1f5f9; /* Ultra-light clean divider line */
+    display: flex;
+    align-items: center;        /* Vertically centers the text link inside the 60px bar */
+    padding-left: 2.5rem;       /* Keeps your exact horizontal alignment from the edge */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02); /* Optional: Gives an elegant, micro shadow depth */
+    z-index: 9999;              /* Forces the bar to stay securely on top of everything else */
+}
+
+/* --- Clean Text Hyperlink Customizer --- */
+.corporate-return-link {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #c26600;            /* Your exact golden-orange corporate hex color */
+    text-decoration: none;     
+    display: inline-block;
+    transition: opacity 0.2s ease;
+}
+
+.corporate-return-link:hover {
+    opacity: 0.85;             
+    text-decoration: underline;
+}
+
+/* --- CRITICAL DOCUMENT CONTENT PUSH OFFSET --- */
+body {
+    padding-top: 65px !important; /* Pushes the "DIRECT TAXATION ADVISORY" main title down so it never hides behind the bar on page load */
+}
+
+/* --- Precise Mobile Viewport Adjustments --- */
+@media screen and (max-width: 480px) {
+    .sticky-text-nav {
+        height: 50px;           /* Slimmer bar profile for mobile views */
+        padding-left: 1rem;     
+    }
+    .corporate-return-link {
+        font-size: 0.9rem;      
+    }
+    body {
+        padding-top: 55px !important;
+    }
+}
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Statutory Compliance Calendar</h1>
+    <p class="subtitle">Real-time deadline tracking hub for Tax Year (TY) 2026-27 statutory return filings and regulatory schedules.</p>
+    
+    <div class="filter-container">
+        <button class="filter-btn active" onclick="filterCalendar('all', this)">All Compliances</button>
+        <button class="filter-btn" onclick="filterCalendar('gst', this)">GST Portal</button>
+        <button class="filter-btn" onclick="filterCalendar('it', this)">Income Tax & TDS</button>
+        <button class="filter-btn" onclick="filterCalendar('roc', this)">Corporate & MCA</button>
+    </div>
+
+    <div class="timeline-matrix">
+        
+        <div class="compliance-card it">
+            <div class="date-badge">
+                <div class="date-day">07</div>
+                <div class="date-month">Every Month</div>
+            </div>
+            <div class="details-block">
+                <h3>Monthly TDS / TCS Deposit Deadline</h3>
+                <div class="meta-tags">
+                    <span class="tag-law">Income Tax Act, 1961</span>
+                    <span class="tag-form">Challan ITNS 281</span>
+                </div>
+                <p class="desc-text">Mandatory online electronic deposit of all tax assets deducted or collected during the preceding month across corporate operations, salaries, and contractor payouts.</p>
+            </div>
+            <div class="penalty-block">
+                <div class="penalty-title">Late Consequence</div>
+                Interest charge tracking from 1% to 1.5% per month levied strictly from the actual date of deduction.
+            </div>
+        </div>
+
+        <div class="compliance-card gst">
+            <div class="date-badge">
+                <div class="date-day">11</div>
+                <div class="date-month">Every Month</div>
+            </div>
+            <div class="details-block">
+                <h3>GSTR-1 Outward Supplies Filing</h3>
+                <div class="meta-tags">
+                    <span class="tag-law">CGST Legislation, 2017</span>
+                    <span class="tag-form">Form GSTR-1</span>
+                </div>
+                <p class="desc-text">Statement of outward supplies required for standard monthly taxpayers to upload business-to-business (B2B) invoice entries to enable Input Tax Credit (ITC) flow.</p>
+            </div>
+            <div class="penalty-block">
+                <div class="penalty-title">Late Consequence</div>
+                Statutory late fee tracking of ₹50 per day (₹25 CGST + ₹25 SGST) applied up to capped ceilings.
+            </div>
+        </div>
+
+        <div class="compliance-card gst">
+            <div class="date-badge">
+                <div class="date-day">20</div>
+                <div class="date-month">Every Month</div>
+            </div>
+            <div class="details-block">
+                <h3>GSTR-3B Monthly Consolidated Return</h3>
+                <div class="meta-tags">
+                    <span class="tag-law">CGST Legislation, 2017</span>
+                    <span class="tag-form">Form GSTR-3B</span>
+                </div>
+                <p class="desc-text">Consolidated summary return outlining outward supplies, self-assessed input tax credit adjustments, and final cash ledger tax payments due to the government.</p>
+            </div>
+            <div class="penalty-block">
+                <div class="penalty-title">Late Consequence</div>
+                Late fees plus statutory interest calculated at 18% per annum on the net tax liability paid in cash.
+            </div>
+        </div>
+
+        <div class="compliance-card it">
+            <div class="date-badge">
+                <div class="date-day">15</div>
+                <div class="date-month">Jun / Sep / Dec / Mar</div>
+            </div>
+            <div class="details-block">
+                <h3>Advance Tax Installment Matrix</h3>
+                <div class="meta-tags">
+                    <span class="tag-law">Income Tax Act, 1961</span>
+                    <span class="tag-form">Challan 280</span>
+                </div>
+                <p class="desc-text">Quarterly structural tax advancement payouts due for all corporate entities and individuals whose final calculated tax liability exceeds ₹10,000 in a tax year.</p>
+            </div>
+            <div class="penalty-block">
+                <div class="penalty-title">Late Consequence</div>
+                Mandatory addition of interest points under Section 234B and Section 234C modules for shortfalls.
+            </div>
+        </div>
+
+        <div class="compliance-card roc">
+            <div class="date-badge">
+                <div class="date-day">30</div>
+                <div class="date-month">Every Year (Oct)</div>
+            </div>
+            <div class="details-block">
+                <h3>MCA Annual Financial Statement Filing</h3>
+                <div class="meta-tags">
+                    <span class="tag-law">Companies Act, 2013</span>
+                    <span class="tag-form">Form AOC-4</span>
+                </div>
+                <p class="desc-text">Filing audited financial statements, balance sheets, profit & loss allocation matrices, and board audit evaluation records with the Registrar of Companies (ROC).</p>
+            </div>
+            <div class="penalty-block">
+                <div class="penalty-title">Late Consequence</div>
+                Strict recurring statutory penalty tracking ledger of ₹100 per day until filing reconciliation.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="notice-banner">
+        <strong>Important Framework Update:</strong> Effective from this cycle, terminology has completely shifted to the integrated "Tax Year" (TY) paradigm. All active corporate data blocks conform to these statutory operational tracking windows.
+    </div>
+
+<div class="sticky-text-nav">
+    <a href="index.html" class="corporate-return-link">← Return to Main Corporate Portal</a>
+</div></div>
+
+<script>
+    // Simple filter engine logic
+    function filterCalendar(category, button) {
+        // Toggle active button states
+        const buttons = document.querySelectorAll('.filter-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        // Toggle card array item visibilities
+        const cards = document.querySelectorAll('.compliance-card');
+        cards.forEach(card => {
+            if (category === 'all') {
+                card.style.display = 'grid';
+            } else {
+                if (card.classList.contains(category)) {
+                    card.style.display = 'grid';
+                } else {
+                    card.style.display = 'none';
+                }
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

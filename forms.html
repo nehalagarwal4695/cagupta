@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statutory Government Forms Hub | Spicen Tech</title>
+    <style>
+        /* --- Core Theme Variables --- */
+        :root {
+            --primary: #0284c7;        /* Theme Laptop Blue */
+            --primary-hover: #0369a1;  /* Deep Link Highlight */
+            --corporate-gold: #c26600; /* Your exact Orange/Gold from screenshot */
+            --bg-slate: #f8fafc;       /* Clean Workspace White/Gray */
+            --text-main: #0f172a;      /* Slate 900 Heavy Headings */
+            --text-muted: #475569;     /* Slate 600 Descriptive Text */
+            --border-color: #e2e8f0;   /* Light Layout Dividers */
+        }
+
+        /* --- Global Resets & Fluid Engine --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-slate);
+            color: var(--text-main);
+            padding-top: 65px !important; /* CRITICAL: Fixed push prevent overlap during scroll */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* --- Pinned Opaque Navigation Header --- */
+        .sticky-text-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: #ffffff;        /* Solid white keeps background scrolling text invisible */
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            align-items: center;
+            padding-left: 2.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+            z-index: 9999;              /* Forces link to stay on absolute top layer always */
+        }
+
+        .corporate-return-link {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--corporate-gold); /* Custom matched brand color */
+            text-decoration: none;
+            display: inline-block;
+            transition: opacity 0.2s ease;
+        }
+
+        .corporate-return-link:hover {
+            opacity: 0.85;
+            text-decoration: underline;
+        }
+
+        /* --- Layout Structural Wrappers --- */
+        .main-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .hub-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .hub-header h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .hub-header p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-line: 1.5;
+        }
+
+        /* --- Central 30 Forms Master Selection Grid --- */
+        .selection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+            gap: 1.5rem;
+            width: 100%;
+        }
+
+        .form-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .form-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 20px -5px rgba(2, 132, 199, 0.1);
+        }
+
+        .form-tag {
+            align-self: flex-start;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 8px;
+            background: #f1f5f9;
+            color: var(--text-muted);
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+
+        .form-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .form-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+
+        .view-btn {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* --- Dynamic Isolated Focus Desk Panel (Hidden initially) --- */
+        .focus-desk-panel {
+            display: none;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .focus-back-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .focus-back-btn:hover {
+            color: var(--primary);
+        }
+
+        .focus-content-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .focus-title-row h2 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 0.25rem;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .info-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+
+        .info-table td:first-child {
+            font-weight: 700;
+            color: var(--text-muted);
+            width: 30%;
+            background: #fafafa;
+        }
+
+        .download-action-btn {
+            align-self: flex-start;
+            padding: 14px 28px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffffff;
+            background: var(--primary);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s;
+            text-decoration: none;
+        }
+
+        .download-action-btn:hover {
+            background: var(--primary-hover);
+        }
+
+        /* --- Complete Mobile Device Adaptive Grid System Overrides --- */
+        @media screen and (max-width: 768px) {
+            .sticky-text-nav { height: 50px; padding-left: 1rem; }
+            body { padding-top: 55px !important; }
+            .hub-header h1 { font-size: 1.75rem; }
+            .selection-grid { grid-template-columns: 1fr !important; }
+            .focus-desk-panel { padding: 1.5rem 1rem; }
+            .focus-title-row h2 { font-size: 1.4rem; }
+            .info-table td { display: block; width: 100% !important; }
+            .download-action-btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sticky-text-nav">
+        <a href="index.html" class="corporate-return-link">← Return to Main Corporate Portal</a>
+    </div>
+
+    <div class="main-container">
+        
+        <div id="focus-desk" class="focus-desk-panel">
+            <button class="focus-back-btn" onclick="exitFocusDesk()">← Back to Grid Matrix</button>
+            <div class="focus-content-layout">
+                <div class="focus-title-row">
+                    <span id="focus-tag" class="form-tag">ITR</span>
+                    <h2 id="focus-name">Form Code Heading</h2>
+                </div>
+                <p id="focus-description" style="color: var(--text-muted); line-height: 1.5; font-size: 1rem;"></p>
+                
+                <table class="info-table">
+                    <tr>
+                        <td>Regulatory Framework</td>
+                        <td id="table-framework">Income Tax Department</td>
+                    </tr>
+                    <tr>
+                        <td>Primary Target Audience</td>
+                        <td id="table-audience">Salaried Individuals</td>
+                    </tr>
+                    <tr>
+                        <td>Standard Filing Frequency</td>
+                        <td id="table-cycle">Annual Compliance Loop</td>
+                    </tr>
+                </table>
+
+                <a id="drive-download-link" href="#" target="_blank" class="download-action-btn">
+                    📥 Download Document File Template
+                </a>
+            </div>
+        </div>
+
+        <div id="master-view-hub">
+            <div class="hub-header">
+                <h1>Statutory Forms Repository</h1>
+                <p>Select any corporate compliance instrument below to verify detailed execution criteria, review jurisdictional parameters, and extract active file profiles directly from your Google Drive ledger.</p>
+            </div>
+
+            <div id="forms-grid-matrix" class="selection-grid"></div>
+        </div>
+
+    </div>
+
+    <script>
+        // ==============================================================================
+        // MASTER CENTRALIZED DATA STORAGE DICTIONARY FOR THE 30 STATUTORY FORMS
+        // ==============================================================================
+        const formsDatabase = {
+            1: { tag: "ITR", name: "ITR-1 (Sahaj)", desc: "For individuals being a resident other than not ordinarily resident having total income up to Rs.50 lakh, having Income from Salaries, one house property, other sources (Interest etc.), and agricultural income up to Rs.5000.", fw: "Direct Income Tax", aud: "Salaried Employees & Pensioners", cyc: "Annual Filing", link: "https://drive.google.com/file/d/1YJ2_DosJZmyZOftrhJMzrQ3RI1nVPdRv/view?usp=sharing" },
+            2: { tag: "ITR", name: "ITR-2", desc: "For Individuals and HUFs not having income from profits and gains of business or profession.", fw: "Direct Income Tax", aud: "Individuals with Capital Gains/Foreign Assets", cyc: "Annual Filing", link: "https://drive.google.com/file/d/1v0tJrj3EJLuxPqm0PWVfRPxNSOAE436R/view?usp=sharing" },
+            3: { tag: "ITR", name: "ITR-3", desc: "For individuals and HUFs having income from profits and gains of business or profession.", fw: "Direct Income Tax", aud: "Proprietors, Business Partners, and Professionals", cyc: "Annual Filing", link: "https://drive.google.com/file/d/173R1VJLLFsTVodja9p4KWLOuDWURR3NP/view?usp=sharing" },
+            4: { tag: "ITR", name: "ITR-4 (Sugam)", desc: "For Individuals, HUFs and Firms (other than LLP) being a resident having total income up to Rs.50 lakh and having income from business and profession computed under presumptive taxation sections.", fw: "Direct Income Tax", aud: "Small Businesses Opting for Sec 44AD/44ADA", cyc: "Annual Filing", link: "https://drive.google.com/file/d/1Efw2jJ9eaTddrK3eqyV6h659rv2tRPNi/view?usp=sharing" },
+            5: { tag: "ITR", name: "ITR-5", desc: "For persons other than individual, HUF, company and person filing Form ITR-7 (such as Firms, LLPs, AOPs, BOIs).", fw: "Direct Income Tax", aud: "Partnership Firms, LLPs, and Business Associations", cyc: "Annual Filing", link: "https://drive.google.com/file/d/1LXpWn6xcY_7SPga95hJuGrOl4i0wcJiF/view?usp=sharing" },
+            6: { tag: "ITR", name: "ITR-6", desc: "For Companies other than companies claiming exemption under section 11 (Charitable/religious purposes).", fw: "Direct Income Tax", aud: "Registered Private & Public Limited Corporate Entities", cyc: "Annual Filing", link: "https://drive.google.com/file/d/10FSz61iqssvjOKZq_jxfpobTl0yc9P36/view?usp=sharing" },
+            7: { tag: "ITR", name: "ITR-7", desc: "For persons including companies required to furnish return under sections 139(4A) or 139(4B) or 139(4C) or 139(4D) (Trusts, Political Parties, etc.).", fw: "Direct Income Tax", aud: "Charitable Trusts, Political Parties, and NGOs", cyc: "Annual Filing", link: "https://drive.google.com/file/d/1485fq-xkD6v8DaCp2QaOn_f1dewxGY8h/view?usp=sharing" },
+            
+            8: { tag: "Audit", name: "Form 3CA-3CD", desc: "Audit report under section 44AB of the Income-Tax Act in a case where the accounts of the business or profession of a person have been audited under any other law.", fw: "Statutory Tax Audit", aud: "Companies/Entities subject to multi-framework audit", cyc: "Annual Compliance", link: "https://drive.google.com/file/d/10CfK2xJhVQ8QXH6VvcLoMDhTaemHqB2j/view?usp=sharing" },
+            9: { tag: "Audit", name: "Form 3CB-3CD", desc: "Audit report under section 44AB of the Income-Tax Act in the case of a person who carries on business or profession but who is not required to audit accounts under any other law.", fw: "Statutory Tax Audit", aud: "Independent Sole Proprietors and Professionals", cyc: "Annual Compliance", link: "https://drive.google.com/file/d/1BfNTKZqWVCRLdsyeMnxY5uRDbGPdgUQ6/view?usp=sharing" },
+            10: { tag: "Remittance", name: "Form 15CA", desc: "Declaration form submitted online by an assignor tracking international funds routing to ensure tax withholding validation.", fw: "Foreign Exchange Control", aud: "Individuals/Entities Remitting Funds Abroad", cyc: "Event-Based (Per Transaction)", link: "https://drive.google.com/file/d/1olB_OHuoVZpdZmdg795C2Ev_Xc8abA7R/view?usp=sharing" },
+            11: { tag: "Remittance", name: "Form 15CB", desc: "Statutory verification certificate issued and digitally signed by a Chartered Accountant validating transaction tax settlement protocols for cross-border outflows.", fw: "Foreign Exchange Control", aud: "Remitters requiring explicit CA clearance validation", cyc: "Event-Based (Per Transaction)", link: "https://drive.google.com/file/d/1-CJYb-n-GvYNpKMamfiiscncBqMmor10/view?usp=sharing" },
+            12: { tag: "Audit", name: "Form 10B / 10BB", desc: "Audit report framework required to validate structural earnings parameters for charitable or educational trust parameters claiming deductions.", fw: "Direct Income Tax", aud: "Exempt Charitable Entities and Welfare Foundations", cyc: "Annual Audit", link: "https://drive.google.com/file/d/1t0CrsKt-_YZzuMnzFpsGnedwI_Zloxy2/view?usp=sharing" },
+            13: { tag: "Audit", name: "Form 29B", desc: "CA Certificate validating and certifying the legal computation framework of corporate Book Profits for Minimum Alternate Tax (MAT) parameters.", fw: "Direct Corporate Taxation", aud: "Corporate Entities falling under Section 115JB", cyc: "Annual Compliance", link: "https://drive.google.com/file/d/1TcGaNDoZdkHNWrvpNeq9xNZjjb4X273m/view?usp=sharing" },
+            
+            14: { tag: "TDS", name: "Form 24Q", desc: "Quarterly statement data allocation return processing all Tax Deducted at Source (TDS) profiles extracted from corporate employee payroll disbursements.", fw: "Withholding Tax (TDS)", aud: "Employers distributing salaries", cyc: "Quarterly Filing Rotation", link: "https://drive.google.com/file/d/15ttof8WbMaRTXcU9ji1ChjUORnMgCE0g/view?usp=sharing" },
+            15: { tag: "TDS", name: "Form 26Q", desc: "Quarterly statement return tracking domestic withholding declarations across non-salary elements like professional fee pools, commission allocations, or asset rents.", fw: "Withholding Tax (TDS)", aud: "Corporate/Business entities paying domestic vendors", cyc: "Quarterly Filing Rotation", link: "https://drive.google.com/file/d/1vPI9NADMLYiJmThM_-Ut22QWjZSXj1j-/view?usp=sharing" },
+            16: { tag: "TDS", name: "Form 27Q", desc: "Quarterly statement return log registering withholding distributions paid out to non-resident entities or cross-border corporate holdings.", fw: "Withholding Tax (TDS)", aud: "Entities handling foreign vendor settlements", cyc: "Quarterly Filing Rotation", link: "https://drive.google.com/file/d/14PSM0E6Ze8FcoE1zInH-EqeX9SgiBI3g/view?usp=sharing" },
+            17: { tag: "TCS", name: "Form 27EQ", desc: "Quarterly structural log return outlining all Tax Collected at Source (TCS) balances secured from high-volume asset transactions.", fw: "Withholding Tax (TCS)", aud: "Sellers handling targeted inventory classes (e.g., Scrap, Luxury Assets)", cyc: "Quarterly Filing Rotation", link: "https://drive.google.com/file/d/19_PctFQ64LeduJSQWHRduf5xgt5LkGcC/view?usp=sharing" },
+            18: { tag: "Cert", name: "Form 16 / 16A", desc: "Statutory generation certificate detailing specific seasonal withholding tracking metrics allocated to vendors or corporate personnel.", fw: "Withholding Tax (TDS)", aud: "Salaried Personnel & Domestic Business Contractors", cyc: "Annual / Quarterly Certification", link: "https://drive.google.com/file/d/1gWwjWlCFa-KaMJfdUYnkXq_v9lm52SN9/view?usp=sharing" },
+            
+            19: { tag: "GST", name: "GSTR-1", desc: "Monthly or quarterly return detailing the outward supplies of goods or services to report total baseline corporate sales records.", fw: "Indirect GST Taxation", aud: "All Regular GST Taxpayers", cyc: "Monthly / Quarterly", link: "https://drive.google.com/file/d/1KGpob_VYkWMTl-U8Uaf1HVS5DLESHKtN/view?usp=sharing" },
+            20: { tag: "GST", name: "GSTR-3B", desc: "Self-declared monthly summary layout return used to declare net outbound liabilities and offset entries using Input Tax Credit vectors.", fw: "Indirect GST Taxation", aud: "All Active GST Registered Businesses", cyc: "Monthly Self-Declaration", link: "https://drive.google.com/file/d/1rMtfZSlcmHMIoZuCCWOOe9Uv8QRycCxj/view?usp=sharing" },
+            21: { tag: "GST", name: "GSTR-9", desc: "Master annual consolidation ledger return grouping all quarterly and monthly sales logs into a single processing report template.", fw: "Indirect GST Taxation", aud: "Regular Taxpayers with operational sales profiles", cyc: "Annual Filing", link: "https://drive.google.com/file/d/1kdATqDY4vLqSKX-SXINxtlzlfGwhRxFH/view?usp=sharing" },
+            22: { tag: "GST", name: "GSTR-9C", desc: "Dual reconciliation report file matching formal company audited financial data books cleanly with values uploaded in the GSTR-9 statement.", fw: "Indirect GST Taxation", aud: "Corporate firms crossing specified turnover bars", cyc: "Annual Reconciliation Audit", link: "https://drive.google.com/file/d/1BQEpU6924_d9yj-n2ZX7G62j1yIIZUeh/view?usp=sharing" },
+            23: { tag: "GST", name: "Form RFD-01", desc: "Comprehensive portal application structure layout built to trigger legal financial refunds on active systemic balances.", fw: "Indirect GST Taxation", aud: "Exporters / Business Owners with inverted structural duty grids", cyc: "Event-Based Claim", link: "https://drive.google.com/file/d/1XL_abgu852spBKqLPYqhZuFIzqLoNd4g/view?usp=sharing" },
+            24: { tag: "GST", name: "Form LUT", desc: "Letter of Undertaking document deployed to clear export supply allocations without locking capital on upfront IGST settlements.", fw: "Indirect GST Taxation", aud: "Exporters of Goods and Professional Services", cyc: "Annual Filing Setup", link: "YOUR_GOOGLE_DRIVE_SHAREABLE_LINK_HERE" },
+            
+            25: { tag: "MCA", name: "Form SPICe+ (INC-32)", desc: "Integrated smart form tracking corporate naming parameters, initial structures, and tax registration metrics for entity setup.", fw: "Ministry of Corporate Affairs", aud: "Startup Founders & Incoming Corporate Entities", cyc: "Event-Driven Incorporation", link: "https://drive.google.com/file/d/1bJ1tajrmtfFMjBZlbiFKFi8pD3TVjP0I/view?usp=sharing" },
+            26: { tag: "MCA", name: "Form AOC-4", desc: "Mandatory annual filing structure utilized to lodge corporate balance sheet states and operational Profit & Loss statements with the Registrar of Companies.", fw: "Ministry of Corporate Affairs", aud: "All Registered Companies (Pvt Ltd / Public)", cyc: "Annual Statutory Lodging", link: "https://drive.google.com/file/d/1tIFJ-NoskWxPNuj5LZPjTnFVNhTXweQm/view?usp=sharing" },
+            27: { tag: "MCA", name: "Form MGT-7", desc: "Annual return document tracking updated share structures, board directorship paths, and general corporate meetings.", fw: "Ministry of Corporate Affairs", aud: "All Registered Companies (Pvt Ltd / Public)", cyc: "Annual Statutory Lodging", link: "https://drive.google.com/file/d/1qoLLM_WNCq6jZxYwZyeGcBNytkwyCmXm/view?usp=sharing" },
+            28: { tag: "MCA", name: "Form ADT-1", desc: "Formal notice document used to log the rotation or structural placement of incoming external statutory auditing firms.", fw: "Ministry of Corporate Affairs", aud: "Companies appointing/changing active auditors", cyc: "Within 15 days of AGM selection", link: "https://drive.google.com/file/d/1O43fKxX4xdr5ttpyNWUIzSjSZGLuWCCP/view?usp=sharing" },
+            29: { tag: "MCA", name: "Form DIR-3 KYC", desc: "Mandatory structural verification step executed annually to validate identity coordinates for active board directorship holders.", fw: "Ministry of Corporate Affairs", aud: "All active Director Identification Number (DIN) holders", cyc: "Annual Verification", link: "https://drive.google.com/file/d/1SpsKfcAZhywFIs5mU9fq33Qu2W_RtOFM/view?usp=sharing" },
+            30: { tag: "MCA", name: "LLP Form-11", desc: "Annual report structure tracking updated partner contributions and operational management profiles for Limited Liability Partnerships.", fw: "Ministry of Corporate Affairs", aud: "All Registered Limited Liability Partnerships", cyc: "Annual Compliance", link: "https://drive.google.com/file/d/1HaJJKfwy10mOarwv5ILTwlxvK2-gXeS2/view?usp=sharing" }
+        };
+
+        // ==============================================================================
+        // CORE SINGLE-PAGE APPLICATION INTERACTION ROUTINES
+        // ==============================================================================
+        
+        // Assemble and paint the 30 grid card nodes inside the DOM frame on execution load
+        window.addEventListener('DOMContentLoaded', () => {
+            const containerGrid = document.getElementById('forms-grid-matrix');
+            let contentAccumulator = "";
+
+            for (const identifier in formsDatabase) {
+                const element = formsDatabase[identifier];
+                contentAccumulator += `
+                    <div class="form-card" onclick="enterFocusDesk(${identifier})">
+                        <div>
+                            <span class="form-tag">${element.tag}</span>
+                            <h3>${element.name}</h3>
+                            <p>${element.desc.substring(0, 95)}...</p>
+                        </div>
+                        <span class="view-btn">View Requirements & Download →</span>
+                    </div>
+                `;
+            }
+            containerGrid.innerHTML = contentAccumulator;
+        });
+
+        // Toggle Views: Transitions the user cleanly into a targeted Form Desk focus screen
+        function enterFocusDesk(id) {
+            const formData = formsDatabase[id];
+            
+            document.getElementById('focus-tag').innerText = formData.tag;
+            document.getElementById('focus-name').innerText = formData.name;
+            document.getElementById('focus-description').innerText = formData.desc;
+            document.getElementById('table-framework').innerText = formData.fw;
+            document.getElementById('table-audience').innerText = formData.aud;
+            document.getElementById('table-cycle').innerText = formData.cyc;
+            
+            // Map the drive endpoint token straight to the anchor link action
+            document.getElementById('drive-download-link').href = formData.link;
+
+            // Fluid screen animation toggle
+            document.getElementById('master-view-hub').style.display = "none";
+            document.getElementById('focus-desk').style.display = "block";
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Return toggle: Restores the grid dashboard matrix display state
+        function exitFocusDesk() {
+            document.getElementById('focus-desk').style.display = "none";
+            document.getElementById('master-view-hub').style.display = "block";
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

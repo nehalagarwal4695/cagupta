@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Administrative Links | Gupta Ruchi & Co.</title>
+    <style>
+        :root {
+            --primary-blue: #1e3a8a;
+            --accent-gold: #b45309;
+            --bg-canvas: #f1f5f9;
+            --text-dark: #0f172a;
+            --white: #ffffff;
+            --border-gray: #cbd5e1;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        body { background-color: var(--bg-canvas); color: var(--text-dark); line-height: 1.6; padding: 2rem 1rem; }
+        .container { max-width: 1100px; margin: 0 auto; background: var(--white); padding: 3rem; border-radius: 6px; border: 1px solid var(--border-gray); border-top: 6px solid var(--primary-blue); }
+        h1 { color: var(--primary-blue); font-family: 'Times New Roman', Times, serif; font-size: 2.5rem; margin-bottom: 0.5rem; border-bottom: 2px solid var(--accent-gold); padding-bottom: 0.5rem; text-transform: uppercase; }
+        .subtitle { font-size: 1rem; color: #475569; margin-bottom: 2.5rem; font-style: italic; }
+        
+        h2 { color: var(--primary-blue); font-size: 1.3rem; margin: 2rem 0 1rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        p { margin-bottom: 1.5rem; font-size: 0.95rem; color: #334155; }
+        
+        /* Link Matrix Table Styling */
+        .links-table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; background: #ffffff; }
+        .links-table th, .links-table td { padding: 1rem; text-align: left; border: 1px solid var(--border-gray); font-size: 0.9rem; }
+        .links-table th { background: #f8fafc; color: var(--primary-blue); font-weight: bold; text-transform: uppercase; font-size: 0.82rem; }
+        .links-table tr:hover { background: #f8fafc; }
+        
+        .action-link { display: inline-block; background: var(--primary-blue); color: var(--white); padding: 0.4rem 0.8rem; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 0.8rem; text-transform: uppercase; transition: background 0.2s; }
+        .action-link:hover { background: var(--accent-gold); }
+        /* --- Floating Sticky Navigation Header Deck --- */
+.sticky-text-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;              /* Sets a solid, clean boundary layer height */
+    background: #ffffff;        /* Solid white background forces scrolling text to disappear behind it */
+    border-bottom: 1px solid #f1f5f9; /* Ultra-light clean divider line */
+    display: flex;
+    align-items: center;        /* Vertically centers the text link inside the 60px bar */
+    padding-left: 2.5rem;       /* Keeps your exact horizontal alignment from the edge */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02); /* Optional: Gives an elegant, micro shadow depth */
+    z-index: 9999;              /* Forces the bar to stay securely on top of everything else */
+}
+
+/* --- Clean Text Hyperlink Customizer --- */
+.corporate-return-link {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #c26600;            /* Your exact golden-orange corporate hex color */
+    text-decoration: none;     
+    display: inline-block;
+    transition: opacity 0.2s ease;
+}
+
+.corporate-return-link:hover {
+    opacity: 0.85;             
+    text-decoration: underline;
+}
+
+/* --- CRITICAL DOCUMENT CONTENT PUSH OFFSET --- */
+body {
+    padding-top: 65px !important; /* Pushes the "DIRECT TAXATION ADVISORY" main title down so it never hides behind the bar on page load */
+}
+
+/* --- Precise Mobile Viewport Adjustments --- */
+@media screen and (max-width: 480px) {
+    .sticky-text-nav {
+        height: 50px;           /* Slimmer bar profile for mobile views */
+        padding-left: 1rem;     
+    }
+    .corporate-return-link {
+        font-size: 0.9rem;      
+    }
+    body {
+        padding-top: 55px !important;
+    }
+}
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Quick Administrative Links</h1>
+    <p class="subtitle">Direct, one-click pathways for routine corporate registration tracking and verification lookups.</p>
+    
+    <p>This central reference matrix allows internal operations teams and client financial controllers to instantly jump to routine statutory verification and tax record update portals.</p>
+    
+    <h2>Identity & Tax Identifier Verification Nodes</h2>
+    <table class="links-table">
+        <thead>
+            <tr>
+                <th style="width: 30%;">Statutory Resource Module</th>
+                <th style="width: 50%;">Operational Description & Purpose</th>
+                <th style="width: 20%;">Direct Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Verify PAN Details</strong></td>
+                <td>Verify permanent account numbers directly against the database infrastructure of the Income Tax Department.</td>
+                <td><a href="https://www.incometax.gov.in/iec/foportal/know-your-pan" target="_blank" class="action-link">Launch Node →</a></td>
+            </tr>
+            <tr>
+                <td><strong>Link Aadhaar with PAN</strong></td>
+                <td>Mandatory verification window to link biometric identifiers with matching PAN cards to protect active registration statuses.</td>
+                <td><a href="https://eportal.incometax.gov.in/iec/foportal/link-aadhaar-status" target="_blank" class="action-link">Launch Node →</a></td>
+            </tr>
+            <tr>
+                <td><strong>Know Your TAN Status</strong></td>
+                <td>Look up and confirm Tax Deduction and Collection Account Numbers for processing accurate monthly compliance returns.</td>
+                <td><a href="https://www.incometax.gov.in/iec/foportal/know-your-tan" target="_blank" class="action-link">Launch Node →</a></td>
+            </tr>
+            <tr>
+                <td><strong>UTIITS/Protean PAN Track</strong></td>
+                <td>Track the generation, delivery status, change requests, or correction applications for corporate PAN entries.</td>
+                <td><a href="https://www.trackpan.utiitsl.com/PANONLINE/#forward" target="_blank" class="action-link">Launch Node →</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Banking & Transaction Processing Utilities</h2>
+    <table class="links-table">
+        <thead>
+            <tr>
+                <th style="width: 30%;">Utility Desk Node</th>
+                <th style="width: 50%;">Operational Description & Purpose</th>
+                <th style="width: 20%;">Direct Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>RBI IFSC Database Lookup</strong></td>
+                <td>Verify Reserve Bank of India institutional routing codes across branches to ensure accurate bank transactions.</td>
+                <td><a href="https://www.rbi.org.in/Scripts/IFSCMICRDetails.aspx" target="_blank" class="action-link">Launch Node →</a></td>
+            </tr>
+            <tr>
+                <td><strong>EPFO Establishment Check</strong></td>
+                <td>Lookup employer verification frameworks and confirm corporate registration parameters with the Employees' Provident Fund Organisation.</td>
+                <td><a href="https://www.epfindia.gov.in/" target="_blank" class="action-link">Launch Node →</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+<div class="sticky-text-nav">
+    <a href="index.html" class="corporate-return-link">← Return to Main Corporate Portal</a>
+</div></div>
+</body>
+</html>

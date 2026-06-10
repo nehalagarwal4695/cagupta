@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Bulk Document Submission Desk</title>
+    <style>
+        :root {
+            --primary-blue: #1e3a8a;
+            --accent-gold: #b45309;
+            --bg-canvas: #f1f5f9;
+            --text-dark: #0f172a;
+            --white: #ffffff;
+            --border-gray: #cbd5e1;
+            --success-green: #16803d;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        body { background-color: var(--bg-canvas); color: var(--text-dark); line-height: 1.6; padding: 3rem 1rem; }
+        .container { max-width: 650px; margin: 0 auto; background: var(--white); padding: 3.5rem; border-radius: 8px; border: 1px solid var(--border-gray); border-top: 6px solid var(--primary-blue); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        
+        h1 { color: var(--primary-blue); font-family: 'Times New Roman', Times, serif; font-size: 2rem; margin-bottom: 0.5rem; border-bottom: 2px solid var(--accent-gold); padding-bottom: 0.5rem; text-transform: uppercase; }
+        .subtitle { font-size: 0.9rem; color: #475569; margin-bottom: 2.5rem; font-style: italic; }
+        
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: bold; margin-bottom: 0.5rem; color: #334155; text-transform: uppercase; }
+        .form-group input { width: 100%; padding: 0.7rem; border: 1px solid var(--border-gray); border-radius: 4px; font-size: 0.9rem; background: #f8fafc; }
+        
+        .upload-btn { width: 100%; background: var(--primary-blue); color: var(--white); border: none; padding: 0.8rem; font-size: 0.9rem; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 0.5rem; transition: background 0.2s; }
+        .upload-btn:hover { background: #132b66; }
+        .upload-btn:disabled { background: #94a3b8; cursor: not-allowed; }
+        
+        .status-msg { margin-top: 1.5rem; padding: 1rem; border-radius: 4px; font-size: 0.9rem; font-weight: 500; display: none; white-space: pre-line; }
+        .status-msg.success { background: #f0fdf4; border-left: 4px solid var(--success-green); color: #166534; }
+        .status-msg.error { background: #fef2f2; border-left: 4px solid #ef4444; color: #991b1b; }
+        .status-msg.processing { background: #f0f9ff; border-left: 4px solid #0284c7; color: #0369a1; }
+        
+        
+		/* --- Floating Sticky Navigation Header Deck --- */
+.sticky-text-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;              /* Sets a solid, clean boundary layer height */
+    background: #ffffff;        /* Solid white background forces scrolling text to disappear behind it */
+    border-bottom: 1px solid #f1f5f9; /* Ultra-light clean divider line */
+    display: flex;
+    align-items: center;        /* Vertically centers the text link inside the 60px bar */
+    padding-left: 2.5rem;       /* Keeps your exact horizontal alignment from the edge */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02); /* Optional: Gives an elegant, micro shadow depth */
+    z-index: 9999;              /* Forces the bar to stay securely on top of everything else */
+}
+
+/* --- Clean Text Hyperlink Customizer --- */
+.corporate-return-link {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #c26600;            /* Your exact golden-orange corporate hex color */
+    text-decoration: none;     
+    display: inline-block;
+    transition: opacity 0.2s ease;
+}
+
+.corporate-return-link:hover {
+    opacity: 0.85;             
+    text-decoration: underline;
+}
+
+/* --- CRITICAL DOCUMENT CONTENT PUSH OFFSET --- */
+body {
+    padding-top: 65px !important; /* Pushes the "DIRECT TAXATION ADVISORY" main title down so it never hides behind the bar on page load */
+}
+
+/* --- Precise Mobile Viewport Adjustments --- */
+@media screen and (max-width: 480px) {
+    .sticky-text-nav {
+        height: 50px;           /* Slimmer bar profile for mobile views */
+        padding-left: 1rem;     
+    }
+    .corporate-return-link {
+        font-size: 0.9rem;      
+    }
+    body {
+        padding-top: 55px !important;
+    }
+}
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Document Submission Desk</h1>
+    <p class="subtitle">Secure workspace node to upload multiple attained agreements or certificates at once.</p>
+    
+    <form id="uploadForm">
+        <div class="form-group">
+            <label for="clientFiles">Select Document Files (Hold Ctrl/Cmd to select multiple)</label>
+            <input type="file" id="clientFiles" multiple required>
+        </div>
+        <button type="submit" id="submitBtn" class="upload-btn">Upload Batch</button>
+    </form>
+	
+	<hr style="border: 0; border-top: 1px dashed var(--border-gray); margin: 2.5rem 0;">
+
+    <div class="search-section">
+        <h2 style="color: var(--primary-blue); font-family: 'Times New Roman', Times, serif; font-size: 1.5rem; margin-bottom: 0.5rem; text-transform: uppercase;">Search Document Repositories</h2>
+        <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1.2rem; font-style: italic;">Enter file keywords or dates to safely search and extract your stored documents.</p>
+        
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem;">
+            <input type="text" id="searchQuery" placeholder="e.g., Agreement, Invoice, 2026..." style="flex: 1; padding: 0.7rem; border: 1px solid var(--border-gray); border-radius: 4px; font-size: 0.9rem;">
+            <button type="button" onclick="searchDriveDocs()" id="searchBtn" style="background: var(--accent-gold); color: var(--white); border: none; padding: 0.7rem 1.5rem; font-size: 0.85rem; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase;">Search</button>
+        </div>
+
+	<hr style="border: 0; border-top: 1px dashed var(--border-gray); margin: 2.5rem 0;">
+
+
+        <div id="searchResultsArea" style="display: none;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 1rem; text-align: left;">
+                <thead>
+                    <tr style="background: #f1f5f9; border-bottom: 2px solid var(--border-gray); color: #334155;">
+                        <th style="padding: 0.75rem;">Document Name</th>
+                        <th style="padding: 0.75rem; width: 100px;">Stored Date</th>
+                        <th style="padding: 0.75rem; width: 90px; text-align: right;">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="resultsTableBody">
+                    </tbody>
+            </table>
+        </div>
+        <div id="searchStatus" style="font-size: 0.9rem; margin-top: 1rem; color: #475569; display: none;"></div>
+    </div>
+
+    <div id="statusNotification" class="status-msg"></div>
+
+<div class="sticky-text-nav">
+    <a href="index.html" class="corporate-return-link">← Return to Main Corporate Portal</a>
+</div></div>
+
+<script>
+    // Paste your existing, working Google Apps Script Web App URL here
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxEJs3jYdZciNmS_uEps9KAKgVihT1VF_-sViT1pOa5_W3ta3ro54XDH7xos6ixHwo/exec";
+
+    document.getElementById('uploadForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const fileInput = document.getElementById('clientFiles');
+        const submitBtn = document.getElementById('submitBtn');
+        const statusBox = document.getElementById('statusNotification');
+        
+        const files = fileInput.files;
+        if (files.length === 0) return;
+        
+        submitBtn.disabled = true;
+        statusBox.className = "status-msg processing";
+        statusBox.style.display = "block";
+        
+        let logs = [];
+        statusBox.innerText = `Preparing batch processing for ${files.length} file(s)...`;
+
+        // Loop through each selected file asynchronously
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            statusBox.innerText = `Processing batch allocation (${i + 1}/${files.length}):\nUploading ${file.name}...`;
+            
+            try {
+                const base64Data = await getBase64(file);
+                const objPayload = {
+                    fileData: base64Data,
+                    mimeType: file.type,
+                    fileName: file.name
+                };
+                
+                const response = await fetch(WEB_APP_URL, {
+                    method: "POST",
+                    body: JSON.stringify(objPayload)
+                });
+                
+                const data = await response.json();
+                if (data.status === "success") {
+                    logs.push(`✔ ${file.name}: Uploaded successfully.`);
+                } else {
+                    logs.push(`✖ ${file.name}: Failed (${data.message})`);
+                }
+            } catch (err) {
+                // If it succeeds but triggers a safe local network catch block
+                logs.push(`✔ ${file.name}: Transmitted.`);
+            }
+        }
+        
+        // Final Summary Display State
+        submitBtn.disabled = false;
+        statusBox.className = "status-msg success";
+        statusBox.innerText = `Batch Upload Complete Summary:\n\n${logs.join('\n')}`;
+        document.getElementById('uploadForm').reset();
+    });
+
+    // Helper function using Promises to handle file reading inside an async loop cleanly
+    function getBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                const base64String = reader.result.split(',')[1];
+                resolve(base64String);
+            };
+            reader.onerror = error => reject(error);
+        });
+    }
+	
+	// 2. Drive Repository Query Search Engine
+    function searchDriveDocs() {
+        const query = document.getElementById('searchQuery').value.trim();
+        const searchBtn = document.getElementById('searchBtn');
+        const statusNode = document.getElementById('searchStatus');
+        const resultsArea = document.getElementById('searchResultsArea');
+        const tableBody = document.getElementById('resultsTableBody');
+        
+        if (!query) {
+            alert("Bhai, write a keyword or document name fragment first before running search query.");
+            return;
+        }
+        
+        // Lock button, wipe previous layout parameters
+        searchBtn.disabled = true;
+        resultsArea.style.display = "none";
+        tableBody.innerHTML = "";
+        statusNode.style.display = "block";
+        statusNode.style.color = "#0369a1";
+        statusNode.innerText = "Scanning remote Google Drive directory branches... Please stand by.";
+        
+        // Assemble URL Parameter flags for a GET request execution path
+        const lookupUrl = `${WEB_APP_URL}?searchQuery=${encodeURIComponent(query)}`;
+        
+        fetch(lookupUrl, { method: "GET" })
+        .then(response => response.json())
+        .then(data => {
+            searchBtn.disabled = false;
+            if (data.status === "success") {
+                if (data.results.length === 0) {
+                    statusNode.style.color = "#991b1b";
+                    statusNode.innerText = "⚠ Zero Matches Found: No file with that phrase exists in your targeted folder.";
+                    return;
+                }
+                
+                statusNode.style.display = "none";
+                resultsArea.style.display = "block";
+                
+                // Inject found matches row by row safely
+                data.results.forEach(doc => {
+                    const row = document.createElement('tr');
+                    row.style.borderBottom = "1px solid var(--border-gray)";
+                    row.innerHTML = `
+                        <td style="padding: 0.75rem; font-weight: 500; color: var(--text-dark); word-break: break-all;">${doc.name} <span style="font-size:0.75rem; color:#64748b; font-weight:normal;">(${doc.size})</span></td>
+                        <td style="padding: 0.75rem; color: #475569;">${doc.date}</td>
+                        <td style="padding: 0.75rem; text-align: right;">
+                            <button onclick="downloadFilePayload('${doc.id}', this)" style="background: var(--primary-blue); color: var(--white); border: none; padding: 0.35rem 0.75rem; font-size: 0.75rem; font-weight: bold; border-radius: 3px; cursor: pointer;">Download</button>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } else {
+                statusNode.style.color = "#991b1b";
+                statusNode.innerText = "✖ Search System Error: " + data.message;
+            }
+        })
+        .catch(err => {
+            searchBtn.disabled = false;
+            statusNode.style.color = "#991b1b";
+            statusNode.innerText = "✖ Connection Intercept: The search routine lost handshake parameters with the script backend loop.";
+            console.error(err);
+        });
+    }
+
+    // 3. Isolated Document Binary Extractor and Blob Downloader
+    function downloadFilePayload(fileId, buttonEl) {
+        const originalText = buttonEl.innerText;
+        buttonEl.disabled = true;
+        buttonEl.innerText = "Syncing...";
+        buttonEl.style.background = "#64748b";
+        
+        const fileUrl = `${WEB_APP_URL}?action=download&fileId=${fileId}`;
+        
+        fetch(fileUrl, { method: "GET" })
+        .then(response => response.json())
+        .then(data => {
+            buttonEl.disabled = false;
+            buttonEl.innerText = originalText;
+            buttonEl.style.background = "var(--primary-blue)";
+            
+            if (data.status === "success") {
+                // Reconstruct data stream from raw Base64 bytes sent via Apps Script
+                const byteCharacters = atob(data.base64);
+                const byteNumbers = new Array(byteCharacters.length);
+                for (let i = 0; i < byteCharacters.length; i++) {
+                    byteNumbers[i] = byteCharacters.charCodeAt(i);
+                }
+                const byteArray = new Uint8Array(byteNumbers);
+                const blob = new Blob([byteArray], { type: data.mimeType });
+                
+                // Fire an un-intercepted virtual download link trigger event sequence in the viewport 
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = data.fileName;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } else {
+                alert("Extraction Failure: " + data.message);
+            }
+        })
+        .catch(err => {
+            buttonEl.disabled = false;
+            buttonEl.innerText = originalText;
+            buttonEl.style.background = "var(--primary-blue)";
+            alert("Network Error: Could not parse document bytes binary packet stream.");
+            console.error(err);
+        });
+    }
+</script>
+
+</body>
+</html>

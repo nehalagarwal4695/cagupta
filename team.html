@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Professional Council Team | Gupta Ruchi & Co.</title>
+    <style>
+        :root {
+            --primary-blue: #1e3a8a;
+            --accent-gold: #b45309;
+            --bg-canvas: #f1f5f9;
+            --text-dark: #0f172a;
+            --white: #ffffff;
+            --border-gray: #cbd5e1;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        body { background-color: var(--bg-canvas); color: var(--text-dark); line-height: 1.6; padding: 2rem 1rem; }
+        .container { max-width: 1100px; margin: 0 auto; background: var(--white); padding: 3rem; border-radius: 6px; border: 1px solid var(--border-gray); border-top: 6px solid var(--primary-blue); }
+        h1 { color: var(--primary-blue); font-family: 'Times New Roman', Times, serif; font-size: 2.5rem; margin-bottom: 0.5rem; border-bottom: 2px solid var(--accent-gold); padding-bottom: 0.5rem; text-transform: uppercase; }
+        .subtitle { font-size: 1rem; color: #475569; margin-bottom: 2.5rem; font-style: italic; }
+        
+        h2 { color: var(--primary-blue); font-size: 1.5rem; margin: 2rem 0 1rem; text-transform: uppercase; letter-spacing: 1px; border-left: 4px solid var(--accent-gold); padding-left: 0.75rem; }
+        p { margin-bottom: 1.5rem; font-size: 0.95rem; text-align: justify; color: #334155; }
+        
+        /* Grid Layout for Partner Profiles */
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2.5rem; }
+        .team-card { background: #f8fafc; border: 1px solid var(--border-gray); border-radius: 4px; padding: 1.5rem; }
+        .partner-title { font-size: 1.2rem; color: var(--primary-blue); font-weight: bold; margin-bottom: 0.25rem; }
+        .partner-desg { font-size: 0.85rem; color: var(--accent-gold); font-weight: bold; text-transform: uppercase; margin-bottom: 0.75rem; letter-spacing: 0.5px; }
+        .partner-meta { font-size: 0.8rem; color: #64748b; margin-bottom: 1rem; line-height: 1.4; }
+        .partner-bio { font-size: 0.85rem; color: #334155; text-align: justify; }
+
+        /* Structure Overview Section */
+        .org-structure { background: #fffbeb; border: 1px solid #fef3c7; padding: 1.5rem; border-radius: 4px; margin-top: 2rem; }
+        .org-list { list-style-type: square; padding-left: 1.5rem; margin-top: 0.75rem; font-size: 0.9rem; color: #78350f; }
+        .org-list li { margin-bottom: 0.5rem; }
+
+        /* --- Floating Sticky Navigation Header Deck --- */
+.sticky-text-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;              /* Sets a solid, clean boundary layer height */
+    background: #ffffff;        /* Solid white background forces scrolling text to disappear behind it */
+    border-bottom: 1px solid #f1f5f9; /* Ultra-light clean divider line */
+    display: flex;
+    align-items: center;        /* Vertically centers the text link inside the 60px bar */
+    padding-left: 2.5rem;       /* Keeps your exact horizontal alignment from the edge */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02); /* Optional: Gives an elegant, micro shadow depth */
+    z-index: 9999;              /* Forces the bar to stay securely on top of everything else */
+}
+
+/* --- Clean Text Hyperlink Customizer --- */
+.corporate-return-link {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #c26600;            /* Your exact golden-orange corporate hex color */
+    text-decoration: none;     
+    display: inline-block;
+    transition: opacity 0.2s ease;
+}
+
+.corporate-return-link:hover {
+    opacity: 0.85;             
+    text-decoration: underline;
+}
+
+/* --- CRITICAL DOCUMENT CONTENT PUSH OFFSET --- */
+body {
+    padding-top: 65px !important; /* Pushes the "DIRECT TAXATION ADVISORY" main title down so it never hides behind the bar on page load */
+}
+
+/* --- Precise Mobile Viewport Adjustments --- */
+@media screen and (max-width: 480px) {
+    .sticky-text-nav {
+        height: 50px;           /* Slimmer bar profile for mobile views */
+        padding-left: 1rem;     
+    }
+    .corporate-return-link {
+        font-size: 0.9rem;      
+    }
+    body {
+        padding-top: 55px !important;
+    }
+}
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Our Professional Council Team</h1>
+    <p class="subtitle">A collective elite council of financial specialists, corporate legal advisors, and tax risk controllers.</p>
+    
+    <p>Gupta Ruchi & Co. owes its long-standing reputational framework to the deep domain specialization of its senior partnership council. Our multi-disciplinary team features structural experts across auditing compliance tracks, indirect tax legislation frameworks, cross-border corporate valuation management, and strategic transaction diligence advisory.</p>
+    
+    <h2>Senior Managing Council Partners</h2>
+    <div class="team-grid">
+        
+        <div class="team-card">
+            <div class="partner-title">CA R. C. Agarwal, FCA</div>
+            <div class="partner-desg">Senior Founding Partner & Tax Litigator</div>
+            <div class="partner-meta">
+                Membership No: 074123 (In Practice Since 1992)<br>
+                Core Track: Direct Tax Advisory, Appellate Authority representation, Corporate Re-structuring.
+            </div>
+            <p class="partner-bio">With over three decades of litigation experience across Income Tax Appellate Tribunals, CA R.C. Agarwal directs the high-tier tax defense framework for our corporate clients. He specializes in intricate search, seizure assessments, and structural cross-border transfer pricing configurations.</p>
+        </div>
+
+        <div class="team-card">
+            <div class="partner-title">CA N. K. Seth, FCA, DISA</div>
+            <div class="partner-desg">Head of Auditing & Systems Assurance</div>
+            <div class="partner-meta">
+                Membership No: 089542 (In Practice Since 1998)<br>
+                Core Track: Statutory Audits, Information Systems Control Auditing, Banking Risk Modules.
+            </div>
+            <p class="partner-bio">A certified Systems Auditor, CA N.K. Seth directs institutional internal audits and central corporate controls validation checks for manufacturing enterprise concerns. He oversees compliance strategies matching rigorous Indian Accounting Standards (IND AS) rules.</p>
+        </div>
+
+        <div class="team-card">
+            <div class="partner-title">CA S. A. Agarwal, ACA</div>
+            <div class="partner-desg">Director - Indirect Taxation & GST Registry</div>
+            <div class="partner-meta">
+                Membership No: 541289 (In Practice Since 2014)<br>
+                Core Track: GST Reconciliation, Custom Duty Statutes, SEZ Corporate Licensing Hubs.
+            </div>
+            <p class="partner-bio">Managing our indirect tax arrays, CA S.A. Agarwal steers clients through transactional tax optimizations, complex multi-state GST refund protocols, and compliance configurations across state revenue portals and logistics jurisdictions.</p>
+        </div>
+
+    </div>
+
+    <h2>Practice Organization Architecture</h2>
+    <p>To deliver flawless execution speeds across dynamic compliance timelines, our operational layout is divided into highly focused service segments managed by dedicated executive specialists:</p>
+    
+    <div class="org-structure">
+        <p style="font-weight: bold; color: var(--primary-blue); margin-bottom: 0.5rem;">Functional Execution Blocks:</p>
+        <ul class="org-list">
+            <li><strong>Corporate Law Wing:</strong> Managed by experienced Company Secretaries handling MCA registry allocations, LLP agreements, and dynamic Boardroom minutes documentation tracks.</li>
+            <li><strong>Transaction Due Diligence Hub:</strong> Tasked with running precise asset evaluations, balance sheet stress testing, and net worth verifications before major corporate mergers.</li>
+            <li><strong>Articleship & Field Operations Unit:</strong> Comprising bright semi-qualified assistants and articled clerks handling on-site voucher audits, ledger balances validation, and draft tax form preparation.</li>
+        </ul>
+    </div>
+
+    <p style="margin-top: 1.5rem;">Every individual processing client account workflows follows the strict confidentiality parameters mandated in our institutional security protocols and the professional ethical standards of the ICAI.</p>
+
+<div class="sticky-text-nav">
+    <a href="index.html" class="corporate-return-link">← Return to Main Corporate Portal</a>
+</div></div>
+</body>
+</html>

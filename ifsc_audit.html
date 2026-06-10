@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RBI IFSC Bank Routing Auditor | Spicen Tech Hub</title>
+    <style>
+        /* --- Core Theme Variables --- */
+        :root {
+            --primary: #0284c7;        /* Sky/Laptop Blue */
+            --primary-hover: #0369a1;  /* Deep Link Blue */
+            --bg-slate: #f8fafc;       /* Clean Workspace White/Gray */
+            --text-main: #0f172a;      /* Slate 900 Heading */
+            --text-muted: #475569;     /* Slate 600 Body Text */
+            --border-color: #e2e8f0;   /* Light Divider */
+            --success: #16a34a;        /* Operations Green */
+            --error: #ef4444;          /* Alert Red */
+        }
+
+        /* --- Global Resets & Fluid Layout --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-slate);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* --- Header Navigation Bar --- */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--primary);
+        }
+
+        .brand-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -0.02em;
+        }
+
+        /* --- Main App Container --- */
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            width: 100%;
+        }
+
+        .app-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            max-width: 520px;
+            width: 100%;
+            padding: 2rem;
+            transition: transform 0.2s;
+        }
+
+        /* --- UI Typography Elements --- */
+        .app-header {
+            text-align: center;
+            margin-bottom: 1.75rem;
+        }
+
+        .app-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .app-header h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 0.4rem;
+        }
+
+        .app-header p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* --- Form Interactive Controls --- */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        #ifsc-input {
+            flex: 1;
+            padding: 12px 16px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            text-transform: uppercase;
+            outline: none;
+            letter-spacing: 0.05em;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        #ifsc-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+        }
+
+        .search-btn {
+            padding: 12px 24px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #ffffff;
+            background: var(--primary);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .search-btn:hover {
+            background: var(--primary-hover);
+        }
+
+        /* --- Standalone Terminal Terminal Log Drawer --- */
+        #log-drawer {
+            display: none;
+            margin-top: 1.5rem;
+            padding: 1.25rem;
+            background: #fafafa;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border-left: 4px solid var(--primary);
+        }
+
+        /* --- Mobile Adaptability Viewports --- */
+        @media (max-width: 480px) {
+            header { padding: 0.75rem 1rem; }
+            main { padding: 1rem; }
+            .app-card { padding: 1.5rem 1.25rem; }
+            .input-row { flex-direction: column; }
+            #ifsc-input { width: 100%; }
+            .search-btn { width: 100%; }
+            .app-header h1 { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="back-link">← Back to Workspace Desk</a>
+        <div class="brand-title">Gupta Ruchi & Co.</div>
+    </header>
+
+    <main>
+        <div class="app-card">
+            <div class="app-header">
+                <span class="app-icon">🏛️</span>
+                <h1>RBI IFSC Routing Audit Desk</h1>
+                <p>Query live clearing nodes, verify active bank branch indices, and crosscheck real-time network transaction channel properties.</p>
+            </div>
+
+            <div class="form-group">
+                <label for="ifsc-input">National Routing Branch Code</label>
+                <div class="input-row">
+                    <input type="text" id="ifsc-input" placeholder="e.g., PUNB0019300" maxlength="11" autocomplete="off">
+                    <button onclick="executePageBankAudit()" class="search-btn">Verify Branch</button>
+                </div>
+            </div>
+
+            <div id="log-drawer"></div>
+        </div>
+    </main>
+
+    <script>
+        function executePageBankAudit() {
+            const inputField = document.getElementById('ifsc-input');
+            const rawCode = inputField.value.trim().toUpperCase();
+            const logBlock = document.getElementById('log-drawer');
+            
+            // Activate panel framework visibility and set connecting loading profile
+            logBlock.style.display = "block";
+            logBlock.style.borderLeft = "4px solid var(--primary)";
+            logBlock.innerHTML = `<p style="color: var(--primary-hover); font-weight: 700; text-align: center; margin: 0;">🔄 Synchronizing parameters with RBI clearance directories...</p>`;
+
+            if (!rawCode) {
+                logBlock.style.borderLeft = "4px solid var(--error)";
+                logBlock.innerHTML = `<p style="color: #991b1b; font-weight: 700; margin: 0;">⚠ Operational Exception: Input value parameter string is empty.</p>`;
+                return;
+            }
+
+            // Central Bank Code Structural Regular Expression Test Pattern
+            const verificationRegex = /^[A-Z]{4}0[A-Z0-9]{6}$/;
+            if (!verificationRegex.test(rawCode)) {
+                logBlock.style.borderLeft = "4px solid var(--error)";
+                logBlock.innerHTML = `<p style="color: #991b1b; font-weight: 700; margin: 0;">✖ Structural Exception: Syntax layout mismatch. Target sequence requires 4 letters, a single '0' placeholder, and 6 terminating branch symbols.</p>`;
+                return;
+            }
+
+            // Establish data stream socket link to active public repo
+            fetch(`https://ifsc.razorpay.com/${rawCode}`)
+            .then(response => {
+                if (!response.ok) throw new Error("Index Match Missing Across Directories");
+                return response.json();
+            })
+            .then(data => {
+                logBlock.style.borderLeft = "4px solid var(--success)";
+                logBlock.innerHTML = `
+                    <p style="color: #166534; font-weight: 700; margin-bottom: 0.6rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.02em;">✔ Live Routing Profile Synchronized</p>
+                    <div style="color: #334155; border-top: 1px dashed #cbd5e1; padding-top: 0.6rem;">
+                        <p style="margin: 4px 0;"><strong style="color:var(--text-main);">Bank Authority:</strong> <span style="color:#1e3a8a; font-weight:700;">${data.BANK}</span></p>
+                        <p style="margin: 4px 0;"><strong style="color:var(--text-main);">Core Branch Name:</strong> ${data.BRANCH}</p>
+                        <p style="margin: 4px 0;"><strong style="color:var(--text-main);">Physical Address:</strong> <span style="font-size:0.8rem; color:#475569; display:block; background:#f1f5f9; padding:6px; border-radius:4px; margin-top:2px;">${data.ADDRESS}</span></p>
+                        <p style="margin: 4px 0;"><strong style="color:var(--text-main);">Jurisdiction Node:</strong> ${data.CITY}, ${data.STATE}</p>
+                        
+                        <div style="margin-top: 10px; padding-top: 8px; border-top: 1px dotted #cbd5e1; display: flex; gap: 16px; font-size: 0.8rem;">
+                            <div><strong style="color:var(--text-main);">NEFT:</strong> <span style="color: ${data.NEFT ? 'var(--success)' : 'var(--error)'}; font-weight:800;">${data.NEFT ? 'ACTIVE ✔' : 'DISABLED ✖'}</span></div>
+                            <div><strong style="color:var(--text-main);">IMPS:</strong> <span style="color: ${data.IMPS ? 'var(--success)' : 'var(--error)'}; font-weight:800;">${data.IMPS ? 'ACTIVE ✔' : 'DISABLED ✖'}</span></div>
+                            <div><strong style="color:var(--text-main);">UPI:</strong> <span style="color: ${data.UPI ? 'var(--success)' : 'var(--error)'}; font-weight:800;">${data.UPI ? 'ACTIVE ✔' : 'DISABLED ✖'}</span></div>
+                        </div>
+                    </div>
+                `;
+            })
+            .catch(err => {
+                logBlock.style.borderLeft = "4px solid var(--error)";
+                logBlock.innerHTML = `<p style="color: #991b1b; font-weight: 700; margin: 0;">✖ Search Exception: The query token could not be mapped to any active, authorized RBI clearing house point.</p>`;
+            });
+        }
+    </script>
+</body>
+</html>

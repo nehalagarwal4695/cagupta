@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ease of Doing Business Nodes | Gupta Ruchi & Co.</title>
+    <style>
+        :root {
+            --primary-blue: #1e3a8a;
+            --accent-gold: #b45309;
+            --bg-canvas: #f1f5f9;
+            --text-dark: #0f172a;
+            --white: #ffffff;
+            --border-gray: #cbd5e1;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        body { background-color: var(--bg-canvas); color: var(--text-dark); line-height: 1.6; padding: 2rem 1rem; }
+        .container { max-width: 1100px; margin: 0 auto; background: var(--white); padding: 3rem; border-radius: 6px; border: 1px solid var(--border-gray); border-top: 6px solid var(--primary-blue); }
+        h1 { color: var(--primary-blue); font-family: 'Times New Roman', Times, serif; font-size: 2.5rem; margin-bottom: 0.5rem; border-bottom: 2px solid var(--accent-gold); padding-bottom: 0.5rem; text-transform: uppercase; }
+        .subtitle { font-size: 1rem; color: #475569; margin-bottom: 2.5rem; font-style: italic; }
+        
+        .node-section-block { margin-bottom: 2.5rem; }
+        .node-section-title { font-size: 1.3rem; color: var(--primary-blue); margin-bottom: 1rem; text-transform: uppercase; border-bottom: 1px solid var(--border-gray); padding-bottom: 0.25rem; }
+        
+        .node-cards-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem; }
+        .node-action-card { background: #f8fafc; border: 1px solid var(--border-gray); border-radius: 4px; padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between; }
+        .node-label { font-weight: bold; color: var(--text-dark); font-size: 1rem; margin-bottom: 0.3rem; }
+        .node-summary { font-size: 0.85rem; color: #475569; margin-bottom: 1rem; text-align: justify; }
+        
+        .jump-anchor { font-size: 0.8rem; font-weight: bold; color: var(--accent-gold); text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px; }
+        .jump-anchor:hover { color: var(--primary-blue); text-decoration: underline; }
+        /* --- Floating Sticky Navigation Header Deck --- */
+.sticky-text-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;              /* Sets a solid, clean boundary layer height */
+    background: #ffffff;        /* Solid white background forces scrolling text to disappear behind it */
+    border-bottom: 1px solid #f1f5f9; /* Ultra-light clean divider line */
+    display: flex;
+    align-items: center;        /* Vertically centers the text link inside the 60px bar */
+    padding-left: 2.5rem;       /* Keeps your exact horizontal alignment from the edge */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02); /* Optional: Gives an elegant, micro shadow depth */
+    z-index: 9999;              /* Forces the bar to stay securely on top of everything else */
+}
+
+/* --- Clean Text Hyperlink Customizer --- */
+.corporate-return-link {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #c26600;            /* Your exact golden-orange corporate hex color */
+    text-decoration: none;     
+    display: inline-block;
+    transition: opacity 0.2s ease;
+}
+
+.corporate-return-link:hover {
+    opacity: 0.85;             
+    text-decoration: underline;
+}
+
+/* --- CRITICAL DOCUMENT CONTENT PUSH OFFSET --- */
+body {
+    padding-top: 65px !important; /* Pushes the "DIRECT TAXATION ADVISORY" main title down so it never hides behind the bar on page load */
+}
+
+/* --- Precise Mobile Viewport Adjustments --- */
+@media screen and (max-width: 480px) {
+    .sticky-text-nav {
+        height: 50px;           /* Slimmer bar profile for mobile views */
+        padding-left: 1rem;     
+    }
+    .corporate-return-link {
+        font-size: 0.9rem;      
+    }
+    body {
+        padding-top: 55px !important;
+    }
+}
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Ease of Doing Business Nodes</h1>
+    <p class="subtitle">Strategic setup gateways for industrial licensing, enterprise registrations, and regulatory clearances.</p>
+    
+    <div class="node-section-block">
+        <div class="node-section-title">Corporate Entity & Licensing Setup Desks</div>
+        <div class="node-cards-wrapper">
+            
+            <div class="node-action-card">
+                <div>
+                    <div class="node-label">Udyam MSME Registration Matrix</div>
+                    <p class="node-summary">Register small and medium enterprises to access priority credit channels, state-level industrial subsidies, and protections against delayed commercial payments.</p>
+                </div>
+                <a href="https://udyamregistration.gov.in/" target="_blank" class="jump-anchor">Access Government Registry →</a>
+            </div>
+
+            <div class="node-action-card">
+                <div>
+                    <div class="node-label">DGFT Import-Export Certificate Hub</div>
+                    <p class="node-summary">Apply for and manage Import-Export Codes (IEC) through the Directorate General of Foreign Trade to enable global cross-border trade transactions.</p>
+                </div>
+                <a href="https://www.dgft.gov.in/" target="_blank" class="jump-anchor">Access Licensing Desk →</a>
+            </div>
+
+            <div class="node-action-card">
+                <div>
+                    <div class="node-label">Startup India Certification Portal</div>
+                    <p class="node-summary">Submit entity profiles to DPIIT to unlock statutory income tax exemptions, fast-tracked patent applications, and unique startup funding streams.</p>
+                </div>
+                <a href="https://www.startupindia.gov.in/" target="_blank" class="jump-anchor">Access Startup Hub →</a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="node-section-block">
+        <div class="node-section-title">Intellectual Property & National Registries</div>
+        <div class="node-cards-wrapper">
+            
+            <div class="node-action-card">
+                <div>
+                    <div class="node-label">IP India Trademark Filing Desk</div>
+                    <p class="node-summary">Search national trademark records, verify brand name availability, and file formal brand protection applications directly with the Controller General of Patents, Designs and Trademarks.</p>
+                </div>
+                <a href="https://ipindiaonline.gov.in/" target="_blank" class="jump-anchor">Access Registry Search →</a>
+            </div>
+
+            <div class="node-action-card">
+                <div>
+                    <div class="node-label">Shram Suvidha Labor Licensing Hub</div>
+                    <p class="node-summary">Unified national single-window portal used to file labor compliance records, manage factory licenses, and submit integrated annual returns.</p>
+                </div>
+                <a href="https://shramsuvidha.gov.in/" target="_blank" class="jump-anchor">Access Single Window →</a>
+            </div>
+
+        </div>
+    </div>
+
+<div class="sticky-text-nav">
+    <a href="index.html" class="corporate-return-link">← Return to Main Corporate Portal</a>
+</div></div>
+</body>
+</html>

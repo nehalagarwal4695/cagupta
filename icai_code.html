@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICAI Code Reference | Gupta Ruchi & Co.</title>
+    <style>
+        :root {
+            --primary-blue: #1e3a8a;
+            --accent-gold: #b45309;
+            --bg-canvas: #f1f5f9;
+            --text-dark: #0f172a;
+            --white: #ffffff;
+            --border-gray: #cbd5e1;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        body { background-color: var(--bg-canvas); color: var(--text-dark); line-height: 1.6; padding: 2rem 1rem; }
+        .container { max-width: 900px; margin: 0 auto; background: var(--white); padding: 2.5rem; border-radius: 6px; border: 1px solid var(--border-gray); border-top: 6px solid var(--primary-blue); }
+        h1 { color: var(--primary-blue); font-family: 'Times New Roman', Times, serif; font-size: 2.2rem; margin-bottom: 0.5rem; border-bottom: 2px solid var(--accent-gold); padding-bottom: 0.5rem; }
+        .statute-sub { font-size: 0.9rem; font-weight: bold; color: var(--accent-gold); text-transform: uppercase; margin-bottom: 1.5rem; letter-spacing: 1px; }
+        h2 { color: var(--primary-blue); font-size: 1.25rem; margin: 1.5rem 0 0.5rem; text-transform: uppercase; }
+        p { margin-bottom: 1rem; font-size: 0.95rem; text-align: justify; color: #334155; }
+        .regulatory-note { background: #fffbeb; border-left: 4px solid var(--accent-gold); padding: 1rem; margin: 1.5rem 0; font-size: 0.9rem; color: #78350f; }
+        /* --- Floating Sticky Navigation Header Deck --- */
+.sticky-text-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;              /* Sets a solid, clean boundary layer height */
+    background: #ffffff;        /* Solid white background forces scrolling text to disappear behind it */
+    border-bottom: 1px solid #f1f5f9; /* Ultra-light clean divider line */
+    display: flex;
+    align-items: center;        /* Vertically centers the text link inside the 60px bar */
+    padding-left: 2.5rem;       /* Keeps your exact horizontal alignment from the edge */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02); /* Optional: Gives an elegant, micro shadow depth */
+    z-index: 9999;              /* Forces the bar to stay securely on top of everything else */
+}
+
+/* --- Clean Text Hyperlink Customizer --- */
+.corporate-return-link {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #c26600;            /* Your exact golden-orange corporate hex color */
+    text-decoration: none;     
+    display: inline-block;
+    transition: opacity 0.2s ease;
+}
+
+.corporate-return-link:hover {
+    opacity: 0.85;             
+    text-decoration: underline;
+}
+
+/* --- CRITICAL DOCUMENT CONTENT PUSH OFFSET --- */
+body {
+    padding-top: 65px !important; /* Pushes the "DIRECT TAXATION ADVISORY" main title down so it never hides behind the bar on page load */
+}
+
+/* --- Precise Mobile Viewport Adjustments --- */
+@media screen and (max-width: 480px) {
+    .sticky-text-nav {
+        height: 50px;           /* Slimmer bar profile for mobile views */
+        padding-left: 1rem;     
+    }
+    .corporate-return-link {
+        font-size: 0.9rem;      
+    }
+    body {
+        padding-top: 55px !important;
+    }
+}
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>ICAI Professional Code Compliance</h1>
+    <p class="statute-sub">In Accordance with the Chartered Accountants Act, 1949</p>
+    
+    <p>Gupta Ruchi & Co. operates in absolute conformance with the statutory guidelines and ethical benchmarks set out in the Code of Ethics issued by the Institute of Chartered Accountants of India (ICAI).</p>
+    
+    <div class="regulatory-note">
+        <strong>Important Council Council Notification Reference:</strong><br>
+        This digital space is intended purely to share verified regulatory index parameters, compliance deadlines, and public financial utilities. It strictly follows Council guidelines that prohibit soliciting clients or advertising professional services.
+    </div>
+
+    <h2>1. Section 25 Compliance: Corporate Structure Transparency</h2>
+    <p>Our practice functions under verified partnership configurations registered cleanly with the Institute's regulatory databases under Firm Registration Number . Every branch office operates under the direct supervision of a resident fellow partner.</p>
+    
+    <h2>2. Clause (6) of Part I of the First Schedule</h2>
+    <p>We do not use aggressive digital outreach marketing, search engine optimization bids for commercial search queries, or promotional copy designed to actively solicit engagement. Client interactions are initiated entirely by businesses seeking professional services based on our established reputation.</p>
+    
+    <h2>3. Maintenance of Integrity & Confidentiality</h2>
+    <p>Our internal auditing systems feature isolated data controls that match the confidentiality benchmarks required under standard peer review guidelines. This keeps client accounting portfolios completely protected from outside disclosure.</p>
+
+<div class="sticky-text-nav">
+    <a href="index.html" class="corporate-return-link">← Return to Main Corporate Portal</a>
+</div></div>
+</body>
+</html>

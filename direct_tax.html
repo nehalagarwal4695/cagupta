@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direct Taxation Advisory | Gupta Ruchi & Co.</title>
+    <style>
+        :root { --primary-blue: #1e3a8a; --accent-gold: #b45309; --bg-canvas: #f1f5f9; --text-dark: #0f172a; --white: #ffffff; --border-gray: #cbd5e1; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        body { background-color: var(--bg-canvas); color: var(--text-dark); line-height: 1.6; padding: 3rem 1rem; }
+        .container { max-width: 1150px; margin: 0 auto; background: var(--white); padding: 4rem; border-radius: 6px; border: 1px solid var(--border-gray); border-top: 8px solid var(--primary-blue); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        h1 { color: var(--primary-blue); font-family: 'Times New Roman', Times, serif; font-size: 2.6rem; margin-bottom: 0.5rem; border-bottom: 2px solid var(--accent-gold); padding-bottom: 0.5rem; text-transform: uppercase; }
+        .subtitle { font-size: 1.05rem; color: #475569; margin-bottom: 2.5rem; font-style: italic; }
+        h2 { color: var(--primary-blue); font-family: 'Times New Roman', Times, serif; font-size: 1.6rem; margin: 2.5rem 0 1.25rem; text-transform: uppercase; border-left: 5px solid var(--accent-gold); padding-left: 0.75rem; }
+        p { margin-bottom: 1.5rem; font-size: 0.98rem; text-align: justify; color: #334155; line-height: 1.7; }
+        
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+        .service-card { background: #f8fafc; border: 1px solid var(--border-gray); padding: 1.75rem; border-radius: 4px; transition: transform 0.2s, box-shadow 0.2s; }
+        .service-card:hover { transform: translateY(-3px); box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
+        .card-title { font-weight: bold; color: var(--primary-blue); margin-bottom: 0.75rem; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.3px; }
+        .card-text { font-size: 0.88rem; color: #475569; text-align: justify; line-height: 1.6; }
+        
+        .framework-table { width: 100%; border-collapse: collapse; margin: 2rem 0; background: #ffffff; }
+        .framework-table th, .framework-table td { padding: 1.2rem; text-align: left; border: 1px solid var(--border-gray); font-size: 0.9rem; }
+        .framework-table th { background: #f1f5f9; color: var(--primary-blue); font-weight: bold; text-transform: uppercase; font-size: 0.85rem; }
+        .framework-table tr:nth-child(even) { background: #f8fafc; }
+        
+        .infobox { background: #eff6ff; border: 1px solid #bfdbfe; border-left: 5px solid #3b82f6; padding: 1.5rem; border-radius: 4px; margin: 2rem 0; font-size: 0.92rem; color: #1e40af; }
+        
+        .cta-box { background: #fffbeb; border: 1px solid #fef3c7; border-left: 5px solid var(--accent-gold); padding: 2rem; margin-top: 3.5rem; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+        .cta-btn { background: var(--primary-blue); color: var(--white); text-decoration: none; padding: 0.75rem 1.5rem; border-radius: 4px; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; transition: background 0.2s; }
+        .cta-btn:hover { background: #1d4ed8; }
+        
+		
+		
+		/* --- Floating Sticky Navigation Header Deck --- */
+.sticky-text-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;              /* Sets a solid, clean boundary layer height */
+    background: #ffffff;        /* Solid white background forces scrolling text to disappear behind it */
+    border-bottom: 1px solid #f1f5f9; /* Ultra-light clean divider line */
+    display: flex;
+    align-items: center;        /* Vertically centers the text link inside the 60px bar */
+    padding-left: 2.5rem;       /* Keeps your exact horizontal alignment from the edge */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02); /* Optional: Gives an elegant, micro shadow depth */
+    z-index: 9999;              /* Forces the bar to stay securely on top of everything else */
+}
+
+/* --- Clean Text Hyperlink Customizer --- */
+.corporate-return-link {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #c26600;            /* Your exact golden-orange corporate hex color */
+    text-decoration: none;     
+    display: inline-block;
+    transition: opacity 0.2s ease;
+}
+
+.corporate-return-link:hover {
+    opacity: 0.85;             
+    text-decoration: underline;
+}
+
+/* --- CRITICAL DOCUMENT CONTENT PUSH OFFSET --- */
+body {
+    padding-top: 65px !important; /* Pushes the "DIRECT TAXATION ADVISORY" main title down so it never hides behind the bar on page load */
+}
+
+/* --- Precise Mobile Viewport Adjustments --- */
+@media screen and (max-width: 480px) {
+    .sticky-text-nav {
+        height: 50px;           /* Slimmer bar profile for mobile views */
+        padding-left: 1rem;     
+    }
+    .corporate-return-link {
+        font-size: 0.9rem;      
+    }
+    body {
+        padding-top: 55px !important;
+    }
+}
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Direct Taxation Advisory</h1>
+    <p class="subtitle">Strategic fiscal mapping, international transfer pricing evaluations, and high-tier litigation representation modules.</p>
+    
+    <p>Modern direct tax strategies require a careful balance of proactive legal mapping and strict compliance. Our specialized tax division ensures corporate enterprises and high-net-worth individuals navigate the deep complexities of the Income Tax Act, 1961 smoothly. We analyze your commercial setups to securely optimize tax liabilities while building legally airtight filing portfolios.</p>
+    
+    <h2>Corporate Tax Portfolios & Practice Domains</h2>
+    <p>Our direct taxation desk handles everything from routine return automation to high-stakes defense representation before national tax bodies.</p>
+    
+    <div class="service-grid">
+        <div class="service-card">
+            <div class="card-title">Corporate Tax Optimization</div>
+            <p class="card-text">Structuring business operations to maximize corporate tax deductions, managing MAT liabilities under Section 115JB, and optimizing asset depreciation models to improve cash flow.</p>
+        </div>
+        <div class="service-card">
+            <div class="card-title">Transfer Pricing (Form 3CEB)</div>
+            <p class="card-text">Developing strong arms-length price models for transactions between international associated entities. We build complete local and master file documentation portfolios to prevent multi-jurisdictional tax risks.</p>
+        </div>
+        <div class="service-card">
+            <div class="card-title">Faceless Assessment Defense</div>
+            <p class="card-text">Drafting clear, highly technical written responses for National Faceless Assessment Center (NFAC) notices. We build comprehensive paper books to clear up asset discrepancies or contested business expense deductions.</p>
+        </div>
+        <div class="service-card">
+            <div class="card-title">TDS / TCS Compliance Matrix</div>
+            <p class="card-text">Managing complex salary deductions, contractor allocations, and foreign remittance tax tracking under Section 195. We automate quarterly Form 24Q, 26Q, and 27Q filings to avoid expensive delay penalties.</p>
+        </div>
+        <div class="service-card">
+            <div class="card-title">Appellate Advocacy & Litigation</div>
+            <p class="card-text">Representing client business positions before Commissioner of Income Tax (Appeals) and Income Tax Appellate Tribunal (ITAT) blocks. We manage structural tax appeals, search defense briefs, and penalty stay applications.</p>
+        </div>
+        <div class="service-card">
+            <div class="card-title">Expatriate & Double Tax Advisory</div>
+            <p class="card-text">Deploying Double Taxation Avoidance Agreement (DTAA) parameters to safeguard global talent assets, managing tax residency certificates (TRC), and securing expatriate filing positions.</p>
+        </div>
+    </div>
+
+    <h2>Statutory Return Framework</h2>
+    <p>We handle the complete execution, electronic signature setup, and verification routines for corporate and individual direct tax reporting pipelines.</p>
+
+    <table class="framework-table">
+        <thead>
+            <tr>
+                <th style="width: 25%;">Filing Profile Category</th>
+                <th style="width: 45%;">Statutory Applicability Framework</th>
+                <th style="width: 30%;">Primary Operational Return Form</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Corporate Enterprises</strong></td>
+                <td>All incorporated business models, including manufacturing setups, technology firms, and closely-held entities.</td>
+                <td>Form ITR-6 Execution Pipeline</td>
+            </tr>
+            <tr>
+                <td><strong>Firms & LLPs</strong></td>
+                <td>Partnership setups, LLPs, and Association of Persons operating commercial or advisory businesses.</td>
+                <td>Form ITR-5 Execution Pipeline</td>
+            </tr>
+            <tr>
+                <td><strong>Statutory Audit Cases</strong></td>
+                <td>Entities with commercial turnovers exceeding statutory thresholds under Section 44AB rules.</td>
+                <td>Form 3CA / 3CB along with ITR Forms</td>
+            </tr>
+            <tr>
+                <td><strong>International Remittances</strong></td>
+                <td>Mandatory certification trackers for out-of-country cash movements and technical service transfers.</td>
+                <td>Form 15CA & 15CB Validation</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="infobox">
+        <strong>Strategic Advisory Note:</strong> With the complete implementation of AI-driven data screening by the Central Board of Direct Taxes, mismatch notices regarding Form 26AS, AIS, and TIS summaries have risen sharply. Our desk runs deep cross-verification checks on all transaction ledgers *prior* to submission to eliminate processing errors.
+    </div>
+
+    <div class="cta-box">
+        <div>
+            <strong style="color: #78350f; font-size: 1.1rem; display: block; margin-bottom: 0.25rem;">Facing an Active Income Tax Scrutiny or Penalty Notice?</strong>
+            <p style="margin: 0; font-size: 0.9rem; color: #78350f;">Submit your case notifications to our direct tax defense desk today for an exhaustive statutory review and a structured appeal strategy.</p>
+        </div>
+        <a href="query.html" class="cta-btn">Consult Tax Counsel</a>
+    </div>
+    <div class="sticky-text-nav">
+    <a href="index.html" class="corporate-return-link">← Return to Main Corporate Portal</a>
+</div>
+</div>
+</body>
+</html>

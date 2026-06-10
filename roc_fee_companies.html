@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROC Fee Structure (Companies Act) | Compliance Portal</title>
+    <style>
+        :root { --primary-blue: #1e3a8a; --accent-gold: #b45309; --bg-canvas: #f1f5f9; --text-dark: #0f172a; --white: #ffffff; --border-gray: #cbd5e1; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        body { background-color: var(--bg-canvas); color: var(--text-dark); line-height: 1.6; padding: 2.5rem 1rem; }
+        .container { max-width: 1050px; margin: 0 auto; background: var(--white); padding: 3.5rem; border-radius: 6px; border: 1px solid var(--border-gray); border-top: 6px solid var(--primary-blue); }
+        h1 { color: var(--primary-blue); font-family: 'Times New Roman', Times, serif; font-size: 2.2rem; margin-bottom: 0.5rem; border-bottom: 2px solid var(--accent-gold); padding-bottom: 0.5rem; text-transform: uppercase; }
+        .subtitle { font-size: 0.95rem; color: #475569; margin-bottom: 2rem; font-style: italic; }
+        h2 { color: var(--primary-blue); font-size: 1.25rem; margin: 2rem 0 1rem; text-transform: uppercase; border-left: 4px solid var(--accent-gold); padding-left: 0.5rem; }
+        p { margin-bottom: 1.25rem; font-size: 0.95rem; text-align: justify; color: #334155; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.88rem; }
+        th, td { padding: 0.8rem; border: 1px solid var(--border-gray); text-align: left; }
+        th { background: #f1f5f9; color: var(--primary-blue); font-weight: bold; }
+        .alert-panel { background: #fffbeb; border-left: 4px solid var(--accent-gold); padding: 1.25rem; margin: 1.5rem 0; font-size: 0.88rem; }
+        .official-btn { display: inline-block; background: var(--primary-blue); color: #fff; padding: 0.6rem 1.2rem; text-decoration: none; border-radius: 4px; font-size: 0.85rem; font-weight: bold; margin-top: 1rem; }
+/* --- Floating Sticky Navigation Header Deck --- */
+.sticky-text-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;              /* Sets a solid, clean boundary layer height */
+    background: #ffffff;        /* Solid white background forces scrolling text to disappear behind it */
+    border-bottom: 1px solid #f1f5f9; /* Ultra-light clean divider line */
+    display: flex;
+    align-items: center;        /* Vertically centers the text link inside the 60px bar */
+    padding-left: 2.5rem;       /* Keeps your exact horizontal alignment from the edge */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02); /* Optional: Gives an elegant, micro shadow depth */
+    z-index: 9999;              /* Forces the bar to stay securely on top of everything else */
+}
+
+/* --- Clean Text Hyperlink Customizer --- */
+.corporate-return-link {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #c26600;            /* Your exact golden-orange corporate hex color */
+    text-decoration: none;     
+    display: inline-block;
+    transition: opacity 0.2s ease;
+}
+
+.corporate-return-link:hover {
+    opacity: 0.85;             
+    text-decoration: underline;
+}
+
+/* --- CRITICAL DOCUMENT CONTENT PUSH OFFSET --- */
+body {
+    padding-top: 65px !important; /* Pushes the "DIRECT TAXATION ADVISORY" main title down so it never hides behind the bar on page load */
+}
+
+/* --- Precise Mobile Viewport Adjustments --- */
+@media screen and (max-width: 480px) {
+    .sticky-text-nav {
+        height: 50px;           /* Slimmer bar profile for mobile views */
+        padding-left: 1rem;     
+    }
+    .corporate-return-link {
+        font-size: 0.9rem;      
+    }
+    body {
+        padding-top: 55px !important;
+    }
+}    </style>
+</head>
+<body>
+<div class="container">
+    <h1>ROC Fee Structure (Companies Act)</h1>
+    <p class="subtitle">Structural registration costs, authorized share capital enhancement charges, and late filing fee calculators.</p>
+    
+    <p>Beyond standard annual form filings, the Companies Act governs core structural transactions, including changes to authorized capital limits and asset charge creation registrations (Form CHG-1). Keeping these records accurate is essential for corporate financial operations.</p>
+    
+    <h2>Core Structural Fees Matrix</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Corporate Transaction Category</th>
+                <th>Standard Processing Fee Component</th>
+                <th>Regulatory Timeline Outlines</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Corporate Registration (SPICe+ Track)</strong></td>
+                <td>Scaled based on Capital Limits</td>
+                <td>Initial structural setup processing</td>
+            </tr>
+            <tr>
+                <td><strong>Asset Charge Registration / Modifications (CHG-1)</strong></td>
+                <td>Standard Tier Fees Applied</td>
+                <td>Must file within 30 days of creation</td>
+            </tr>
+            <tr>
+                <td><strong>Registered Office Address Alterations (INC-22)</strong></td>
+                <td>Standard Capital Tier Fee</td>
+                <td>Must file within 30 days of change</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="alert-panel">
+        <strong>Delay Notice:</strong> Filing delays beyond 30 days trigger structured late fees, ranging from 2x up to 12x the standard filing cost, along with potential compounding board non-compliance risks.
+    </div>
+
+    <a href="https://www.mca.gov.in" target="_blank" class="official-btn">Open MCA Official Portal</a>
+<div class="sticky-text-nav">
+    <a href="index.html" class="corporate-return-link">← Return to Dashboard</a>
+</div></div>
+</body>
+</html>

@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statutory & Financial Computational Engines</title>
+    <style>
+        :root {
+            --primary-blue: #1e3a8a;
+            --accent-gold: #b45309;
+            --bg-canvas: #f1f5f9;
+            --text-dark: #0f172a;
+            --white: #ffffff;
+            --border-gray: #cbd5e1;
+            --success-green: #15803d;
+            --card-hover: #f8fafc;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        body { background-color: var(--bg-canvas); color: var(--text-dark); line-height: 1.6; padding: 3rem 1rem; }
+        .container { max-width: 1100px; margin: 0 auto; background: var(--white); padding: 3.5rem; border-radius: 8px; border: 1px solid var(--border-gray); border-top: 6px solid var(--primary-blue); min-height: 650px; }
+        
+        /* Typography Elements */
+        h1 { color: var(--primary-blue); font-family: 'Times New Roman', Times, serif; font-size: 2.4rem; margin-bottom: 0.5rem; border-bottom: 2px solid var(--accent-gold); padding-bottom: 0.5rem; text-transform: uppercase; text-align: center; }
+        .subtitle { font-size: 1rem; color: #475569; margin-bottom: 3rem; font-style: italic; text-align: center; }
+        
+        /* STAGE 1: Selection Dashboard Grid */
+        .selection-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.25rem; margin-top: 1rem; }
+        .calc-card { background: var(--white); border: 1px solid var(--border-gray); border-radius: 6px; padding: 1.5rem; text-align: center; cursor: pointer; transition: all 0.2s ease-in-out; display: flex; flex-direction: column; justify-content: center; min-height: 120px; }
+        .calc-card:hover { transform: translateY(-3px); border-color: var(--primary-blue); background: var(--card-hover); box-shadow: 0 4px 12px rgba(30, 58, 138, 0.08); }
+        .calc-card h4 { color: var(--primary-blue); font-size: 0.95rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.3px; }
+        .calc-card p { font-size: 0.78rem; color: #64748b; margin-top: 0.5rem; }
+
+        /* STAGE 2: Standalone Execution Workspace */
+        .workspace-container { display: none; background: #f8fafc; border: 1px solid var(--border-gray); border-radius: 6px; padding: 2.5rem; margin-top: 1rem; position: relative; }
+                
+        .calc-panel { display: none; }
+        .calc-panel.active { display: block; }
+        .calc-panel h3 { color: var(--primary-blue); margin-bottom: 1.5rem; font-size: 1.4rem; border-bottom: 1px dashed var(--border-gray); padding-bottom: 0.5rem; font-family: 'Times New Roman', Times, serif; }
+        
+        /* Global Panel Form Configuration */
+        .form-group { margin-bottom: 1.25rem; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: bold; margin-bottom: 0.4rem; color: #334155; text-transform: uppercase; letter-spacing: 0.2px; }
+        .form-group input, .form-group select { width: 100%; max-width: 450px; padding: 0.7rem; border: 1px solid var(--border-gray); border-radius: 4px; font-size: 0.9rem; }
+        .form-group input:focus, .form-group select:focus { outline: 2px solid var(--primary-blue); }
+        
+        .compute-btn { background: var(--primary-blue); color: var(--white); border: none; padding: 0.7rem 1.8rem; font-size: 0.85rem; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 0.5rem; }
+        .compute-btn:hover { background: #132b66; }
+        
+        /* Form Operational Outputs */
+        .result-box { margin-top: 2rem; padding: 1.25rem; background: #f0fdf4; border-left: 4px solid var(--success-green); border-radius: 4px; max-width: 550px; display: none; }
+        .result-box p { font-size: 0.95rem; color: #166534; font-weight: 500; margin-bottom: 0.4rem; }
+        .result-box p:last-child { margin-bottom: 0; }
+        .result-box span { font-weight: bold; color: var(--text-dark); }
+		
+.back-to-menu-btn { display: inline-flex; align-items: center; background: #e2e8f0; color: var(--text-dark); border: none; padding: 0.5rem 1rem; font-size: 0.8rem; font-weight: bold; border-radius: 4px; cursor: pointer; margin-bottom: 1.5rem; transition: background 0.2s; }
+        .back-to-menu-btn:hover { background: #cbd5e1; }    
+		
+				/* --- Floating Sticky Navigation Header Deck --- */
+.sticky-text-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;              /* Sets a solid, clean boundary layer height */
+    background: #ffffff;        /* Solid white background forces scrolling text to disappear behind it */
+    border-bottom: 1px solid #f1f5f9; /* Ultra-light clean divider line */
+    display: flex;
+    align-items: center;        /* Vertically centers the text link inside the 60px bar */
+    padding-left: 2.5rem;       /* Keeps your exact horizontal alignment from the edge */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02); /* Optional: Gives an elegant, micro shadow depth */
+    z-index: 9999;              /* Forces the bar to stay securely on top of everything else */
+}
+
+/* --- Clean Text Hyperlink Customizer --- */
+.corporate-return-link {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #c26600;            /* Your exact golden-orange corporate hex color */
+    text-decoration: none;     
+    display: inline-block;
+    transition: opacity 0.2s ease;
+}
+
+.corporate-return-link:hover {
+    opacity: 0.85;             
+    text-decoration: underline;
+}
+
+/* --- CRITICAL DOCUMENT CONTENT PUSH OFFSET --- */
+body {
+    padding-top: 65px !important; /* Pushes the "DIRECT TAXATION ADVISORY" main title down so it never hides behind the bar on page load */
+}
+
+/* --- Precise Mobile Viewport Adjustments --- */
+@media screen and (max-width: 480px) {
+    .sticky-text-nav {
+        height: 50px;           /* Slimmer bar profile for mobile views */
+        padding-left: 1rem;     
+    }
+    .corporate-return-link {
+        font-size: 0.9rem;      
+    }
+    body {
+        padding-top: 55px !important;
+    }
+}
+		
+		</style>
+</head>
+<body>
+
+<div class="container">
+    <div id="portal-header">
+        <h1>Statutory & Financial Calculators</h1>
+        <p class="subtitle">Select an analytics engine below to begin computation processes.</p>
+    </div>
+
+    <div id="selection-grid-wrapper" class="selection-grid">
+			<div class="calc-card" onclick="openCalculator('gst-split')">
+            <h4>GST Tax Splitter</h4>
+            <p>Calculate gross invoices, net bases, and CGST/SGST/IGST breakdowns</p>
+        </div>
+        <div class="calc-card" onclick="openCalculator('tds')">
+            <h4>TDS Rates Matrix</h4>
+            <p>Compute transactional source deductions & net payables</p>
+        </div>
+        <div class="calc-card" onclick="openCalculator('slabs')">
+            <h4>Income Tax Slab Estimator</h4>
+            <p>Calculate direct liability under the New Tax Regime</p>
+        </div>
+		<div class="calc-card" onclick="openCalculator('hra-exempt')">
+            <h4>HRA Exemption Tool</h4>
+            <p>Compute statutory tax-exempt House Rent Allowance under Sec 10(13A)</p>
+        </div>
+        <div class="calc-card" onclick="openCalculator('gratuity')">
+            <h4>Gratuity Estimation Desk</h4>
+            <p>Calculate retirement gratuity allocations under the Payment of Gratuity Act</p>
+        </div>
+        <div class="calc-card" onclick="openCalculator('net-profit')">
+            <h4>Calculate Net Profits</h4>
+            <p>Determine corporate net margins from gross operating revenue balances</p>
+        </div>
+        <div class="calc-card" onclick="openCalculator('ppf-grow')">
+            <h4>PPF Growth Ledger</h4>
+            <p>Forecast long-term interest accruals on Public Provident Fund allocations</p>
+        </div>
+        <div class="calc-card" onclick="openCalculator('auto-loan')">
+            <h4>Auto Loan Calculator</h4>
+            <p>Analyze reducing-balance vehicle asset monthly EMI schedules</p>
+        </div>
+		<div class="calc-card" onclick="openCalculator('fd-yield')">
+            <h4>Fixed Deposit (FD) Yield Engine</h4>
+            <p>Compute quarterly compounded interest returns on bank fixed deposits</p>
+        </div>
+        <div class="calc-card" onclick="openCalculator('dep-co')">
+            <h4>Depreciation (Companies Act)</h4>
+            <p>Straight Line Method calculations based on asset useful life</p>
+        </div>
+        <div class="calc-card" onclick="openCalculator('dep-it')">
+            <h4>Depreciation (Income Tax Act)</h4>
+            <p>Written Down Value mechanics for standard asset blocks</p>
+        </div>
+        <div class="calc-card" onclick="openCalculator('roc-fees')">
+            <h4>ROC Filing Fees Estimator</h4>
+            <p>Estimate Ministry registration expenses by corporate capital</p>
+        </div>
+        <div class="calc-card" onclick="openCalculator('cii')">
+            <h4>Cost Inflation Index Matrix</h4>
+            <p>Index financial asset historical costs for Capital Gains calculations</p>
+        </div>
+        <div class="calc-card" onclick="openCalculator('bullion')">
+            <h4>Gold & Silver Master Price</h4>
+            <p>Value precious commodity volume weights inclusive of legal GST</p>
+        </div>
+        <div class="calc-card" onclick="openCalculator('micr')">
+            <h4>MICR System Parser</h4>
+            <p>Deconstruct 9-digit banking routing tokens effortlessly</p>
+        </div>
+        <div class="calc-card" onclick="openCalculator('nsc')">
+            <h4>NSC Interest Calcolator</h4>
+            <p>Determine compounding output schedules on National Savings balances</p>
+        </div>
+        <div class="calc-card" onclick="openCalculator('stamp')">
+            <h4>Stamp Duty Estimation</h4>
+            <p>Analyze regional real estate conveyancing metrics by state</p>
+        </div>
+        <div class="calc-card" onclick="openCalculator('llp-fees')">
+            <h4>LLP Statutory Fees Engine</h4>
+            <p>Compute setup fees tracking individual contribution bands</p>
+        </div>
+
+    </div>
+
+    <div id="workspace-wrapper" class="workspace-container">
+        <button class="back-to-menu-btn" onclick="closeWorkspace()">← Return to Selection Dashboard</button>
+        
+        <div id="panel-tds" class="calc-panel">
+            <h3>TDS Rates Matrix Processing</h3>
+            <div class="form-group">
+                <label for="tds-nature">Nature of Corporate Payment</label>
+                <select id="tds-nature">
+                    <option value="0.10">Sec 194I - Rent on Immovable Property (10%)</option>
+                    <option value="0.01">Sec 194C - Payment to Contractors (Individual) (1%)</option>
+                    <option value="0.02">Sec 194C - Payment to Contractors (Company) (2%)</option>
+                    <option value="0.10">Sec 194J - Professional / Technical Fees (10%)</option>
+                    <option value="0.05">Sec 194H - Commission or Brokerage (5%)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tds-amount">Gross Transaction Value (₹)</label>
+                <input type="number" id="tds-amount" placeholder="e.g., 500000">
+            </div>
+            <button class="compute-btn" onclick="calcTDS()">Compute Tax Deduction</button>
+            <div id="res-tds" class="result-box"></div>
+        </div>
+
+        <div id="panel-slabs" class="calc-panel">
+            <h3>Income Tax Slab Estimator (New Tax Regime Layout)</h3>
+            <div class="form-group">
+                <label for="it-income">Total Net Taxable Income (₹)</label>
+                <input type="number" id="it-income" placeholder="e.g., 1200000">
+            </div>
+            <button class="compute-btn" onclick="calcSlabs()">Estimate Annual Tax</button>
+            <div id="res-slabs" class="result-box"></div>
+        </div>
+
+        <div id="panel-dep-co" class="calc-panel">
+            <h3>Depreciation Rates Company Act (Straight Line Method)</h3>
+            <div class="form-group">
+                <label for="co-cost">Asset Historical Cost (₹)</label>
+                <input type="number" id="co-cost" placeholder="e.g., 1000000">
+            </div>
+            <div class="form-group">
+                <label for="co-life">Useful Life of Asset (In Years)</label>
+                <input type="number" id="co-life" value="10">
+            </div>
+            <div class="form-group">
+                <label for="co-residual">Estimated Residual Value (Default 5%) (₹)</label>
+                <input type="number" id="co-residual" placeholder="Leave empty for default 5% scrap">
+            </div>
+            <button class="compute-btn" onclick="calcDepCo()">Compute Annual Depreciation</button>
+            <div id="res-dep-co" class="result-box"></div>
+        </div>
+
+        <div id="panel-dep-it" class="calc-panel">
+            <h3>Depreciation Rates Income Tax Act (Written Down Value Framework)</h3>
+            <div class="form-group">
+                <label for="it-block">Block / Nature of Corporate Asset</label>
+                <select id="it-block">
+                    <option value="0.10">Plant & Machinery (General) - 10%</option>
+                    <option value="0.40">Computers and Dedicated Software - 40%</option>
+                    <option value="0.10">Factory Buildings - 10%</option>
+                    <option value="0.05">Residential Buildings (Other than Hotels) - 5%</option>
+                    <option value="0.15">Motor Cars (General) - 15%</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="it-wdv">Opening Written Down Value (WDV) (₹)</label>
+                <input type="number" id="it-wdv" placeholder="e.g., 450000">
+            </div>
+            <button class="compute-btn" onclick="calcDepIT()">Compute WDV Depreciation</button>
+            <div id="res-dep-it" class="result-box"></div>
+        </div>
+
+        <div id="panel-roc-fees" class="calc-panel">
+            <h3>ROC Filing Fees Structure (Based on Corporate Capital Base)</h3>
+            <div class="form-group">
+                <label for="roc-cap">Nominal Authorized Share Capital (₹)</label>
+                <input type="number" id="roc-cap" placeholder="e.g., 500000">
+            </div>
+            <button class="compute-btn" onclick="calcRocFees()">Get Base Statutory Filing Fee</button>
+            <div id="res-roc-fees" class="result-box"></div>
+        </div>
+
+        <div id="panel-cii" class="calc-panel">
+            <h3>Cost Inflation Index Matrix (Capital Gains Indexing)</h3>
+            <div class="form-group">
+                <label for="cii-cost">Original Capital Purchase Value (₹)</label>
+                <input type="number" id="cii-cost" placeholder="e.g., 2000000">
+            </div>
+            <div class="form-group">
+                <label for="cii-purchase">Financial Year of Purchase</label>
+                <select id="cii-purchase">
+                    <option value="100">FY 2001-02 (CII: 100)</option>
+                    <option value="117">FY 2005-06 (CII: 117)</option>
+                    <option value="167">FY 2010-11 (CII: 167)</option>
+                    <option value="254">FY 2015-16 (CII: 254)</option>
+                    <option value="301">FY 2020-21 (CII: 301)</option>
+                    <option value="363">FY 2024-25 (CII: 363)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="cii-sale">Financial Year of Sale (Transfer Target)</label>
+                <select id="cii-sale">
+                    <option value="363">FY 2024-25 (CII: 363)</option>
+                </select>
+            </div>
+            <button class="compute-btn" onclick="calcCII()">Compute Indexed Purchase Cost</button>
+            <div id="res-cii" class="result-box"></div>
+        </div>
+
+        <div id="panel-bullion" class="calc-panel">
+            <h3>Gold & Silver Master Price Rates</h3>
+            <div class="form-group">
+                <label for="bullion-type">Precious Metal Commodity</label>
+                <select id="bullion-type" onchange="toggleBullionUnits()">
+                    <option value="gold24">24K Pure Gold (Per 10 Grams)</option>
+                    <option value="gold22">22K Standard Gold (Per 10 Grams)</option>
+                    <option value="silver">Fine Industrial Silver (Per 1 KG)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="bullion-qty" id="lbl-qty">Total Quantity Target (in 10g units)</label>
+                <input type="number" id="bullion-qty" value="1">
+            </div>
+            <button class="compute-btn" onclick="calcBullion()">Calculate Value with GST</button>
+            <div id="res-bullion" class="result-box"></div>
+        </div>
+
+        <div id="panel-micr" class="calc-panel">
+            <h3>MICR System Codes Reference & Deconstruction</h3>
+            <div class="form-group">
+                <label for="micr-input">Enter 9-Digit MICR Check Code</label>
+                <input type="text" id="micr-input" maxlength="9" placeholder="e.g., 110002004">
+            </div>
+            <button class="compute-btn" onclick="parseMICR()">Deconstruct Code Structure</button>
+            <div id="res-micr" class="result-box"></div>
+        </div>
+
+        <div id="panel-nsc" class="calc-panel">
+            <h3>Rates of NSC Interest History (National Savings Certificate)</h3>
+            <div class="form-group">
+                <label for="nsc-principal">Principal Deposit Value (₹)</label>
+                <input type="number" id="nsc-principal" placeholder="e.g., 100000">
+            </div>
+            <button class="compute-btn" onclick="calcNSC()">Compute Compounded Maturity Value</button>
+            <div id="res-nsc" class="result-box"></div>
+        </div>
+
+        <div id="panel-stamp" class="calc-panel">
+            <h3>Rates of Stamp Duty By State</h3>
+            <div class="form-group">
+                <label for="stamp-state">Target Jurisdiction State</label>
+                <select id="stamp-state">
+                    <option value="0.07">Uttar Pradesh (7% Standard)</option>
+                    <option value="0.06">Delhi (6% Standard)</option>
+                    <option value="0.05">Maharashtra (5% Standard)</option>
+                    <option value="0.05">Karnataka (5% Standard)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="stamp-consideration">Declared Market / Consideration Value (₹)</label>
+                <input type="number" id="stamp-consideration" placeholder="e.g., 5000000">
+            </div>
+            <button class="compute-btn" onclick="calcStamp()">Compute Stamp Duty Value</button>
+            <div id="res-stamp" class="result-box"></div>
+        </div>
+
+        <div id="panel-llp-fees" class="calc-panel">
+            <h3>LLP Statutory Fees Reference Engine</h3>
+            <div class="form-group">
+                <label for="llp-contribution">Total Partner Contribution Value (₹)</label>
+                <input type="number" id="llp-contribution" placeholder="e.g., 200000">
+            </div>
+            <button class="compute-btn" onclick="calcLlpFees()">Compute Base Registration Fee</button>
+            <div id="res-llp-fees" class="result-box"></div>
+        </div>
+		<div id="panel-gst-split" class="calc-panel">
+            <h3>GST Tax Splitter & Invoice Calculator</h3>
+            <div class="form-group">
+                <label for="gst-type">Calculation Direction</label>
+                <select id="gst-type">
+                    <option value="exclusive">Add GST (Amount is Net Base)</option>
+                    <option value="inclusive">Remove GST (Amount is Gross Inclusive)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="gst-rate">Applicable GST Rate slab</label>
+                <select id="gst-rate">
+                    <option value="0.18">18% Standard Services/Goods</option>
+                    <option value="0.05">5% Essential Items</option>
+                    <option value="0.12">12% Standard Low Items</option>
+                    <option value="0.28">28% Luxury / Demerit Goods</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="gst-region">Transaction Type</label>
+                <select id="gst-region">
+                    <option value="intra">Intra-State (CGST + SGST Split)</option>
+                    <option value="inter">Inter-State (IGST Direct)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="gst-amount">Transaction Amount (₹)</label>
+                <input type="number" id="gst-split-amount" placeholder="e.g., 118000">
+            </div>
+            <button class="compute-btn" onclick="calcGSTSplit()">Compute Tax Breakdown</button>
+            <div id="res-gst-split" class="result-box"></div>
+        </div>
+		<div id="panel-hra-exempt" class="calc-panel">
+            <h3>House Rent Allowance (HRA) Exemption Calculator</h3>
+            <div class="form-group"><label>Basic Monthly Salary + DA (₹)</label><input type="number" id="hra-basic" placeholder="e.g., 50000"></div>
+            <div class="form-group"><label>Actual Monthly HRA Received (₹)</label><input type="number" id="hra-received" placeholder="e.g., 20000"></div>
+            <div class="form-group"><label>Actual Monthly Rent Paid (₹)</label><input type="number" id="hra-rent" placeholder="e.g., 15000"></div>
+            <div class="form-group">
+                <label>Residential Metro Classification</label>
+                <select id="hra-metro">
+                    <option value="0.50">Metro City (Delhi, Mumbai, Kolkata, Chennai) - 50%</option>
+                    <option value="0.40">Non-Metro Location - 40%</option>
+                </select>
+            </div>
+            <button class="compute-btn" onclick="calcHRA()">Evaluate Tax Exemption</button>
+            <div id="res-hra" class="result-box"></div>
+        </div>
+
+        <div id="panel-gratuity" class="calc-panel">
+            <h3>Gratuity Settlement Engine (Payment of Gratuity Act)</h3>
+            <div class="form-group"><label>Last Drawn Basic Salary + DA (₹)</label><input type="number" id="grat-salary" placeholder="e.g., 80000"></div>
+            <div class="form-group"><label>Total Continuous Service Tenure (Years)</label><input type="number" id="grat-tenure" placeholder="e.g., 7"></div>
+            <button class="compute-btn" onclick="calcGratuity()">Compute Gratuity Benefit</button>
+            <div id="res-gratuity" class="result-box"></div>
+        </div>
+
+        <div id="panel-net-profit" class="calc-panel">
+            <h3>Net Profit Margin Analyzer</h3>
+            <div class="form-group"><label>Gross Operating Revenue / Turnover (₹)</label><input type="number" id="np-revenue" placeholder="e.g., 2500000"></div>
+            <div class="form-group"><label>Cost of Goods Sold / Direct Inputs (₹)</label><input type="number" id="np-cogs" placeholder="e.g., 1200000"></div>
+            <div class="form-group"><label>Indirect Operating Overheads & Admin Costs (₹)</label><input type="number" id="np-expenses" placeholder="e.g., 400000"></div>
+            <button class="compute-btn" onclick="calcNetProfit()">Determine Operational Gains</button>
+            <div id="res-net-profit" class="result-box"></div>
+        </div>
+
+        <div id="panel-ppf-grow" class="calc-panel">
+            <h3>PPF Long-Term Growth Ledger (15 Year Lock)</h3>
+            <div class="form-group"><label>Annual Fixed Investment Deposit (₹)</label><input type="number" id="ppf-deposit" placeholder="e.g., 150000" max="150000"></div>
+            <button class="compute-btn" onclick="calcPPF()">Project Maturity Valuation</button>
+            <div id="res-ppf-grow" class="result-box"></div>
+        </div>
+
+        <div id="panel-auto-loan" class="calc-panel">
+            <h3>Auto Loan Reducing-Balance EMI Amortizer</h3>
+            <div class="form-group"><label>Principal Vehicle Loan Borrowed (₹)</label><input type="number" id="loan-principal" placeholder="e.g., 800000"></div>
+            <div class="form-group"><label>Annual Interest Rate Surcharge (%)</label><input type="number" id="loan-rate" placeholder="e.g., 8.75" step="0.01"></div>
+            <div class="form-group"><label>Loan Tenure Track (In Months)</label><input type="number" id="loan-months" placeholder="e.g., 60"></div>
+            <button class="compute-btn" onclick="calcAutoEMI()">Compute Monthly Installment</button>
+            <div id="res-auto-loan" class="result-box"></div>
+        </div>
+		<div id="panel-fd-yield" class="calc-panel">
+            <h3>Fixed Deposit (FD) Yield & Maturity Calculator</h3>
+            <div class="form-group">
+                <label>Principal Deposit Capital (₹)</label>
+                <input type="number" id="fd-principal" placeholder="e.g., 100000">
+            </div>
+            <div class="form-group">
+                <label>Annual Rate of Interest (%)</label>
+                <input type="number" id="fd-rate" placeholder="e.g., 7.1" step="0.05">
+            </div>
+            <div class="form-group">
+                <label>Tenure Investment Horizon (In Years)</label>
+                <input type="number" id="fd-years" placeholder="e.g., 3">
+            </div>
+            <button class="compute-btn" onclick="calcFD()">Compute Maturity Yield</button>
+            <div id="res-fd-yield" class="result-box"></div>
+        </div>
+    </div>
+	<div class="sticky-text-nav">
+    <a href="index.html" class="corporate-return-link">← Return to Main Corporate Portal</a>
+</div>
+</div>
+
+<script>
+    // System UI Interface Navigation Controller
+    function openCalculator(panelId) {
+        // Hide Stage 1 Grid Selection Menu
+        document.getElementById('selection-grid-wrapper').style.display = 'none';
+        document.getElementById('portal-header').style.display = 'none';
+        
+        // Reset all panel active states
+        let panels = document.querySelectorAll('.calc-panel');
+        panels.forEach(p => p.classList.remove('active'));
+        
+        // Hide any previous output boxes left over
+        let results = document.querySelectorAll('.result-box');
+        results.forEach(r => r.style.display = 'none');
+        
+        // Unfold Stage 2 Workspace container 
+        document.getElementById('workspace-wrapper').style.display = 'block';
+        document.getElementById('panel-' + panelId).classList.add('active');
+    }
+
+    function closeWorkspace() {
+        // Safe Collapse Stage 2 Panel
+        document.getElementById('workspace-wrapper').style.display = 'none';
+        
+        // Restore Stage 1 UI components seamlessly
+        document.getElementById('selection-grid-wrapper').style.display = 'grid';
+        document.getElementById('portal-header').style.display = 'block';
+    }
+
+    // Helper formatting engine
+    function formatINR(val) {
+        return "₹" + parseFloat(val).toLocaleString('en-IN', { maximumFractionDigits: 2 });
+    }
+
+    // 1. TDS Engine Logic
+    function calcTDS() {
+        let rate = parseFloat(document.getElementById('tds-nature').value);
+        let amount = parseFloat(document.getElementById('tds-amount').value) || 0;
+        let tdsVal = amount * rate;
+        let netPay = amount - tdsVal;
+        
+        let out = document.getElementById('res-tds');
+        out.style.display = "block";
+        out.innerHTML = `<p>Calculated Tax Deduction Rate: <span>${rate * 100}%</span></p>
+                         <p>Total TDS Amount Detained: <span>${formatINR(tdsVal)}</span></p>
+                         <p>Net Remittance Payable: <span>${formatINR(netPay)}</span></p>`;
+    }
+
+    // 2. Income Tax Slab Logic (New Tax Regime Layout)
+    function calcSlabs() {
+        let income = parseFloat(document.getElementById('it-income').value) || 0;
+        let tax = 0;
+        
+        if (income <= 300000) tax = 0;
+        else if (income <= 600000) tax = (income - 300000) * 0.05;
+        else if (income <= 900000) tax = (300000 * 0.05) + (income - 600000) * 0.10;
+        else if (income <= 1200000) tax = (300000 * 0.05) + (300000 * 0.10) + (income - 900000) * 0.15;
+        else if (income <= 1500000) tax = (300000 * 0.05) + (300000 * 0.10) + (300000 * 0.15) + (income - 1200000) * 0.20;
+        else tax = (300000 * 0.05) + (300000 * 0.10) + (300000 * 0.15) + (300000 * 0.20) + (income - 1500000) * 0.30;
+        
+        let cess = tax * 0.04;
+        let totalLiability = tax + cess;
+
+        let out = document.getElementById('res-slabs');
+        out.style.display = "block";
+        out.innerHTML = `<p>Base Estimated Tax Value: <span>${formatINR(tax)}</span></p>
+                         <p>Health & Education Cess (4%): <span>${formatINR(cess)}</span></p>
+                         <p>Net Annual Tax Liability: <span>${formatINR(totalLiability)}</span></p>`;
+    }
+
+    // 3. Companies Act Depreciation Engine
+    function calcDepCo() {
+        let cost = parseFloat(document.getElementById('co-cost').value) || 0;
+        let life = parseFloat(document.getElementById('co-life').value) || 1;
+        let residual = parseFloat(document.getElementById('co-residual').value);
+        
+        if(isNaN(residual)) { residual = cost * 0.05; } 
+        
+        let depAnnual = (cost - residual) / life;
+        let out = document.getElementById('res-dep-co');
+        out.style.display = "block";
+        out.innerHTML = `<p>Depreciable Base Value: <span>${formatINR(cost - residual)}</span></p>
+                         <p>Annual SLM Depreciation Charge: <span>${formatINR(depAnnual)}</span></p>`;
+    }
+
+    // 4. Income Tax Depreciation Engine
+    function calcDepIT() {
+        let rate = parseFloat(document.getElementById('it-block').value);
+        let wdv = parseFloat(document.getElementById('it-wdv').value) || 0;
+        let charge = wdv * rate;
+        let closingWdv = wdv - charge;
+
+        let out = document.getElementById('res-dep-it');
+        out.style.display = "block";
+        out.innerHTML = `<p>Block Depreciation Charge Allowed: <span>${formatINR(charge)}</span></p>
+                         <p>Closing Written Down Value (Next FY): <span>${formatINR(closingWdv)}</span></p>`;
+    }
+
+    // 5. ROC Fees Computation Matrix
+    function calcRocFees() {
+        let cap = parseFloat(document.getElementById('roc-cap').value) || 0;
+        let fee = 300; 
+        
+        if (cap > 100000 && cap <= 500000) fee = 400;
+        else if (cap > 500000 && cap <= 2500000) fee = 500;
+        else if (cap > 2500000 && cap <= 5000000) fee = 600;
+        else if (cap > 5000000) fee = 600 + (Math.ceil((cap - 5000000)/10000) * 10);
+
+        let out = document.getElementById('res-roc-fees');
+        out.style.display = "block";
+        out.innerHTML = `<p>Estimated Statutory Base ROC Fee: <span>${formatINR(fee)}</span></p>`;
+    }
+
+    // 6. Cost Inflation Index Matrix
+    function calcCII() {
+        let cost = parseFloat(document.getElementById('cii-cost').value) || 0;
+        let baseCII = parseFloat(document.getElementById('cii-purchase').value);
+        let saleCII = parseFloat(document.getElementById('cii-sale').value);
+        
+        let indexedCost = cost * (saleCII / baseCII);
+        let out = document.getElementById('res-cii');
+        out.style.display = "block";
+        out.innerHTML = `<p>Indexed Acquisition Cost Structure: <span>${formatINR(indexedCost)}</span></p>`;
+    }
+
+    // 7. Bullion Calculations
+    function toggleBullionUnits() {
+        let type = document.getElementById('bullion-type').value;
+        document.getElementById('lbl-qty').innerText = (type === "silver") ? "Total Quantity Target (in KGs)" : "Total Quantity Target (in 10g units)";
+    }
+    function calcBullion() {
+        let type = document.getElementById('bullion-type').value;
+        let qty = parseFloat(document.getElementById('bullion-qty').value) || 0;
+        
+        let ratePerUnit = 72000; 
+        if (type === "gold22") ratePerUnit = 66000;
+        if (type === "silver") ratePerUnit = 88000; 
+        
+        let basePrice = ratePerUnit * qty;
+        let gst = basePrice * 0.03; 
+        let netFinal = basePrice + gst;
+
+        let out = document.getElementById('res-bullion');
+        out.style.display = "block";
+        out.innerHTML = `<p>Base Value: <span>${formatINR(basePrice)}</span></p>
+                         <p>Bullion GST Surcharge (3%): <span>${formatINR(gst)}</span></p>
+                         <p>Net Gross Cost Valuation: <span>${formatINR(netFinal)}</span></p>`;
+    }
+
+    // 8. MICR Deconstruction Layout
+    function parseMICR() {
+        let code = document.getElementById('micr-input').value.trim();
+        let out = document.getElementById('res-micr');
+        out.style.display = "block";
+        
+        if (code.length !== 9 || isNaN(code)) {
+            out.innerHTML = `<p style="color:red;">Formatting Exception: Provide a standard 9-digit numeric MICR token.</p>`;
+            return;
+        }
+        
+        let city = code.substring(0, 3);
+        let bank = code.substring(3, 6);
+        let branch = code.substring(6, 9);
+        
+        out.innerHTML = `<p>City Routing Code Segment: <span>${city}</span></p>
+                         <p>Bank Identifier System Code: <span>${bank}</span></p>
+                         <p>Branch Spatial Settlement Node: <span>${branch}</span></p>`;
+    }
+
+    // 9. NSC Interest Compounding Layout
+    function calcNSC() {
+        let p = parseFloat(document.getElementById('nsc-principal').value) || 0;
+        let r = 0.077; 
+        let t = 5;     
+        
+        let amt = p * Math.pow((1 + r), t);
+        let interestYield = amt - p;
+
+        let out = document.getElementById('res-nsc');
+        out.style.display = "block";
+        out.innerHTML = `<p>Total Yield Retained: <span>${formatINR(interestYield)}</span></p>
+                         <p>Gross Maturity Payout Value (Year 5): <span>${formatINR(amt)}</span></p>`;
+    }
+
+    // 10. Stamp Duty Layout
+    function calcStamp() {
+        let rate = parseFloat(document.getElementById('stamp-state').value);
+        let cons = parseFloat(document.getElementById('stamp-consideration').value) || 0;
+        let duty = cons * rate;
+
+        let out = document.getElementById('res-stamp');
+        out.style.display = "block";
+        out.innerHTML = `<p>Assigned Regional Stamp Duty Fee: <span>${formatINR(duty)}</span></p>`;
+    }
+
+    // 11. LLP Fee Calculation Matrix
+    function calcLlpFees() {
+        let cont = parseFloat(document.getElementById('llp-contribution').value) || 0;
+        let baseFee = 500;
+        
+        if (cont > 100000 && cont <= 500000) baseFee = 2000;
+        else if (cont > 500000 && cont <= 1000000) baseFee = 4000;
+        else if (cont > 1000000) baseFee = 5000;
+
+        let out = document.getElementById('res-llp-fees');
+        out.style.display = "block";
+        out.innerHTML = `<p>LLP Registration Statutory Fee: <span>${formatINR(baseFee)}</span></p>`;
+    }
+	
+	// 12. GST Tax Splitter Logic Engine
+    function calcGSTSplit() {
+        let calcType = document.getElementById('gst-type').value;
+        let rate = parseFloat(document.getElementById('gst-rate').value);
+        let region = document.getElementById('gst-region').value;
+        let amount = parseFloat(document.getElementById('gst-split-amount').value) || 0;
+        
+        let baseAmount = 0;
+        let totalGST = 0;
+        let finalGross = 0;
+        
+        if (calcType === "exclusive") {
+            baseAmount = amount;
+            totalGST = amount * rate;
+            finalGross = baseAmount + totalGST;
+        } else {
+            baseAmount = amount / (1 + rate);
+            totalGST = amount - baseAmount;
+            finalGross = amount;
+        }
+        
+        let out = document.getElementById('res-gst-split');
+        out.style.display = "block";
+        
+        if (region === "intra") {
+            let halfTax = totalGST / 2;
+            out.innerHTML = `<p>Net Assessable Base Value: <span>${formatINR(baseAmount)}</span></p>
+                             <p>Central GST (CGST - ${ (rate/2)*100 }%): <span>${formatINR(halfTax)}</span></p>
+                             <p>State GST (SGST - ${ (rate/2)*100 }%): <span>${formatINR(halfTax)}</span></p>
+                             <p>Gross Invoice Total value: <span>${formatINR(finalGross)}</span></p>`;
+        } else {
+            out.innerHTML = `<p>Net Assessable Base Value: <span>${formatINR(baseAmount)}</span></p>
+                             <p>Integrated GST (IGST - ${ rate*100 }%): <span>${formatINR(totalGST)}</span></p>
+                             <p>Gross Invoice Total value: <span>${formatINR(finalGross)}</span></p>`;
+        }
+    }
+	
+	// 13. Statutory HRA Logic Engine
+    function calcHRA() {
+        let basic = (parseFloat(document.getElementById('hra-basic').value) || 0) * 12;
+        let received = (parseFloat(document.getElementById('hra-received').value) || 0) * 12;
+        let rent = (parseFloat(document.getElementById('hra-rent').value) || 0) * 12;
+        let metroRate = parseFloat(document.getElementById('hra-metro').value);
+        
+        let excessRent = rent - (basic * 0.10);
+        if (excessRent < 0) excessRent = 0;
+        let salaryPercentage = basic * metroRate;
+        
+        // Exemption is the minimum of the three legal parameters
+        let exemptAmount = Math.min(received, excessRent, salaryPercentage);
+        let taxableHRA = received - exemptAmount;
+        
+        let out = document.getElementById('res-hra');
+        out.style.display = "block";
+        out.innerHTML = `<p>Statutory Exempt HRA Component (Annual): <span>${formatINR(exemptAmount)}</span></p>
+                         <p>Taxable Overages Component (Annual): <span>${formatINR(taxableHRA)}</span></p>`;
+    }
+
+    // 14. Legal Gratuity Benefit Formula Matrix
+    function calcGratuity() {
+        let sal = parseFloat(document.getElementById('grat-salary').value) || 0;
+        let tenure = parseFloat(document.getElementById('grat-tenure').value) || 0;
+        
+        // Formula standard under Sec 4(2): (15 / 26) * Last Drawn Salary * Years of Service
+        let payout = (15 / 26) * sal * tenure;
+        if (payout > 2000000) payout = 2000000; // Legal statutory ceiling cap check
+        
+        let out = document.getElementById('res-gratuity');
+        out.style.display = "block";
+        out.innerHTML = `<p>Computed Statutory Gratuity Provision: <span>${formatINR(payout)}</span></p>`;
+    }
+
+    // 15. Corporate Accounting Net Profit Logic
+    function calcNetProfit() {
+        let rev = parseFloat(document.getElementById('np-revenue').value) || 0;
+        let cogs = parseFloat(document.getElementById('np-cogs').value) || 0;
+        let exp = parseFloat(document.getElementById('np-expenses').value) || 0;
+        
+        let grossProfit = rev - cogs;
+        let netProfit = grossProfit - exp;
+        let marginMargin = rev > 0 ? (netProfit / rev) * 100 : 0;
+        
+        let out = document.getElementById('res-net-profit');
+        out.style.display = "block";
+        out.innerHTML = `<p>Absolute Gross Profit Margin: <span>${formatINR(grossProfit)}</span></p>
+                         <p>Net Retained Profit Balance: <span>${formatINR(netProfit)}</span></p>
+                         <p>Net Performance Ratio: <span>${marginMargin.toFixed(2)}%</span></p>`;
+    }
+
+    // 16. PPF Composed Growth Interest Formula Engine
+    function calcPPF() {
+        let annualP = parseFloat(document.getElementById('ppf-deposit').value) || 0;
+        let rate = 0.071; // Current active long-term PPF benchmark standard setting (7.1%)
+        let terms = 15;   // Base PPF legal lock maturity horizon
+        
+        let totalInvested = annualP * terms;
+        let maturityValue = 0;
+        
+        // Compounded calculation iteration tracking annual installments
+        for (let i = 1; i <= terms; i++) {
+            maturityValue = (maturityValue + annualP) * (1 + rate);
+        }
+        let totalInterest = maturityValue - totalInvested;
+
+        let out = document.getElementById('res-ppf-grow');
+        out.style.display = "block";
+        out.innerHTML = `<p>Principal Invested Assets Base: <span>${formatINR(totalInvested)}</span></p>
+                         <p>Accumulated Compounded Interest: <span>${formatINR(totalInterest)}</span></p>
+                         <p>Maturity Balance Value (Year 15): <span>${formatINR(maturityValue)}</span></p>`;
+    }
+
+    // 17. Auto Reducing Balance Loan EMI Calculator 
+    function calcAutoEMI() {
+        let p = parseFloat(document.getElementById('loan-principal').value) || 0;
+        let annualR = parseFloat(document.getElementById('loan-rate').value) || 0;
+        let n = parseFloat(document.getElementById('loan-months').value) || 1;
+        
+        let r = (annualR / 12) / 100; // Monthly compounding fractional balance rate conversion
+        
+        // Classical reducing EMI equation: EMI = [P x r x (1+r)^n] / [(1+r)^n - 1]
+        let emi = (p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+        let totalPayout = emi * n;
+        let interestSurcharge = totalPayout - p;
+        
+        let out = document.getElementById('res-auto-loan');
+        out.style.display = "block";
+        out.innerHTML = `<p>Fixed Monthly Installment (EMI): <span>${formatINR(emi)}</span></p>
+                         <p>Gross Interest Surcharge Costs: <span>${formatINR(interestSurcharge)}</span></p>
+                         <p>Net Repayment Capital Required: <span>${formatINR(totalPayout)}</span></p>`;
+    }
+	
+	// 18. Fixed Deposit (FD) Quarterly Compounding Engine
+    function calcFD() {
+        let p = parseFloat(document.getElementById('fd-principal').value) || 0;
+        let annualR = parseFloat(document.getElementById('fd-rate').value) || 0;
+        let t = parseFloat(document.getElementById('fd-years').value) || 0;
+        
+        // Indian commercial banks strictly compound FD returns on a quarterly frequency base (n = 4)
+        let n = 4; 
+        let r = annualR / 100;
+        
+        // Standard compound formula: A = P * (1 + r/n)^(n*t)
+        let maturityValue = p * Math.pow((1 + (r / n)), (n * t));
+        let totalInterest = maturityValue - p;
+        
+        let out = document.getElementById('res-fd-yield');
+        out.style.display = "block";
+        out.innerHTML = `<p>Principal Invested Capital: <span>${formatINR(p)}</span></p>
+                         <p>Accumulated Quarterly Interest: <span>${formatINR(totalInterest)}</span></p>
+                         <p>Total Estimated Maturity Value: <span>${formatINR(maturityValue)}</span></p>`;
+    }
+</script>
+
+</body>
+</html>

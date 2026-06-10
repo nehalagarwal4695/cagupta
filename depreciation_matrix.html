@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed Asset Depreciation Matrix | Spicen Tech Financials</title>
+    <style>
+        /* --- Core Theme Variables --- */
+        :root {
+            --primary: #0284c7;        
+            --primary-hover: #0369a1;  
+            --corporate-gold: #c26600; 
+            --bg-slate: #f8fafc;       
+            --text-main: #0f172a;      
+            --text-muted: #475569;     
+            --border-color: #e2e8f0;   
+            --accent-green: #16a34a;   
+            --accent-red: #dc2626;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-slate);
+            color: var(--text-main);
+            padding-top: 75px !important; 
+            min-height: 100vh;
+        }
+
+        /* --- Scroll-Safe Pinned Navigation Header --- */
+        .sticky-text-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: #ffffff;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            align-items: center;
+            padding-left: 2.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+            z-index: 9999;
+        }
+
+        .corporate-return-link {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--corporate-gold);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .corporate-return-link:hover {
+            opacity: 0.85;
+            text-decoration: underline;
+        }
+
+        /* --- Workspace Architecture Wrapper --- */
+        .main-container {
+            width: 100%;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .header-panel {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .header-panel h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-panel p {
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        /* --- Split Input/Output Workspace Deck --- */
+        .matrix-split-deck {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        /* --- Control Room Parameter Card --- */
+        .control-room-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            background: #f8fafc;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            background: #ffffff;
+        }
+
+        .calculate-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--primary);
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 0.5rem;
+        }
+
+        .calculate-btn:hover {
+            background: var(--primary-hover);
+        }
+
+        /* --- Output Ledger Visual Component Block --- */
+        .output-ledger-deck {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            display: none; 
+        }
+
+        /* Three Engine Highlighting Blocks */
+        .engine-split-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .engine-card {
+            border-top: 4px solid var(--primary);
+            background: #f8fafc;
+            padding: 1.25rem;
+            border-radius: 4px 4px 8px 8px;
+        }
+
+        .engine-card.it-theme { border-top-color: var(--corporate-gold); }
+        .engine-card.co-theme { border-top-color: var(--primary); }
+        .engine-card.tax-theme { border-top-color: var(--text-main); }
+
+        .engine-card h3 {
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 0.85rem;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .stat-row span:last-child {
+            font-weight: 700;
+        }
+
+        /* Section Title Actions Bar */
+        .section-title-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--bg-slate);
+            padding-bottom: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .export-btn {
+            background: #f1f5f9;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .export-btn:hover {
+            background: #e2e8f0;
+        }
+
+        /* Comprehensive Multi-Year Balance Table Sheet */
+        .table-wrapper {
+            overflow-x: auto;
+            margin-top: 1rem;
+        }
+
+        .ledger-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        .ledger-table th {
+            background: #0f172a;
+            color: #ffffff;
+            padding: 12px;
+            font-weight: 600;
+        }
+
+        .ledger-table td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .ledger-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .highlight-green {
+            color: var(--accent-green);
+            font-weight: 700;
+        }
+        
+        .highlight-red {
+            color: var(--accent-red);
+            font-weight: 700;
+        }
+
+        /* Pro-Rata Notice Banner */
+        .notice-banner {
+            background: #fffbeb;
+            border: 1px solid #fef3c7;
+            border-left: 4px solid #d97706;
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            color: #92400e;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+
+        @media screen and (max-width: 1100px) {
+            .matrix-split-deck { grid-template-columns: 1fr; }
+            .engine-split-cards { grid-template-columns: 1fr; }
+        }
+		
+		
+    </style>
+</head>
+<body>
+
+    <div class="sticky-text-nav">
+        <a href="index.html" class="corporate-return-link">← Return to Main Corporate Portal</a>
+    </div>
+	
+		
+		
+    <div class="main-container">
+        <div class="header-panel">
+            <h1>Fixed Asset Depreciation Matrix</h1>
+            <p>Advanced compliance compiler with smart pro-rata date configurations, deferred tax variance estimations, and direct spreadsheet export utilities.</p>
+        </div>
+
+        <div class="matrix-split-deck">
+            
+            <div class="control-room-card">
+                <div class="form-group">
+                    <label for="asset-class">Fixed Asset Classification</label>
+                    <select id="asset-class" class="form-control" onchange="adjustAssetDefaults()">
+                        <option value="computers">Computers / Software Systems</option>
+                        <option value="machinery">General Plant & Machinery</option>
+                        <option value="furniture">Furniture and Fixtures</option>
+                        <option value="buildings">Residential Buildings</option>
+                        <option value="vehicles">Motor Vehicles (Commercial)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="purchase-date">Date of Commissioning</label>
+                    <input type="date" id="purchase-date" class="form-control" value="2026-04-01">
+                </div>
+
+                <div class="form-group">
+                    <label for="purchase-cost">Asset Acquisition Cost (₹)</label>
+                    <input type="number" id="purchase-cost" class="form-control" value="100000" min="0">
+                </div>
+
+                <div class="form-group">
+                    <label for="it-rate">Income Tax WDV Rate (%)</label>
+                    <input type="number" id="it-rate" class="form-control" value="40" min="0" max="100">
+                </div>
+
+                <div class="form-group">
+                    <label for="co-life">Companies Act Useful Life (Years)</label>
+                    <input type="number" id="co-life" class="form-control" value="3" min="1">
+                </div>
+
+                <div class="form-group">
+                    <label for="residual-rate">Companies Act Residual Value (%)</label>
+                    <input type="number" id="residual-rate" class="form-control" value="5" min="0" max="100">
+                </div>
+
+                <button class="calculate-btn" onclick="executeMatrixCalculation()">Compile Schedule Data</button>
+            </div>
+
+            <div id="output-ledger-panel" class="output-ledger-deck">
+                
+                <div id="pro-rata-notice" class="notice-banner"></div>
+
+                <div class="engine-split-cards">
+                    
+                    <div class="engine-card it-theme">
+                        <h3 style="color: var(--corporate-gold);">Income Tax Act, 1961</h3>
+                        <div class="stat-row">
+                            <span>Method:</span>
+                            <span>WDV Block</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Year 1 Dep:</span>
+                            <span id="it-y1-dep" class="highlight-green">₹0</span>
+                        </div>
+                    </div>
+
+                    <div class="engine-card co-theme">
+                        <h3 style="color: var(--primary);">Companies Act, 2013</h3>
+                        <div class="stat-row">
+                            <span>Method:</span>
+                            <span>SLM Schedule II</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Year 1 Dep:</span>
+                            <span id="co-y1-dep" class="highlight-green">₹0</span>
+                        </div>
+                    </div>
+
+                    <div class="engine-card tax-theme">
+                        <h3>Tax Timing Variance</h3>
+                        <div class="stat-row">
+                            <span>Y1 Status:</span>
+                            <span id="dtl-status">--</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Prov. Impact:</span>
+                            <span id="dtl-value" class="highlight-red">₹0</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="section-title-bar">
+                    <h3 style="font-size: 1.15rem; font-weight:800;">Simultaneous 5-Year Financial Projection Sheet</h3>
+                    
+					<button class="export-btn" onclick="copyTableToClipboard()">Export Official Excel Workpaper 📥</button>
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="ledger-table" id="matrix-data-table">
+                        <thead>
+                            <tr>
+                                <th rowspan="2">Year</th>
+                                <th colspan="2" style="text-align: center; background: var(--corporate-gold);">Income Tax Act (WDV)</th>
+                                <th colspan="2" style="text-align: center; background: var(--primary);">Companies Act (SLM)</th>
+                            </tr>
+                            <tr>
+                                <th>Depreciation</th>
+                                <th>Closing WDV</th>
+                                <th>Depreciation</th>
+                                <th>Closing Value</th>
+                            </tr>
+                        </thead>
+                        <tbody id="matrix-table-body"></tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const standardStatutoryDefaults = {
+            computers: { itRate: 40, coLife: 3, residual: 5 },
+            machinery: { itRate: 15, coLife: 15, residual: 5 },
+            furniture: { itRate: 10, coLife: 10, residual: 5 },
+            buildings: { itRate: 5,  coLife: 60, residual: 5 },
+            vehicles:  { itRate: 30, coLife: 6,  residual: 5 }
+        };
+
+        function adjustAssetDefaults() {
+            const assetKey = document.getElementById('asset-class').value;
+            const targetConfig = standardStatutoryDefaults[assetKey];
+
+            document.getElementById('it-rate').value = targetConfig.itRate;
+            document.getElementById('co-life').value = targetConfig.coLife;
+            document.getElementById('residual-rate').value = targetConfig.residual;
+        }
+
+        function executeMatrixCalculation() {
+            const initialCost = parseFloat(document.getElementById('purchase-cost').value) || 0;
+            const itPercentRate = parseFloat(document.getElementById('it-rate').value) / 100 || 0;
+            const usefulLifeYears = parseInt(document.getElementById('co-life').value) || 1;
+            const residualPercentRate = parseFloat(document.getElementById('residual-rate').value) / 100 || 0;
+            const purchaseDateVal = document.getElementById('purchase-date').value;
+
+            if (initialCost <= 0) {
+                alert("⚠️ Please enter a valid asset acquisition cost.");
+                return;
+            }
+
+            // --- PRO-RATA AND 180-DAYS INTENSITY CHECK (INCOME TAX LAW) ---
+            let itRateMultiplierY1 = 1.0;
+            let isProRataTriggered = false;
+            const noticeBanner = document.getElementById('pro-rata-notice');
+            
+            if (purchaseDateVal) {
+                const commissionDate = new Date(purchaseDateVal);
+                const yearOfPurchase = commissionDate.getFullYear();
+                
+                // End of the Indian Financial Year is March 31st of the following calendar year
+                const endOfFY = new Date((commissionDate.getMonth() >= 3) ? yearOfPurchase + 1 : yearOfPurchase, 3, 31);
+                
+                // Total days used in Year 1
+                const totalDaysUsed = Math.round((endOfFY - commissionDate) / (1000 * 60 * 60 * 24)) + 1;
+
+                if (totalDaysUsed < 180 && totalDaysUsed > 0) {
+                    itRateMultiplierY1 = 0.5; // Income tax rules restrict depreciation to 50% if used < 180 days
+                    isProRataTriggered = true;
+                    noticeBanner.innerHTML = `⚖️ <strong>Statutory Rule Active:</strong> This asset was put to use for only <strong>${totalDaysUsed} days</strong> (< 180 days) in Year 1. Year 1 Income Tax depreciation has been capped at 50% of the standard block rate under Section 32.`;
+                    noticeBanner.style.display = "block";
+                } else {
+                    noticeBanner.style.display = "none";
+                }
+            }
+
+            // --- ENGINE CALCULATIONS LOOP ---
+            let itCurrentWDV = initialCost;
+            const totalDepreciableValue = initialCost - (initialCost * residualPercentRate);
+            const coFixedAnnualDepreciation = totalDepreciableValue / usefulLifeYears;
+            let coCurrentCarryingValue = initialCost;
+
+            const tableBodyNode = document.getElementById('matrix-table-body');
+            let dynamicTableHTMLAccumulator = "";
+            
+            let y1ItDep = 0;
+            let y1CoDep = 0;
+
+            for (let targetYear = 1; targetYear <= 5; targetYear++) {
+                // Income Tax Engine
+                let activeItRate = (targetYear === 1) ? (itPercentRate * itRateMultiplierY1) : itPercentRate;
+                let itExpenseThisYear = itCurrentWDV * activeItRate;
+                let itClosingValue = itCurrentWDV - itExpenseThisYear;
+                if (itClosingValue < 0) { itExpenseThisYear = itCurrentWDV; itClosingValue = 0; }
+                itCurrentWDV = itClosingValue;
+
+                // Companies Act Engine
+                let coExpenseThisYear = coFixedAnnualDepreciation;
+                let coClosingValue = coCurrentCarryingValue - coExpenseThisYear;
+
+                if (targetYear > usefulLifeYears) {
+                    coExpenseThisYear = 0;
+                    coClosingValue = initialCost * residualPercentRate;
+                } else if (coClosingValue < (initialCost * residualPercentRate)) {
+                    coExpenseThisYear = coCurrentCarryingValue - (initialCost * residualPercentRate);
+                    coClosingValue = initialCost * residualPercentRate;
+                }
+                coCurrentCarryingValue = coClosingValue;
+
+                if (targetYear === 1) {
+                    y1ItDep = itExpenseThisYear;
+                    y1CoDep = coExpenseThisYear;
+                }
+
+                dynamicTableHTMLAccumulator += `
+                    <tr>
+                        <td><strong>Year ${targetYear}</strong></td>
+                        <td class="highlight-green">₹${Math.round(itExpenseThisYear).toLocaleString('en-IN')}</td>
+                        <td>₹${Math.round(itClosingValue).toLocaleString('en-IN')}</td>
+                        <td class="highlight-green">₹${Math.round(coExpenseThisYear).toLocaleString('en-IN')}</td>
+                        <td>₹${Math.round(coClosingValue).toLocaleString('en-IN')}</td>
+                    </tr>
+                `;
+            }
+
+            // --- DEFERRED TAX DEVIATION CALCULATOR (Assume standard corporate rate of 25.17%) ---
+            const varianceY1 = y1ItDep - y1CoDep;
+            const corporateTaxRate = 0.2517; 
+            const provisionValue = Math.abs(varianceY1 * corporateTaxRate);
+
+            const statusNode = document.getElementById('dtl-status');
+            const valueNode = document.getElementById('dtl-value');
+
+            if (varianceY1 > 0) {
+                statusNode.innerText = "Deferred Tax Liab. (DTL)";
+                statusNode.style.color = "var(--accent-red)";
+                valueNode.innerText = `₹${Math.round(provisionValue).toLocaleString('en-IN')}`;
+                valueNode.className = "highlight-red";
+            } else if (varianceY1 < 0) {
+                statusNode.innerText = "Deferred Tax Asset (DTA)";
+                statusNode.style.color = "var(--accent-green)";
+                valueNode.innerText = `₹${Math.round(provisionValue).toLocaleString('en-IN')}`;
+                valueNode.className = "highlight-green";
+            } else {
+                statusNode.innerText = "No Timing Gap";
+                statusNode.style.color = "var(--text-muted)";
+                valueNode.innerText = "₹0";
+                valueNode.className = "";
+            }
+
+            document.getElementById('it-y1-dep').innerText = `₹${Math.round(y1ItDep).toLocaleString('en-IN')}`;
+            document.getElementById('co-y1-dep').innerText = `₹${Math.round(y1CoDep).toLocaleString('en-IN')}`;
+
+            tableBodyNode.innerHTML = dynamicTableHTMLAccumulator;
+            document.getElementById('output-ledger-panel').style.display = "block";
+            document.getElementById('output-ledger-panel').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // COPIES DATA CLEANLY TO CLIPBOARD FOR SPREADSHEETS
+        // FORCES NATIVE DOWNLOAD OF THE LIVE WORKPAPER MATRIX AS AN EXCEL-READABLE FILE
+function copyTableToClipboard() {
+    const table = document.getElementById("matrix-data-table");
+    let rows = Array.from(table.rows);
+    
+    // 1. Parse table text and format into clean, comma-separated rows
+    let csvContent = "";
+    rows.forEach(row => {
+        let cells = Array.from(row.cells);
+        let rowData = cells.map(cell => {
+            // Remove currency symbols, commas, and wrap text in quotes to handle clean formatting
+            let cleanText = cell.innerText.replace(/₹|,/g, "").trim();
+            return `"${cleanText}"`;
+        }).join(",");
+        csvContent += rowData + "\n";
+    });
+
+    // 2. Wrap inside a safe UTF-8 Byte Order Mark (BOM) to prevent Excel text encoding bugs
+    const universalBlob = new Blob(["\ufeff" + csvContent], { type: 'text/csv;charset=utf-8;' });
+    
+    // 3. Create a dynamic sandboxed anchor tag to force browser document stream injection
+    const downloadAnchor = document.createElement("a");
+    const structuralURL = URL.createObjectURL(universalBlob);
+    
+    // 4. Assign file details and auto-trigger download mechanics
+    downloadAnchor.setAttribute("href", structuralURL);
+    downloadAnchor.setAttribute("download", "Depreciation_Filing_Workpaper_Schedule.csv");
+    downloadAnchor.style.visibility = "hidden";
+    
+    document.body.appendChild(downloadAnchor);
+    downloadAnchor.click();
+    document.body.removeChild(downloadAnchor);
+}
+    </script>
+</body>
+</html>

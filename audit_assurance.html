@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auditing & Assurance Services | Gupta Ruchi & Co.</title>
+    <style>
+        :root { --primary-blue: #1e3a8a; --accent-gold: #b45309; --bg-canvas: #f1f5f9; --text-dark: #0f172a; --white: #ffffff; --border-gray: #cbd5e1; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        body { background-color: var(--bg-canvas); color: var(--text-dark); line-height: 1.6; padding: 3rem 1rem; }
+        .container { max-width: 1150px; margin: 0 auto; background: var(--white); padding: 4rem; border-radius: 6px; border: 1px solid var(--border-gray); border-top: 8px solid var(--primary-blue); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        h1 { color: var(--primary-blue); font-family: 'Times New Roman', Times, serif; font-size: 2.6rem; margin-bottom: 0.5rem; border-bottom: 2px solid var(--accent-gold); padding-bottom: 0.5rem; text-transform: uppercase; }
+        .subtitle { font-size: 1.05rem; color: #475569; margin-bottom: 2.5rem; font-style: italic; }
+        h2 { color: var(--primary-blue); font-family: 'Times New Roman', Times, serif; font-size: 1.6rem; margin: 2.5rem 0 1.25rem; text-transform: uppercase; border-left: 5px solid var(--accent-gold); padding-left: 0.75rem; }
+        p { margin-bottom: 1.5rem; font-size: 0.98rem; text-align: justify; color: #334155; line-height: 1.7; }
+        
+        /* Service Grid Matrix */
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+        .service-card { background: #f8fafc; border: 1px solid var(--border-gray); padding: 1.75rem; border-radius: 4px; transition: transform 0.2s, box-shadow 0.2s; }
+        .service-card:hover { transform: translateY(-3px); box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
+        .card-title { font-weight: bold; color: var(--primary-blue); margin-bottom: 0.75rem; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.3px; }
+        .card-text { font-size: 0.88rem; color: #475569; text-align: justify; line-height: 1.6; }
+        
+        /* Table Layouts */
+        .framework-table { width: 100%; border-collapse: collapse; margin: 2rem 0; background: #ffffff; }
+        .framework-table th, .framework-table td { padding: 1.2rem; text-align: left; border: 1px solid var(--border-gray); font-size: 0.9rem; }
+        .framework-table th { background: #f1f5f9; color: var(--primary-blue); font-weight: bold; text-transform: uppercase; font-size: 0.85rem; }
+        .framework-table tr:nth-child(even) { background: #f8fafc; }
+        
+        /* Checklist Blocks */
+        .checklist-container { background: #f0fdf4; border: 1px solid #bbf7d0; border-left: 5px solid #16a34a; padding: 2rem; border-radius: 4px; margin: 2.5rem 0; }
+        .checklist-title { color: #14532d; font-weight: bold; font-size: 1.1rem; margin-bottom: 1rem; text-transform: uppercase; }
+        .checklist-items { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; list-style: none; }
+        .checklist-items li { font-size: 0.9rem; color: #166534; display: flex; align-items: center; gap: 0.5rem; }
+        
+        .cta-box { background: #fffbeb; border: 1px solid #fef3c7; border-left: 5px solid var(--accent-gold); padding: 2rem; margin-top: 3.5rem; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+        .cta-btn { background: var(--primary-blue); color: var(--white); text-decoration: none; padding: 0.75rem 1.5rem; border-radius: 4px; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; transition: background 0.2s; }
+        .cta-btn:hover { background: #1d4ed8; }
+        
+		
+		/* --- Floating Sticky Navigation Header Deck --- */
+.sticky-text-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;              /* Sets a solid, clean boundary layer height */
+    background: #ffffff;        /* Solid white background forces scrolling text to disappear behind it */
+    border-bottom: 1px solid #f1f5f9; /* Ultra-light clean divider line */
+    display: flex;
+    align-items: center;        /* Vertically centers the text link inside the 60px bar */
+    padding-left: 2.5rem;       /* Keeps your exact horizontal alignment from the edge */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02); /* Optional: Gives an elegant, micro shadow depth */
+    z-index: 9999;              /* Forces the bar to stay securely on top of everything else */
+}
+
+/* --- Clean Text Hyperlink Customizer --- */
+.corporate-return-link {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #c26600;            /* Your exact golden-orange corporate hex color */
+    text-decoration: none;     
+    display: inline-block;
+    transition: opacity 0.2s ease;
+}
+
+.corporate-return-link:hover {
+    opacity: 0.85;             
+    text-decoration: underline;
+}
+
+/* --- CRITICAL DOCUMENT CONTENT PUSH OFFSET --- */
+body {
+    padding-top: 65px !important; /* Pushes the "DIRECT TAXATION ADVISORY" main title down so it never hides behind the bar on page load */
+}
+
+/* --- Precise Mobile Viewport Adjustments --- */
+@media screen and (max-width: 480px) {
+    .sticky-text-nav {
+        height: 50px;           /* Slimmer bar profile for mobile views */
+        padding-left: 1rem;     
+    }
+    .corporate-return-link {
+        font-size: 0.9rem;      
+    }
+    body {
+        padding-top: 55px !important;
+    }
+}
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Auditing & Assurance Services</h1>
+    <p class="subtitle">Independent statutory validation architectures, risk mitigation frameworks, and financial ledger verification matrices.</p>
+    
+    <p>In an increasingly complex corporate ecosystem, financial auditing must extend beyond baseline balance sheet ticks. Our firm provides comprehensive audit, review, and validation methodologies designed to verify corporate records against rigorous global and domestic standards. We build institutional credibility, giving corporate boards, sovereign controllers, financial partners, and retail investors absolute confidence in your reported financial health.</p>
+    
+    <h2>Our Multi-Dimensional Practice Framework</h2>
+    <p>We deploy independent verification strategies tailored to distinct market segments, ensuring compliance with evolving legislative adjustments under the Companies Act, Regulations of the ICAI, and SEBI directives.</p>
+    
+    <div class="service-grid">
+        <div class="service-card">
+            <div class="card-title">Statutory Financial Audits</div>
+            <p class="card-text">Rigorous examinations of fiscal parameters to ensure financial statements provide a true and fair view. We prepare robust documentation portfolios matching standard corporate presentation formats for presentation to institutional stakeholders, equity blocks, and the Registrar of Companies (ROC).</p>
+        </div>
+        <div class="service-card">
+            <div class="card-title">Internal & Controls Audits</div>
+            <p class="card-text">Systematic testing of transaction tracking workflows to map data leaks, prevent security oversights, and test operational bottlenecks. We evaluate the core functionality of your internal financial controls (IFC) to safeguard administrative assets.</p>
+        </div>
+        <div class="service-card">
+            <div class="card-title">Tax Audits (Section 44AB)</div>
+            <p class="card-text">Detailed analysis of corporate accounts to guarantee thorough compliance with the parameters of the Income Tax Act, 1961. We handle depreciation allocations, map disallowed expenditure blocks, and file comprehensive Form 3CD declarations seamlessly.</p>
+        </div>
+        <div class="service-card">
+            <div class="card-title">Management & Forensic Audits</div>
+            <p class="card-text">Targeted tracking designed to review management performance indicators, map asset misappropriations, trace unauthorized capital movements, and isolate processing non-compliance within internal branches.</p>
+        </div>
+        <div class="service-card">
+            <div class="card-title">Concurrent & Bank Audits</div>
+            <p class="card-text">Continuous transaction monitoring setups built to satisfy institutional banking guidelines, covering large cash credit reviews, hypothecated inventory checks, and non-performing asset (NPA) warning mitigations.</p>
+        </div>
+        <div class="service-card">
+            <div class="card-title">Stock & Asset Verifications</div>
+            <p class="card-text">Physical inventory valuation audits and fixed-asset structural testing. We align physical inventory counts with digital ledger records to clear up balance sheet discrepancies across production sites.</p>
+        </div>
+    </div>
+
+    <h2>Methodological Compliance Roadmap</h2>
+    <p>Our operational engagements run on a structured four-phase system aligned with the official Standards on Auditing (SAs) issued by the ICAI. This ensures complete clarity and systematic documentation throughout the verification cycle.</p>
+
+    <table class="framework-table">
+        <thead>
+            <tr>
+                <th style="width: 20%;">Engagement Phase</th>
+                <th style="width: 50%;">Core Execution Deliverables</th>
+                <th style="width: 30%;">Statutory Alignment Target</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>1. Evaluation & Scope</strong></td>
+                <td>Review corporate structures, identify transaction risk zones, map processing controls, and issue the formal engagement brief.</td>
+                <td>SA 210 & SA 300 Parameters</td>
+            </tr>
+            <tr>
+                <td><strong>2. Controls Substantiation</strong></td>
+                <td>Execute deep sample checks across transaction vouchers, run automated code ledger tracing, and assess ledger security.</td>
+                <td>SA 315 & SA 330 Compliance</td>
+            </tr>
+            <tr>
+                <td><strong>3. Balance Verification</strong></td>
+                <td>Confirm bank balances, verify third-party debtor listings, perform asset calculations, and validate equity structures.</td>
+                <td>SA 501 & SA 505 Frameworks</td>
+            </tr>
+            <tr>
+                <td><strong>4. Reporting & Issuance</strong></td>
+                <td>Compile CARO 2020 tracking books, draft independent auditor reviews, configure key audit matters (KAM), and issue official UDIN metrics.</td>
+                <td>SA 700, 705 & 706 Matrix</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="checklist-container">
+        <div class="checklist-title">Pre-Audit Corporate Readiness Tracker</div>
+        <ul class="checklist-items">
+            <li>✔ Verified Trial Balance reconciliations</li>
+            <li>✔ Bank Reconciliation Statements (BRS)</li>
+            <li>✔ Fixed Asset Registers matching physical tracking</li>
+            <li>✔ Statutory challan records (GST, TDS, PF, ESIC)</li>
+            <li>✔ Complete ledger configurations for major vendors</li>
+            <li>✔ Signed board minutes and operational authorizations</li>
+        </ul>
+    </div>
+
+    <p>By pairing advanced digital tracking utilities with deep statutory expertise, our firm ensures that audit operations cause minimal disruption to your daily workflow while providing rigorous, institutional-grade compliance verification.</p>
+
+    <div class="cta-box">
+        <div>
+            <strong style="color: #78350f; font-size: 1.1rem; display: block; margin-bottom: 0.25rem;">Require Board Audit Engagement or Statutory Sign-off?</strong>
+            <p style="margin: 0; font-size: 0.9rem; color: #78350f;">Connect with our managing audit partners to formalize your corporate review timeline, resolve accounting queries, or secure certified financial tracking credentials.</p>
+        </div>
+        <a href="query.html" class="cta-btn">Initiate Audit Engagement</a>
+    </div>
+<div class="sticky-text-nav">
+    <a href="index.html" class="corporate-return-link">← Return to Main Corporate Portal</a>
+</div></div>
+</body>
+</html>

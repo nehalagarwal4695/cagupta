@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DGFT Import Export Rules | Gupta Ruchi & Co.</title>
+    <style>
+        :root { --primary-blue: #1e3a8a; --accent-gold: #b45309; --bg-canvas: #f1f5f9; --text-dark: #0f172a; --white: #ffffff; --border-gray: #cbd5e1; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        body { background-color: var(--bg-canvas); color: var(--text-dark); line-height: 1.6; padding: 2.5rem 1rem; }
+        .container { max-width: 1050px; margin: 0 auto; background: var(--white); padding: 3.5rem; border-radius: 6px; border: 1px solid var(--border-gray); border-top: 6px solid var(--primary-blue); }
+        h1 { color: var(--primary-blue); font-family: 'Times New Roman', Times, serif; font-size: 2.2rem; margin-bottom: 0.5rem; border-bottom: 2px solid var(--accent-gold); padding-bottom: 0.5rem; text-transform: uppercase; }
+        .subtitle { font-size: 0.95rem; color: #475569; margin-bottom: 2rem; font-style: italic; }
+        h2 { color: var(--primary-blue); font-size: 1.25rem; margin: 2rem 0 1rem; text-transform: uppercase; border-left: 4px solid var(--accent-gold); padding-left: 0.5rem; }
+        p { margin-bottom: 1.25rem; font-size: 0.95rem; text-align: justify; color: #334155; }
+        .dgft-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
+        .dgft-card { background: #f8fafc; border: 1px solid var(--border-gray); padding: 1.25rem; border-radius: 4px; }
+        .dgft-card-title { font-weight: bold; color: var(--primary-blue); font-size: 0.95rem; margin-bottom: 0.5rem; text-transform: uppercase; }
+/* --- Floating Sticky Navigation Header Deck --- */
+.sticky-text-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;              /* Sets a solid, clean boundary layer height */
+    background: #ffffff;        /* Solid white background forces scrolling text to disappear behind it */
+    border-bottom: 1px solid #f1f5f9; /* Ultra-light clean divider line */
+    display: flex;
+    align-items: center;        /* Vertically centers the text link inside the 60px bar */
+    padding-left: 2.5rem;       /* Keeps your exact horizontal alignment from the edge */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02); /* Optional: Gives an elegant, micro shadow depth */
+    z-index: 9999;              /* Forces the bar to stay securely on top of everything else */
+}
+
+/* --- Clean Text Hyperlink Customizer --- */
+.corporate-return-link {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #c26600;            /* Your exact golden-orange corporate hex color */
+    text-decoration: none;     
+    display: inline-block;
+    transition: opacity 0.2s ease;
+}
+
+.corporate-return-link:hover {
+    opacity: 0.85;             
+    text-decoration: underline;
+}
+
+/* --- CRITICAL DOCUMENT CONTENT PUSH OFFSET --- */
+body {
+    padding-top: 65px !important; /* Pushes the "DIRECT TAXATION ADVISORY" main title down so it never hides behind the bar on page load */
+}
+
+/* --- Precise Mobile Viewport Adjustments --- */
+@media screen and (max-width: 480px) {
+    .sticky-text-nav {
+        height: 50px;           /* Slimmer bar profile for mobile views */
+        padding-left: 1rem;     
+    }
+    .corporate-return-link {
+        font-size: 0.9rem;      
+    }
+    body {
+        padding-top: 55px !important;
+    }
+}    </style>
+</head>
+<body>
+<div class="container">
+    <h1>DGFT Import Export Rules</h1>
+    <p class="subtitle">Foreign Trade Policy (FTP) processing, Import-Export Code (IEC) lifecycle management, and export incentive auditing.</p>
+    
+    <p>Cross-border supply chains run on strict licensing frameworks managed by the Directorate General of Foreign Trade (DGFT). Our specialist trade division helps logistics operators setup clean import paths, navigate customs rules, and claim eligible cross-border export incentives safely.</p>
+    
+    <h2>Operational Cross-Border Trade Modules</h2>
+    <div class="dgft-grid">
+        <div class="dgft-card">
+            <div class="dgft-card-title">IEC Code Modifications</div>
+            <p style="font-size: 0.85rem; color: #475569;">Managing annual update portfolios for your corporate Import-Export Code (IEC), preventing cross-border clearance holdups at entry customs zones.</p>
+        </div>
+        <div class="dgft-card">
+            <div class="dgft-card-title">EPCG Scheme Capitalization</div>
+            <p style="font-size: 0.85rem; color: #475569;">Securing duty-free imports for industrial production machinery under Export Promotion Capital Goods frameworks while ensuring your export obligations are fully met.</p>
+        </div>
+        <div class="dgft-card">
+            <div class="dgft-card-title">Advance Authorization Processing</div>
+            <p style="font-size: 0.85rem; color: #475569;">Setting up robust import tracks for production inputs without raw material import duty costs, backed by detailed material balance sheets.</p>
+        </div>
+    </div>
+
+    <h2>Export Incentive Remittance Matrix</h2>
+    <p>Our audit team verifies cross-border shipping documents to secure export incentive credits from state trade platforms.</p>
+    <table style="width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 0.88rem;">
+        <tr style="background: #f1f5f9; color: var(--primary-blue); font-weight: bold;">
+            <th style="padding: 0.8rem; border: 1px solid var(--border-gray);">Scheme Portfolio</th>
+            <th style="padding: 0.8rem; border: 1px solid var(--border-gray);">Core Incentive Structure</th>
+        </tr>
+        <tr>
+            <td style="padding: 0.8rem; border: 1px solid var(--border-gray);"><strong>RoDTEP Tracking Desk</strong></td>
+            <td style="padding: 0.8rem; border: 1px solid var(--border-gray);">Secures cash-equivalent credit returns for local embedded taxes paid on production inputs.</td>
+        </tr>
+    </table>
+
+<div class="sticky-text-nav">
+    <a href="index.html" class="corporate-return-link">← Return to Corporate Desk</a>
+</div></div>
+</body>
+</html>

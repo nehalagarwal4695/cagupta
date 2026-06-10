@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Office Coordinates & Communication Nodes | Gupta Ruchi & Co.</title>
+    <style>
+        :root {
+            --primary-blue: #1e3a8a;
+            --accent-gold: #b45309;
+            --bg-canvas: #f1f5f9;
+            --text-dark: #0f172a;
+            --white: #ffffff;
+            --border-gray: #cbd5e1;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        body { background-color: var(--bg-canvas); color: var(--text-dark); line-height: 1.6; padding: 2rem 1rem; }
+        .container { max-width: 1100px; margin: 0 auto; background: var(--white); padding: 3rem; border-radius: 6px; border: 1px solid var(--border-gray); border-top: 6px solid var(--primary-blue); }
+        h1 { color: var(--primary-blue); font-family: 'Times New Roman', Times, serif; font-size: 2.5rem; margin-bottom: 0.5rem; border-bottom: 2px solid var(--accent-gold); padding-bottom: 0.5rem; text-transform: uppercase; }
+        .subtitle { font-size: 1rem; color: #475569; margin-bottom: 2.5rem; font-style: italic; }
+        
+        h2 { color: var(--primary-blue); font-size: 1.3rem; margin-bottom: 1rem; text-transform: uppercase; padding-bottom: 0.25rem; border-bottom: 2px solid var(--accent-gold); display: inline-block; }
+        p { margin-bottom: 1.5rem; font-size: 0.95rem; color: #334155; }
+
+        /* Grid Layout for Branch Modules */
+        .branches-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+        .branch-card { background: #f8fafc; border: 1px solid var(--border-gray); border-radius: 4px; padding: 1.5rem; border-top: 3px solid var(--primary-blue); }
+        .branch-name { font-size: 1.15rem; color: var(--primary-blue); font-weight: bold; margin-bottom: 0.5rem; text-transform: uppercase; }
+        .branch-meta { font-size: 0.85rem; color: #475569; line-height: 1.6; }
+        .branch-meta strong { color: var(--text-dark); }
+
+        /* Help desk grid columns */
+        .comms-split { display: grid; grid-template-columns: 1.5fr 1fr; gap: 2.5rem; background: #fffbeb; padding: 2rem; border: 1px solid #fef3c7; border-radius: 4px; }
+        .comms-info h3 { color: var(--accent-gold); font-size: 1.1rem; margin-bottom: 0.5rem; text-transform: uppercase; }
+        .comms-info ul { list-style: none; font-size: 0.9rem; color: #78350f; }
+        .comms-info ul li { margin-bottom: 0.5rem; }
+
+        /* --- Floating Sticky Navigation Header Deck --- */
+.sticky-text-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;              /* Sets a solid, clean boundary layer height */
+    background: #ffffff;        /* Solid white background forces scrolling text to disappear behind it */
+    border-bottom: 1px solid #f1f5f9; /* Ultra-light clean divider line */
+    display: flex;
+    align-items: center;        /* Vertically centers the text link inside the 60px bar */
+    padding-left: 2.5rem;       /* Keeps your exact horizontal alignment from the edge */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02); /* Optional: Gives an elegant, micro shadow depth */
+    z-index: 9999;              /* Forces the bar to stay securely on top of everything else */
+}
+
+/* --- Clean Text Hyperlink Customizer --- */
+.corporate-return-link {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #c26600;            /* Your exact golden-orange corporate hex color */
+    text-decoration: none;     
+    display: inline-block;
+    transition: opacity 0.2s ease;
+}
+
+.corporate-return-link:hover {
+    opacity: 0.85;             
+    text-decoration: underline;
+}
+
+/* --- CRITICAL DOCUMENT CONTENT PUSH OFFSET --- */
+body {
+    padding-top: 65px !important; /* Pushes the "DIRECT TAXATION ADVISORY" main title down so it never hides behind the bar on page load */
+}
+
+/* --- Precise Mobile Viewport Adjustments --- */
+@media screen and (max-width: 480px) {
+    .sticky-text-nav {
+        height: 50px;           /* Slimmer bar profile for mobile views */
+        padding-left: 1rem;     
+    }
+    .corporate-return-link {
+        font-size: 0.9rem;      
+    }
+    body {
+        padding-top: 55px !important;
+    }
+}
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Office Coordinates & Communication Nodes</h1>
+    <p class="subtitle">Direct physical parameters, communication connections, and tracking metrics for our regional operations.</p>
+    
+    <p>Agarwal Seth & Co. operates across three major commercial nodes in Northern India, ensuring seamless access for client management teams, external auditors, and on-site regulatory compliance checks.</p>
+    
+    <h2>Our Regional Branch Networks</h2>
+    <div class="branches-grid">
+        
+        <div class="branch-card">
+            <div class="branch-name">Noida Corporate Head Office</div>
+            <div class="branch-meta">
+                <strong>Address:</strong><br>
+                A-42, Sector 62, Corporate Block, NOIDA, Uttar Pradesh - 201301<br><br>
+                <strong>Direct Desk Line:</strong> +91-120-4567890<br>
+                <strong>Secure E-mail:</strong> contact@agarwalseth.com<br>
+                <strong>Operating Hours:</strong> 09:30 AM - 06:30 PM (IST)
+            </div>
+        </div>
+
+        <div class="branch-card" style="border-top-color: var(--accent-gold);">
+            <div class="branch-name">Delhi CP Branch Office</div>
+            <div class="branch-meta">
+                <strong>Address:</strong><br>
+                12, Barakhamba Road, Connaught Place, New Delhi - 110001<br><br>
+                <strong>Direct Desk Line:</strong> +91-11-23412345<br>
+                <strong>Secure E-mail:</strong> delhi@agarwalseth.com<br>
+                <strong>Operating Hours:</strong> 09:30 AM - 06:30 PM (IST)
+            </div>
+        </div>
+
+        <div class="branch-card">
+            <div class="branch-name">Lucknow Regional Desk</div>
+            <div class="branch-meta">
+                <strong>Address:</strong><br>
+                204, Hazratganj Commercial Complex, Lucknow, Uttar Pradesh - 226001<br><br>
+                <strong>Direct Desk Line:</strong> +91-522-3456789<br>
+                <strong>Secure E-mail:</strong> lucknow@agarwalseth.com<br>
+                <strong>Operating Hours:</strong> 09:30 AM - 06:30 PM (IST)
+            </div>
+        </div>
+
+    </div>
+
+    <h2>Direct Department Contact Protocol</h2>
+    <p>To keep communications efficient and secure, please direct your inquiries to the appropriate internal department node:</p>
+
+    <div class="comms-split">
+        <div class="comms-info">
+            <h3>Central Filing and Operational Desks</h3>
+            <p style="font-size: 0.85rem; color: #78350f; margin-bottom: 0.75rem;">For questions about active assignments, documentation drops, or tracking forms, please use these direct communication channels:</p>
+            <ul>
+                <li><strong>Statutory Audit Records Management:</strong> audit.desk@agarwalseth.com</li>
+                <li><strong>GST Reconciliation & Internal Re-checks:</strong> gst.support@agarwalseth.com</li>
+                <li><strong>Corporate Accounting Infrastructure Management:</strong> corporate@agarwalseth.com</li>
+                <li><strong>Administrative Billing Desk:</strong> billing@agarwalseth.com</li>
+            </ul>
+        </div>
+        <div style="font-size: 0.85rem; color: #78350f; display: flex; flex-direction: column; justify-content: center; border-left: 1px dashed #fca5a5; padding-left: 1.5rem;">
+            <strong>Security Notice:</strong><br>
+            All file drops, electronic document copies, and email transactions are continuously logged under our enterprise data protection framework to maintain compliance tracking rules.
+        </div>
+    </div>
+
+<div class="sticky-text-nav">
+    <a href="index.html" class="corporate-return-link">← Return to Main Corporate Portal</a>
+</div></div>
+</body>
+</html>

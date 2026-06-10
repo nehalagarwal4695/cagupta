@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Claims Guarantee | Gupta Ruchi & Co.</title>
+    <style>
+        :root {
+            --primary-blue: #1e3a8a;
+            --accent-gold: #b45309;
+            --bg-canvas: #f1f5f9;
+            --text-dark: #0f172a;
+            --white: #ffffff;
+            --border-gray: #cbd5e1;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        body { background-color: var(--bg-canvas); color: var(--text-dark); line-height: 1.6; padding: 2rem 1rem; }
+        .container { max-width: 900px; margin: 0 auto; background: var(--white); padding: 2.5rem; border-radius: 6px; border: 1px solid var(--border-gray); border-top: 6px solid var(--primary-blue); }
+        h1 { color: var(--primary-blue); font-family: 'Times New Roman', Times, serif; font-size: 2.2rem; margin-bottom: 0.5rem; border-bottom: 2px solid var(--accent-gold); padding-bottom: 0.5rem; }
+        .badge { background: #d1fae5; color: #065f46; font-size: 0.8rem; font-weight: bold; padding: 0.25rem 0.6rem; border-radius: 4px; display: inline-block; margin-bottom: 1.5rem; text-transform: uppercase; }
+        h2 { color: var(--primary-blue); font-size: 1.25rem; margin: 1.5rem 0 0.5rem; text-transform: uppercase; }
+        p { margin-bottom: 1rem; font-size: 0.95rem; text-align: justify; color: #334155; }
+        .security-feature { background: #f8fafc; border-left: 4px solid var(--primary-blue); padding: 1rem; margin-bottom: 1rem; border-radius: 0 4px 4px 0; }
+        .security-feature strong { color: var(--primary-blue); display: block; margin-bottom: 0.25rem; }
+        
+		/* --- Floating Sticky Navigation Header Deck --- */
+.sticky-text-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;              /* Sets a solid, clean boundary layer height */
+    background: #ffffff;        /* Solid white background forces scrolling text to disappear behind it */
+    border-bottom: 1px solid #f1f5f9; /* Ultra-light clean divider line */
+    display: flex;
+    align-items: center;        /* Vertically centers the text link inside the 60px bar */
+    padding-left: 2.5rem;       /* Keeps your exact horizontal alignment from the edge */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02); /* Optional: Gives an elegant, micro shadow depth */
+    z-index: 9999;              /* Forces the bar to stay securely on top of everything else */
+}
+
+/* --- Clean Text Hyperlink Customizer --- */
+.corporate-return-link {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #c26600;            /* Your exact golden-orange corporate hex color */
+    text-decoration: none;     
+    display: inline-block;
+    transition: opacity 0.2s ease;
+}
+
+.corporate-return-link:hover {
+    opacity: 0.85;             
+    text-decoration: underline;
+}
+
+/* --- CRITICAL DOCUMENT CONTENT PUSH OFFSET --- */
+body {
+    padding-top: 65px !important; /* Pushes the "DIRECT TAXATION ADVISORY" main title down so it never hides behind the bar on page load */
+}
+
+/* --- Precise Mobile Viewport Adjustments --- */
+@media screen and (max-width: 480px) {
+    .sticky-text-nav {
+        height: 50px;           /* Slimmer bar profile for mobile views */
+        padding-left: 1rem;     
+    }
+    .corporate-return-link {
+        font-size: 0.9rem;      
+    }
+    body {
+        padding-top: 55px !important;
+    }
+}
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Security Claims Guarantee</h1>
+    <div class="badge">Verified Enterprise Encryption</div>
+    
+    <p>Managing the audit ledgers and sensitive financial portfolios of major companies requires top-tier security. Gupta Ruchi & Co. protects all data transfers, client file repositories, and staff portal authentications with industrial-grade safety protocols.</p>
+    
+    <h2>Our Core Infrastructure Claims</h2>
+    
+    <div class="security-feature">
+        <strong>1. End-to-End SSL Stream Protection</strong>
+        <p>All user authentication sessions running through our Client/Staff Portal Login desks are fully protected via standardized Secure Socket Layer (SSL/TLS) encryption mechanisms. This stops unauthorized network sniffing and data interception.</p>
+    </div>
+
+    <div class="security-feature">
+        <strong>2. Encrypted Document Repositories</strong>
+        <p>Corporate financial statements, ledger spreadsheets, and tax returns uploaded to our secure systems are saved in a highly protected cloud environment. Access is granted strictly to assigned advisory professionals.</p>
+    </div>
+
+    <div class="security-feature">
+        <strong>3. Isolated Tool Calculation Layers</strong>
+        <p>Our financial tools operate in a sandboxed runtime environment. The calculations run entirely on your local machine, keeping sensitive financial details invisible to external network threats.</p>
+    </div>
+
+    <div class="security-feature">
+        <strong>4. Strict Session Expirations</strong>
+        <p>To prevent unauthorized access at public terminals, our administrative office networks and client dashboards feature automated session time-outs that trigger during prolonged periods of inactivity.</p>
+    </div>
+
+<div class="sticky-text-nav">
+    <a href="index.html" class="corporate-return-link">← Return to Main Corporate Portal</a>
+</div></div>
+</body>
+</html>

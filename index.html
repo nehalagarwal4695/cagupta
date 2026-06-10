@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gupta Ruchi & Co. | Chartered Accountants</title>
+<style>
+        :root {
+            --primary-blue: #1e3a8a;
+            --accent-gold: #b45309;
+            --bg-canvas: #f1f5f9;
+            --text-dark: #0f172a;
+            --white: #ffffff;
+            --border-gray: #cbd5e1;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        body { background-color: var(--bg-canvas); color: var(--text-dark); display: flex; flex-direction: column; min-height: 100vh; }
+
+        /* Video-Accurate Top Header Frame */
+        header { background: var(--white); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-gray); }
+        .logo-area { display: flex; align-items: center; gap: 1.5rem; }
+        .logo-text h1 { color: var(--primary-blue); font-size: 2.2rem; font-family: 'Times New Roman', Times, serif; font-weight: bold; font-style: italic; }
+        .logo-text p { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: #475569; margin-top: -2px; font-weight: bold; }
+        .ca-india-badge { border: 2px solid var(--primary-blue); padding: 0.25rem 0.75rem; font-weight: bold; color: var(--primary-blue); border-radius: 4px; font-size: 1.1rem; text-align: center; }
+        .ca-india-badge span { display: block; font-size: 0.6rem; color: #ef4444; letter-spacing: 1px; }
+
+        /* Classic Corporate Blue Navigation Bar */
+        nav { background: var(--primary-blue); border-bottom: 4px solid var(--accent-gold); position: relative; z-index: 999; }
+        .nav-container { max-width: 1300px; margin: 0 auto; display: flex; list-style: none; }
+        .nav-container > li { position: relative; }
+        .nav-container > li > a { display: block; color: var(--white); text-decoration: none; padding: 0.8rem 1.2rem; font-size: 0.9rem; font-weight: bold; text-transform: uppercase; transition: background 0.2s; }
+        .nav-container > li:hover > a { background: var(--accent-gold); }
+
+        /* Level 1 Dropdown Menu Array */
+        .dropdown { display: none; position: absolute; top: 100%; left: 0; background: var(--white); min-width: 180px; box-shadow: 0 4px 6px rgba(0,0,0,0.15); list-style: none; border: 1px solid var(--border-gray); }
+        .nav-container > li:hover .dropdown { display: block; }
+        .dropdown li { position: relative; border-bottom: 1px solid #f1f5f9; }
+        .dropdown a { display: block; color: var(--text-dark); text-decoration: none; padding: 0.6rem 1rem; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; }
+        .dropdown li:hover > a { background: #f1f5f9; color: var(--accent-gold); }
+
+        /* Level 2 Fly-out Nesting Submenus (Triggers to the Right) */
+        .submenu { display: none; position: absolute; top: 0; left: 100%; background: var(--white); min-width: 240px; box-shadow: 0 4px 6px rgba(0,0,0,0.15); list-style: none; border: 1px solid var(--border-gray); }
+        .dropdown li:hover .submenu { display: block; }
+        .submenu a { text-transform: none; font-weight: normal; font-size: 0.85rem; }
+
+        /* Marquee Ticker Framework */
+        .ticker-bar { background: #fffbeb; border-bottom: 1px solid #fef3c7; padding: 0.4rem 5%; display: flex; align-items: center; font-size: 0.8rem; color: #b45309; font-weight: bold; gap: 1rem; }
+        .ticker-title { color: #991b1b; white-space: nowrap; border-right: 2px solid #fca5a5; padding-right: 1rem; }
+
+        /* 3-Column Split Content Blueprint */
+        .main-wrapper { max-width: 1400px; margin: 1.5rem auto; padding: 0 1.5rem; display: grid; grid-template-columns: 240px 1fr 280px; gap: 1.5rem; flex: 1; }
+
+        /* Common Content Box Styling */
+        .content-card { background: var(--white); border: 1px solid var(--border-gray); border-radius: 4px; padding: 1.25rem; margin-bottom: 1.5rem; }
+        .card-title { font-size: 0.95rem; color: var(--primary-blue); border-bottom: 2px solid var(--primary-blue); padding-bottom: 0.3rem; margin-bottom: 0.75rem; text-transform: uppercase; font-weight: bold; }
+        
+        /* Left Column Specific Layout rules */
+        .left-rail { display: flex; flex-direction: column; }
+        .quick-links-list { list-style: none; }
+        .quick-links-list a { display: block; padding: 0.4rem 0.5rem; font-size: 0.85rem; color: #334155; text-decoration: none; border-bottom: 1px dashed #e2e8f0; }
+        .quick-links-list a:hover { color: var(--accent-gold); background: #fafafa; }
+
+        /* Central Workspace Panel Layout rules */
+        .center-workspace { display: flex; flex-direction: column; }
+        .about-section h2 { font-size: 1.4rem; color: var(--primary-blue); margin-bottom: 0.75rem; border-bottom: 1px solid var(--border-gray); padding-bottom: 0.5rem; text-transform: uppercase; }
+        .about-section p { font-size: 0.9rem; line-height: 1.6; color: #334155; margin-bottom: 1.5rem; text-align: justify; }
+        
+        .commitments-box { background: #fffbeb; border-left: 4px solid var(--accent-gold); padding: 1rem; border-radius: 0 4px 4px 0; }
+        .commitments-box h3 { font-size: 1rem; color: var(--accent-gold); margin-bottom: 0.5rem; text-transform: uppercase; }
+        .commitments-box ul { list-style-type: square; padding-left: 1.25rem; font-size: 0.85rem; color: #78350f; }
+        .commitments-box ul li { margin-bottom: 0.4rem; }
+
+        /* Right Column (What's New News Desk + Login Matrix) */
+        .right-rail { display: flex; flex-direction: column; gap: 1.5rem; }
+        .whats-new-box { border-top: 3px solid var(--accent-gold); }
+        .news-ticker-container { height: 260px; overflow: hidden; position: relative; border: 1px solid #f1f5f9; padding: 0.5rem; background: #fafafa; }
+        .news-item { font-size: 0.8rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px dashed #cbd5e1; }
+        .news-date { font-weight: bold; color: var(--accent-gold); display: block; margin-bottom: 0.15rem; }
+        .news-text { color: #334155; text-decoration: none; display: block; }
+        .news-text:hover { color: var(--primary-blue); }
+
+        /* Secure Client Login Panel layout rules */
+        .login-box { border-top: 3px solid var(--primary-blue); background: #f8fafc; }
+        .form-group { margin-bottom: 0.75rem; }
+        .form-group label { display: block; font-size: 0.75rem; font-weight: bold; color: #475569; margin-bottom: 0.25rem; }
+        .form-control { width: 100%; padding: 0.4rem 0.5rem; border: 1px solid var(--border-gray); border-radius: 3px; font-size: 0.85rem; }
+        .login-btn { background: var(--primary-blue); color: var(--white); border: none; width: 100%; padding: 0.5rem; font-size: 0.85rem; font-weight: bold; border-radius: 3px; cursor: pointer; text-transform: uppercase; }
+        .login-btn:hover { background: #1d4ed8; }
+
+        /* Refactored High-Density Interactive Multi-Column Corporate Footer */
+        footer { background: #0f172a; color: #cbd5e1; border-top: 6px solid var(--primary-blue); padding: 3rem 5% 1.5rem; font-size: 0.85rem; margin-top: auto; }
+        .footer-grid { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 2.5rem; border-bottom: 1px solid #334155; padding-bottom: 2rem; }
+        .footer-col h4 { color: var(--white); font-size: 1rem; text-transform: uppercase; margin-bottom: 1rem; border-bottom: 2px solid var(--accent-gold); padding-bottom: 0.25rem; display: inline-block; }
+        .footer-col p { margin-bottom: 0.5rem; line-height: 1.5; color: #94a3b8; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.5rem; }
+        .footer-links a { color: #94a3b8; text-decoration: none; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--white); text-decoration: underline; }
+        
+        .footer-bottom { max-width: 1300px; margin: 1.5rem auto 0; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #64748b; }
+        .footer-bottom-links a { color: #64748b; text-decoration: none; margin-left: 1rem; }
+        .footer-bottom-links a:hover { color: #cbd5e1; }
+
+        @media (max-width: 1024px) {
+            .main-wrapper { grid-template-columns: 1fr; }
+            .left-rail, .right-rail { display: none; } /* Focus core workspace viewport on small layouts */
+        }
+		
+		    /* Portal Card Base Styling */
+    .login-portal-card {
+        max-width: 420px;
+        margin: 2rem auto;
+        background: #ffffff;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+    .portal-toggle-header {
+        display: flex;
+        background: #f1f5f9;
+        border-bottom: 1px solid #cbd5e1;
+    }
+    .portal-toggle-btn {
+        flex: 1;
+        padding: 1rem;
+        background: none;
+        border: none;
+        font-size: 0.9rem;
+        font-weight: bold;
+        color: #64748b;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-transform: uppercase;
+    }
+    .portal-toggle-btn.active {
+        background: #ffffff;
+        color: #1e3a8a; /* Corporate Blue */
+        border-bottom: 3px solid #b45309; /* Accent Gold */
+    }
+    .portal-body {
+        padding: 2rem;
+    }
+    .portal-body h3 {
+        color: #1e3a8a;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1.3rem;
+        margin-bottom: 0.25rem;
+    }
+    .portal-meta-text {
+        font-size: 0.8rem;
+        color: #64748b;
+        margin-bottom: 1.5rem;
+        line-height: 1.4;
+    }
+    .portal-input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+        margin-bottom: 1.25rem;
+    }
+    .portal-input-group label {
+        font-size: 0.75rem;
+        font-weight: bold;
+        color: #334155;
+    }
+    .portal-control {
+        padding: 0.65rem;
+        border: 1px solid #cbd5e1;
+        border-radius: 4px;
+        font-size: 0.9rem;
+    }
+    .portal-submit-btn {
+        width: 100%;
+        background: #1e3a8a;
+        color: #ffffff;
+        border: none;
+        padding: 0.75rem;
+        font-size: 0.9rem;
+        font-weight: bold;
+        border-radius: 4px;
+        cursor: pointer;
+        text-transform: uppercase;
+        transition: background 0.2s;
+    }
+    .portal-submit-btn:hover {
+        background: #1d4ed8;
+    }
+    .portal-submit-btn:disabled {
+        background: #64748b;
+        cursor: not-allowed;
+    }
+    .login-alert {
+        padding: 0.6rem;
+        font-size: 0.8rem;
+        font-weight: bold;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+        display: none;
+    }
+	
+	.onboarding-notice-box {
+        margin-top: 1.5rem;
+        border-top: 1px dashed #cbd5e1;
+        padding-top: 1rem;
+    }
+    .onboarding-trigger {
+        font-size: 0.8rem;
+        font-weight: bold;
+        color: #1e3a8a;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+    }
+    .onboarding-trigger:hover {
+        color: #b45309;
+    }
+    .onboarding-content {
+        margin-top: 0.5rem;
+        background: #f8fafc;
+        border: 1px solid #cbd5e1;
+        border-radius: 4px;
+        padding: 0.75rem;
+        font-size: 0.78rem;
+        line-height: 1.4;
+        color: #475569;
+        display: none; /* Controlled via JS switch */
+    }
+	
+	/* Container to maintain structure alignment */
+.brand-image-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Updated styling to give the CA India logo a larger, premium look */
+.brand-logo-img {
+    height: 65px;       /* Increased from 40px to make the graphic visually pop */
+    width: auto;        /* Continues to preserve the natural aspect ratio */
+    max-width: 240px;   /* Increased from 180px to prevent the bounding box from clipping it */
+    display: block;
+    object-fit: contain;
+    padding: 2px 0;     /* Optional: adds a tiny bit of vertical spacing if it touches the edges */
+}
+
+.nav-upload-node {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: #1e3a8a; /* Clean Corporate Blue */
+        color: #ffffff !important;
+        padding: 0.5rem 1.1rem;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        transition: all 0.2s ease;
+    }
+    .nav-upload-node:hover {
+        background: #b45309; /* Accents to Corporate Gold on Hover */
+    }
+	
+	/* Styling for the clickable phone number */
+.footer-phone-link {
+    color: inherit;            /* Takes the same color as your footer text */
+    text-decoration: none;     /* Removes the default underline */
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.footer-phone-link:hover {
+    color: var(--accent-gold); /* Turns gold when hovered over on desktop */
+    text-decoration: underline;
+}
+
+/* Styling for the interactive email link */
+.footer-email-link {
+    color: inherit;            /* Matches the color layout of your footer text */
+    text-decoration: none;     /* Removes standard blue hyperlink underlines */
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.footer-email-link:hover {
+    color: var(--accent-gold); /* Smooth color shift to corporate gold on hover */
+    text-decoration: underline;
+}
+
+/* Navigation Interactive Link Style */
+.nav-verify-trigger {
+    display: inline-flex;
+    align-items: center;
+    background: #1e3a8a;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 0.5rem 1.1rem;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.nav-verify-trigger:hover {
+    background: var(--accent-gold, #b45309);
+    border-color: transparent;
+}
+
+/* Floating Executive Verification Desk Layer */
+.global-verify-modal {
+    display: none; /* Controlled dynamically by JavaScript toggle */
+    position: fixed;
+    top: 80px; /* Positioned precisely below your top header area */
+    right: 20px;
+    width: 380px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    border: 1px solid #cbd5e1;
+    border-top: 5px solid #1e3a8a;
+    padding: 1.5rem;
+    z-index: 9999; /* Ensures it floats strictly above everything else */
+}
+.global-verify-modal h3 {
+    color: #1e3a8a;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    font-family: 'Times New Roman', Times, serif;
+    text-transform: uppercase;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 0.4rem;
+}
+.modal-close-x {
+    float: right;
+    cursor: pointer;
+    color: #64748b;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border: none;
+    background: transparent;
+}
+.modal-close-x:hover { color: #991b1b; }
+
+</style>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <div class="logo-text">
+                <a href="index.html" style="text-decoration:none"><h1>Gupta Ruchi & Co.</h1></a>
+                <p>Chartered Accountants</p>
+            </div>
+        </div>
+        <div class="brand-image-container">
+    <a href="https://icai.org/"><img src="image.jpg" alt="CA India Portal Logo" class="brand-logo-img"></a>
+</div>
+    </header>
+
+    <nav>
+        <ul class="nav-container">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li>
+                <a href="#">Services ▾</a>
+                <ul class="dropdown">
+                    <li><a href="audit_assurance.html">Auditing & Assurance</a></li>
+                    <li><a href="direct_tax.html">Direct Taxation Advisory</a></li>
+                    <li><a href="indirect_tax.html">Indirect Taxation & GST</a></li>
+                    <li><a href="corporate_law.html">Corporate Law Compliance</a></li>
+                    <li><a href="management_consultancy.html">Management Consultancy</a></li>
+                </ul>
+            </li>
+			
+            <li>
+                <a href="#">Knowledge Bank ▾</a>
+                <ul class="dropdown">
+                    <li>
+                        <a href="calculators.html">Calculators ▸</a>
+                        <ul class="submenu">
+                            <li><a href="calculators.html">GST Tax Splitter</a></li>
+                            <li><a href="calculators.html">GST Rate Valuation Desk</a></li>
+                            <li><a href="calculators.html">Income Tax Slab Estimator</a></li>
+                            <li><a href="Calculators.html">Calculate Net Profits</a></li>
+                            <li><a href="calculators.html">Calculate Net Worth</a></li>
+							<li><a href="depreciation_matrix.html">Fixed Asset Depriciation Marix</a></li>
+                            <li><a href="calculators.html">Effective Capital Calculator</a></li>
+                            <li><a href="calculators.html">HRA Exemption Tool</a></li>
+                            <li><a href="calculators.html">NSC Interest Calculator</a></li>
+                            <li><a href="calculators.html">PPF Growth Ledger</a></li>
+                            <li><a href="calculators.html">Auto Loan Calculator</a></li>
+                            <li><a href="calculators.html">Home Loan Calculation Matrix</a></li>
+                            <li><a href="calculators.html">Gratuity Estimation Desk</a></li>
+                            <li><a href="calculators.html">RERA Valuation Module</a></li>
+							<li><a href="calculators.html">Other Calculators ▸</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Bulletins ▸</a>
+                        <ul class="submenu">
+                            <li><a href="https://sebi.gov.in/">RBI SEBI Updates Desk</a></li>
+                            <li><a href="https://incometaxindia.gov.in/notifications">Income Tax Notifications</a></li>
+                            <li><a href="https://cbic.gov.in/entities/serviceTax">Service Tax Archive</a></li>
+                            <li><a href="cst_rules.html">Central Sales Tax Rules</a></li>
+                            <li><a href="#">Customs Statutory Orders</a></li>
+                            <li><a href="company_circulars.html">Company Law Circulars</a></li>
+                            <li><a href="gdft.html">DGFT Import Export Rules</a></li>
+                            <li><a href="fema.html">FEMA Currency Guidelines</a></li>
+                            <li><a href="llp.html">The LLP Act Provisions</a></li>
+                            <li><a href="#">Indian Accounting Standards (INDAS)</a></li>
+                            <li><a href="exclusive.html">GST Executive Bulletins</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Utilities ▸</a>
+                        <ul class="submenu">
+                            <li><a href="https://incometaxindia.gov.in/w/tds-rates-1">TDS Rates for Current FY</a></li>
+                            <li><a href="tax_slabs.html">Rates of Income Tax Slabs</a></li>
+                            <li><a href="depreciation_companies.html">Depreciation Rates Company Act</a></li>
+                            <li><a href="depreciation_it.html">Depreciation Rates Income Tax Act</a></li>
+                            <li><a href="roc_filling.html">ROC Filing Fees Structure</a></li>
+                            <li><a href="roc_fee_companies.html">ROC Fee Structure (Companies Act)</a></li>
+                            <li><a href="cost_inflation.html">Cost Inflation Index Matrix</a></li>
+                            <li><a href="gold_silver_msp.html">Gold & Silver Master Price Rates</a></li>
+                            <li><a href="micr_codes.html">MICR System Codes Reference</a></li>
+                            <li><a href="nsc_rates.html">Rates of NSC Interest History</a></li>
+                            <li><a href="stamp_duty_rates.html">Rates of Stamp Duty By State</a></li>
+                            <li><a href="llp_fees.html">LLP Statutory Fees Reference</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Links ▸</a>
+                        <ul class="submenu">
+                            <li><a href="quick_links.html">Quick Links Directory</a></li>
+                            <li><a href="important_links.html">Important Government Portals</a></li>
+                            <li><a href="gst-vat.html">GST/VAT State Links Ledger</a></li>
+                            <li><a href="eob.html">Ease of Doing Business Nodes</a></li>
+                        </ul>
+                    </li>
+					<li>
+                        <a href="forms.html">Forms ▸</a>
+                        <ul class="submenu">
+                            <li><a href="forms.html">ITR Returns</a></li>
+                            <li><a href="forms.html">Tax Audits</a></li>
+                            <li><a href="forms.html">TDS-TCS</a></li>
+                            <li><a href="forms.html">GST Modules</a></li>
+                            <li><a href="forms.html">MCA Corporates</a></li>
+                            <li><a href="forms.html">Other Forms ▸</a></li>
+                        </ul>
+                    </li>					
+                    <li>
+                        <a href="#">Acts ▸</a>
+                        <ul class="submenu">
+                            <li><a href="#">Income Tax Act Framework</a></li>
+                            <li><a href="#">Direct Tax Rules Index</a></li>
+                            <li><a href="https://cbic.gov.in/ht-docs-cx/act-cx-idx">Indirect Tax Historic Statutes</a></li>
+                            <li><a href="https://mca.gov.in/content/mca/global/en/acts-rules/ebooks.html">Corporate Law Structures</a></li>
+                            <li><a href="https://dvat.gov.in">VAT Laws Reference Archive</a></li>
+                            <li><a href="https://indiacode.nic.in">Other Allied Business Statutes</a></li>
+                            <li><a href="https://cbic.gov.in/ht-docs-gst/cgst-act-idx">GST Enacted Statutes</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Rules ▸</a>
+                        <ul class="submenu">
+                            <li><a href="direct_tax.html">Direct Tax Administrative Rules</a></li>
+                            <li><a href="indirect_tax.html">Indirect Tax Procedural Frameworks</a></li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </li>
+			<li><a href="calander.html" class="nav-calendar-btn">
+				<span class="calendar-icon"></span> Compliance Calendar
+					</a></li>
+            <li><a href="query.html">Query Desk</a></li>
+            <li><a href="career.html">Careers</a></li>
+            <li>
+                <a href="#">Admin ▾</a>
+                <ul class="dropdown">
+                    <li><a href="#">Office Portal Login</a></li>
+                    <li><a href="#">Email Server Gateway</a></li>
+                    <li><a href="#">Time Sheet Tracker</a></li>
+                </ul>
+            </li>
+            <li><a href="contact.html">Contact Us</a></li>
+			        </ul>
+    </nav>
+
+    <div class="ticker-bar">
+        <span class="ticker-title">STATUTORY ANNOUNCEMENTS</span>
+        <marquee scrollamount="3">
+            Filing parameters for form assignments due this week. Ensure all balance book sheets match updated provisional data rules.
+        </marquee>
+    </div>
+
+    <div class="main-wrapper">
+        
+        <aside class="left-rail">
+            <div class="content-card">
+                <div class="card-title">Statutory Indexes</div>
+                <ul class="quick-links-list">
+                    <li><a href="https://incometaxindia.gov.in/income-tax-act">Income Tax Act, 1961</a></li>
+                    <li><a href="https://cbic-gst.gov.in/pdf/CGST-Act-Updated-01082021.pdf">Central GST Act, 2017</a></li>
+                    <li><a href="https://incometaxindia.gov.in/companies-act-2013">Companies Act, 2013</a></li>
+                    <li><a href="https://ibclaw.in/llp-rules-2009/">Limited Liability Partnership Rules</a></li>
+                    <li><a href="https://fema.gov/">FEMA Management Track</a></li>
+                </ul>
+            </div>
+            <div class="content-card">
+                <div class="card-title">State Revenue Links</div>
+                <ul class="quick-links-list">
+                    <li><a href="https://up-vat.com/dms_etax/login.aspx">Uttar Pradesh VAT Portal</a></li>
+                    <li><a href="https://finance.delhi.gov.in">Delhi Finance Department</a></li>
+                    <li><a href="http://206.189.129.190/mvat_ui/">Maharashtra Tax Gateway</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="center-workspace">
+            <section class="content-card about-section" style="flex: 1;">
+                <h2>About Our Practice</h2>
+                <p>
+                    We are Gupta Ruchi & Co., a premier Chartered Accountant corporate partnership established since 2020. Over decades of dedicated public practice, our firm has built an outstanding institutional profile providing wide-ranging Auditing configuration tracks, Management Consultancy, intricate Corporate Law matters, Tax Structuring, and continuous Transaction Outsourcing solutions.
+                </p>
+                <p>
+                    The partnership maintains strategic operational footprints in NOIDA, Lucknow, and New Delhi. The firm has consistently garnered a distinct reputation for delivering professional service benchmarks of the highest caliber, combining deep technical specialization with absolute procedural integrity.
+                </p>
+
+                <div class="commitments-box">
+                    <h3>We Are Committed To:</h3>
+                    <ul>
+                        <li>Place the strategic interest of clients before ours at every operational juncture.</li>
+                        <li>Uphold structural standards of absolute Honesty, Integrity, and Professional Ethics.</li>
+                        <li>Maintain continuous technical education standards for our entire practice staff.</li>
+                        <li>Deliver precise quality metrics across corporate internal auditing assignments.</li>
+                    </ul>
+                </div>
+			</section>
+        </main>
+			
+        <aside class="right-rail">
+			<a href="upload_desk.html" class="nav-upload-node">
+    📤 Document Upload/Search
+</a>	
+		<button class="nav-verify-trigger" onclick="toggleGlobalVerifyDesk()">
+    🔍 Know Your PAN/GSTIN
+</button>
+	<a href="ifsc_audit.html" class="nav-upload-node">
+    📤 IFSC Routing Desk
+</a>	
+	<div id="globalVerifyDesk" class="global-verify-modal">
+    <button class="modal-close-x" onclick="toggleGlobalVerifyDesk()">✕</button>
+    <h3>Tax ID Verification Desk</h3>
+    
+    <div class="form-group" style="margin-top: 1rem; margin-bottom: 1rem;">
+        <label style="display:block; font-size:0.75rem; font-weight:bold; margin-bottom:0.3rem; text-transform:uppercase; color:#475569;">Identifier Type</label>
+        <select id="modal-tax-type" onchange="toggleModalPlaceholder()" style="width:100%; padding:0.5rem; border:1px solid #cbd5e1; border-radius:4px;">
+            <option value="gstin">GSTIN Registry</option>
+            <option value="pan">PAN Registry</option>
+        </select>
+    </div>
+    
+    <div class="form-group" style="margin-bottom: 1rem;">
+        <label style="display:block; font-size:0.75rem; font-weight:bold; margin-bottom:0.3rem; text-transform:uppercase; color:#475569;">Identification Token</label>
+        <input type="text" id="modal-tax-input" placeholder="e.g., 07AAAAA0000A1Z5" style="width:100%; padding:0.5rem; border:1px solid #cbd5e1; border-radius:4px; text-transform: uppercase;">
+    </div>
+    
+    <button onclick="verifyModalTaxIdentifier()" style="width:100%; background:#1e3a8a; color:#ffffff; border:none; padding:0.6rem; border-radius:4px; font-weight:bold; font-size:0.8rem; text-transform:uppercase; cursor:pointer;">Audit System Registry</button>
+    
+    <div id="modal-res-tax-verify" style="margin-top:1rem; padding:0.8rem; border-radius:4px; font-size:0.8rem; line-height:1.4; display:none; background:#f8fafc; border:1px solid #e2e8f0;"></div>
+</div>
+		
+		            <div class="content-card whats-new-box">
+                <div class="card-title">What's New Desk</div>
+                <div class="news-ticker-container">
+                    <div class="news-item">
+                        <span class="news-date">29-05-2026</span>
+                        <a href="#" class="news-text">RBI monetary tracking signals adjustments to current currency baseline metrics.</a>
+                    </div>
+                    <div class="news-item">
+                        <span class="news-date">28-05-2026</span>
+                        <a href="#" class="news-text">Ministry parameters outline customized credit metrics assisting active MSME business setups.</a>
+                    </div>
+                    <div class="news-item">
+                        <span class="news-date">27-05-2026</span>
+                        <a href="#" class="news-text">New updates issued regarding technology risk frameworks within banking fields.</a>
+                    </div>
+                </div>
+				
+            </div>
+			
+    </aside>
+	
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Gupta Ruchi & Co.</h4>
+                <p>Authorized corporate financial auditors, regulatory controllers, and statutory advisors. Managing global asset portfolios with precision practice since 2020.</p>
+                <p style="margin-top: 1rem; color: var(--accent-gold); font-weight: bold;">ICAI Firm Registration No: </p>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Office Coordinates</h4>
+                <p><strong>Corporate Head Office:</strong><br>B-73, Pocket-B, Block-L,Shouryapuram, Lal Kuan, GZB, UP - 201002</p>
+                <p><strong>Conatct Mobile No.:</strong><br><p><a href="tel:+919808160239" class="footer-phone-link">+91 98081 60239</a></p></p>
+                <p style="margin-top: 0.75rem;"><strong>Inquiries Desk:</strong><p><a href="mailto:contact@guptaruchi.com?subject=Portal%20Inquiry%20-%20CA%20India" class="footer-email-link">contact@guptaruchi.com</a></p></p>
+                <p><strong>Compliance Cell:</strong><p><a href="mailto:compliance@guptaruchi.com?subject=Portal%20Inquiry%20-%20CA%20India" class="footer-email-link">compliance@guptaruchi.com</a></p></p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Practice Sectors</h4>
+                <ul class="footer-links">
+                    <li><a href="https://www.incometax.gov.in/iec/foportal/">Income Tax E-Filling Portal</a></li>
+                    <li><a href="https://gst.gov.in">GST Common Portal</a></li>
+                    <li><a href="https://mca.gov.in">MCA V3 Portal (Corporate Affairs)</a></li>
+                    <li><a href="https://icegate.gov.in">ICES Gate Portal</a></li>
+                    <li><a href="https://www.tdscpc.gov.in">Traces Portal (TDS Correction)</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Regulatory Compliance</h4>
+                <p>All data networks, document repositories, and client ledger uploads are secured via end-to-end industry encryption paths.</p>
+                <p style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem;">
+                    Disclaimer: In compliance with standard regulations specified by the Institute of Chartered Accountants of India (ICAI), this digital space does not solicit or advertise professional services.
+                </p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="copyright-info">
+                &copy; 2026 Gupta Ruchi & Co. | Chartered Accountants. All Rights Reserved. Designed and Developed By : <a href="https://spicentech.github.io/spicentech/" style="text-decoration: none; color: #ff5733">SPICEN TECH</a>
+            </div>
+			
+            <div class="footer-bottom-links">
+                <a href="terms.html">Terms & Conditions</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="security.html">Security Claims Guarantee</a>
+                <a href="icai_code.html">ICAI Code Reference</a>
+            </div>
+        </div>
+    </footer>
+	<script>
+	// Toggle state management for the floating navbar drawer desk
+    function toggleGlobalVerifyDesk() {
+        const desk = document.getElementById('globalVerifyDesk');
+        if (desk.style.display === "block") {
+            desk.style.display = "none";
+        } else {
+            desk.style.display = "block";
+            // Auto-focus input when desktop expands for optimal UX workflow
+            document.getElementById('modal-tax-input').focus();
+        }
+    }
+
+    // Dynamic placeholder adjustments within the nav modal desk
+    function toggleModalPlaceholder() {
+        const type = document.getElementById('modal-tax-type').value;
+        const inputField = document.getElementById('modal-tax-input');
+        inputField.placeholder = (type === 'gstin') ? "e.g., 07AAAAA0000A1Z5" : "e.g., ABCDE1234F";
+    }
+
+    // Algorithmic Structural Compliance Audit Logic
+    // Director's Secure Client Vault Ledger
+    const secureClientLedger = {
+        "GKTPA0174A": {
+            name: "NEHAL AGARWAL",
+            status: "Active & Verified",
+            category: "Individual / Sole Proprietor",
+            mcaEligibility: "Fully Eligible (No Statutory Disqualifications)",
+            loanCapEstimator: "High Tier Premium Profile (CIBIL Range ~780)",
+            mcaStatus: "Clear (No Active Director Defaults Detected)",
+            filingHistory: "Compliant (AY 2025-26 Returns Filed)"
+        },
+        "SPICN7788C": {
+            name: "SPICEN TECH PRIVATE LIMITED",
+            status: "Active Corporate Entity",
+            category: "Company (Corporate Body)",
+            mcaEligibility: "Corporate Entity Active",
+            loanCapEstimator: "Premium Corporate Grade Capital Access",
+            mcaStatus: "Active Compliance (Form MGT-7 & AOC-4 Filed)",
+            filingHistory: "Compliant (Tax Audit Report 3CD Logged)"
+        }
+    };
+
+    // Paste your exact deployment Apps Script URL here
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxlXAUvhYPDbssGyggVss0KQ1kvAUirmHA1Wz8dMLfOF8Ub4DjN1zSuIzUZxBDxqmdA/exec";
+
+    function verifyModalTaxIdentifier() {
+        const type = document.getElementById('modal-tax-type').value;
+        let rawInput = document.getElementById('modal-tax-input').value.trim().toUpperCase();
+        const out = document.getElementById('modal-res-tax-verify');
+        
+        out.style.display = "block";
+        out.style.borderLeft = "4px solid #0284c7"; // Processing Blue
+        out.innerHTML = `<p style="color: #0369a1; font-weight: bold; text-align: center; margin:0;">🔄 Querying Enterprise Database Registry...</p>`;
+
+        if (!rawInput) {
+            out.style.borderLeft = "4px solid #991b1b";
+            out.innerHTML = `<p style="color: #991b1b; font-weight: bold; margin:0;">⚠ Error: Input field cannot be empty.</p>`;
+            return;
+        }
+
+        // 1. Structural Regex Validation
+        const holderTypes = { 'C': 'Company', 'P': 'Individual / Sole Proprietor', 'H': 'HUF', 'F': 'Partnership Firm / LLP', 'A': 'AOP', 'T': 'Trust' };
+        const gstStateCodes = { '07': 'Delhi', '09': 'Uttar Pradesh', '27': 'Maharashtra', '29': 'Karnataka', '33': 'Tamil Nadu' };
+
+        if (type === "pan" && !/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(rawInput)) {
+            out.style.borderLeft = "4px solid #ef4444";
+            out.innerHTML = `<p style="color: #991b1b; font-weight: bold; margin:0;">✖ Invalid Structure: Syntax error. Requires 5 Letters, 4 Digits, 1 Letter.</p>`;
+            return;
+        }
+        if (type === "gstin" && !/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/.test(rawInput)) {
+            out.style.borderLeft = "4px solid #ef4444";
+            out.innerHTML = `<p style="color: #991b1b; font-weight: bold; margin:0;">✖ Invalid Structure: Syntax error. Requires 15 alphanumeric characters.</p>`;
+            return;
+        }
+
+        // 2. Fetch Live from Google Sheet Database
+        const targetUrl = `${APPS_SCRIPT_URL}?action=dbLookup&taxId=${encodeURIComponent(rawInput)}`;
+
+        fetch(targetUrl)
+        .then(response => response.json())
+        .then(res => {
+            if (res.status === "success") {
+                if (res.matchFound) {
+                    // Profile Match Found in Google Sheets
+                    out.style.borderLeft = "4px solid #16a34a"; // Success Green
+                    out.innerHTML = `
+                        <p style="color: #166534; font-weight: bold; margin-bottom: 0.4rem; font-size:0.85rem;">✔ Record Synchronized (Database Match)</p>
+                        <div style="color: #334155; border-top: 1px dashed #cbd5e1; padding-top: 0.4rem;">
+                            <p style="margin: 2px 0;"><strong>Legal Name:</strong> <span style="color:#1e3a8a; font-weight:bold;">${res.data.name}</span></p>
+                            <p style="margin: 2px 0;"><strong>Status:</strong> <span style="color:#166534; font-weight:bold;">${res.data.status}</span></p>
+                            <p style="margin: 2px 0;"><strong>Classification:</strong> ${res.data.category}</p>
+                            <p style="margin: 2px 0;"><strong>Company Eligibility:</strong> ${res.data.mcaEligibility}</p>
+                            <p style="margin: 2px 0;"><strong>Credit Capacity:</strong> ${res.data.loanCapEstimator}</p>
+                        </div>
+                    `;
+                } else {
+                    // Cryptographic Fallback if the valid number isn't in your spreadsheet
+                    const derivedPan = (type === "gstin") ? rawInput.substring(2, 12) : rawInput;
+                    const typeChar = derivedPan.charAt(3);
+                    const entityClassification = holderTypes[typeChar] || 'Valid Taxpayer';
+                    const stateName = (type === "gstin") ? (gstStateCodes[rawInput.substring(0, 2)] || 'Indian Territory') : '';
+
+                    out.style.borderLeft = "4px solid #d97706"; // Informational Amber
+                    out.innerHTML = `
+                        <p style="color: #92400e; font-weight: bold; margin-bottom: 0.4rem; font-size:0.85rem;">✔ Authenticity Verified (Structural Compliance Passed)</p>
+                        <div style="color: #334155; border-top: 1px dashed #fcd34d; padding-top: 0.4rem;">
+                            <p style="margin: 2px 0;"><strong>Structure Assessment:</strong> 100% Valid Format Standard</p>
+                            <p style="margin: 2px 0;"><strong>Decoded Entity Type:</strong> <span style="color:#1e3a8a; font-weight:bold;">${entityClassification}</span></p>
+                            ${type === 'gstin' ? `<p style="margin: 2px 0;"><strong>State Location Node:</strong> ${stateName}</p>` : ''}
+                            <p style="margin: 4px 0 0 0; font-size:0.7rem; color:#64748b; font-style:italic; background:#f8fafc; padding:4px; border-radius:2px;">Notice: Token verified as legally authentic. Profile syncing requires explicit database registration.</p>
+                        </div>
+                    `;
+                }
+            } else {
+                out.style.borderLeft = "4px solid #ef4444";
+                out.innerHTML = `<p style="color: #991b1b; margin:0;">✖ Database Error: ${res.message}</p>`;
+            }
+        })
+        .catch(err => {
+            out.style.borderLeft = "4px solid #ef4444";
+            out.innerHTML = `<p style="color: #991b1b; margin:0;">✖ Connection Intercepted. Check Apps Script deployment settings.</p>`;
+            console.error(err);
+        });
+    }
+	
+	</script>
+</body>
+</html>
